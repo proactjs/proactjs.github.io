@@ -1,0 +1,13 @@
+{
+  "name": "proactjs.site",
+  "title": "ProAct Site",
+  "description": "Site for ProAct.js",
+  "version": "0.0.0",
+  "author": "meddle0x53",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "0.1.11",
+    "grunt-browser-sync": "~1.3.2"
+  }
+}
