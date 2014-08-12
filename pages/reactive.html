@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="../stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="../stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="../javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Reactive Programming</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/proactjs/proactjs">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>ProAct.js</h1>
+            <h2>Reactive Programming</h2>
+          </span>
+        </span>
+      </header>
+
+      <section id="navigation">
+        <p>
+          <ul>
+            <li><a href="/">Home</a></li>
+          </ul>
+        </p>
+      </section>
+
+      <section id="main_content">
+        <h3>
+          <a name="what-is-reactive-programming" class="anchor" href="#what-is-reactive-programming">
+            <span class="octicon octicon-link">
+            </span>
+          </a>
+          What is Reactive Programming
+        </h3>
+
+        <p>
+          When we write a program, we are working with data. This data may come from remote server or from local storage, maybe temporary in the memory, or persistent.
+          We are displaying it to the user in some form.
+          It is changing on user interactions, or at time intervals.
+        </p>
+        <p>
+          <ul>
+            <li>
+              A <span style="font-style: italic;">data flow</span> is a graph of dependencies.
+              Dependencies between a raw data and its representations or between a set of values and a value created by a computation that depends on these values.
+            </li>should be update
+            <li>
+              An <span style="font-style: italic;">action flow</span> is an operation or set of operations executed on the <span style="font-style: italic;">data flow</span> and its consequences.
+              For example the data in a node of the dependency graph is changed - all of its dependent nodes chould be re-computed in some way and the
+              <span style="font-style: italic;">data flow</span> should become valid again.
+            </li>
+            <li>
+              A <span style="font-style: italic;">change</span> or an <span style="font-style: italic;">event</span> is something that triggers the <span style="font-style: italic;">action flow</span>.
+            </li>
+          </ul>
+        </p>
+        <p>
+          A reactive environment consists of these three things.
+        </p>
+        <p>
+          A very simple example is a click counter - an html page with a DIV tag containing a number and a BUTTON.
+          When the user clicks on the BUTTON the number in the DIV tag is incremented by one.
+        </p>
+        <p>
+          Here the data flow can consist of an intiger variable containing the number and the text representation in the DIV tag.
+          The action flow is inflicted by changing the value of the intiger variable - the text in the DIV should be updated.
+          And the events causing the action flow executions are provided by the user clicks.
+        </p>
+        <p>
+          If we use a functional reactive programming implementation we will have a stream attached to the BUTTON click action.
+          From this stream a new stream will be created that on every event coming from the first one it triggers the intiger value - 1.
+          And there will be an accumulating stream that sums all the values comming from the stream emmiting intigers.
+          On every event/change comming from the accumulating stream the DIV text will be updated.
+        </p>
+        <p>
+          If we use an object-oriented reactive programming implementation, we will have an object containing a field with the integer counter,
+          that is bound to the DIV's text in some way.
+          On every click event the integer field is set to its old value plus one.
+        </p>
+        <p>
+          Proact.js incorporates both the approaches - You have the three dependent streams - event/intiger/accumulating
+          and the object with the intiger field bound to the DIV's text.
+          Now, the accumulating stream is plugged into the integer field.
+          This means that the field is updated by every value comming from the accumulating stream.
+        </p>
+        <p>
+          Here is the <a href="http://jsfiddle.net/meddle/2Wrfq", target="_blank">click counter, implemented using ProAct.js.</a>
+        </p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>
+              <a href="https://github.com/proactjs/proactjs">proactjs</a> - Reactive JavaScript
+            </p>
+          </span>
+        </span>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+
