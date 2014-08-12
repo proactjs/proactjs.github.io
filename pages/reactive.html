@@ -85,14 +85,14 @@
           When the user clicks on the BUTTON the number in the DIV tag is incremented by one.
         </p>
         <p>
-          Here the data flow can consist of an intiger variable containing the number and the text representation in the DIV tag.
-          The action flow is inflicted by changing the value of the intiger variable - the text in the DIV should be updated.
+          Here the data flow can consist of an integer variable containing the number and the text representation in the DIV tag.
+          The action flow is inflicted by changing the value of the integer variable - the text in the DIV should be updated.
           And the events causing the action flow executions are provided by the user clicks.
         </p>
         <p>
           If we use a functional reactive programming implementation we will have a stream attached to the BUTTON click action.
-          From this stream a new stream will be created that on every event coming from the first one it triggers the intiger value - 1.
-          And there will be an accumulating stream that sums all the values comming from the stream emmiting intigers.
+          From this stream a new stream will be created that on every event coming from the first one it triggers the integer value - 1.
+          And there will be an accumulating stream that sums all the values comming from the stream emmiting integers.
           On every event/change comming from the accumulating stream the DIV text will be updated.
         </p>
         <p>
@@ -101,8 +101,8 @@
           On every click event the integer field is set to its old value plus one.
         </p>
         <p>
-          Proact.js incorporates both the approaches - You have the three dependent streams - event/intiger/accumulating
-          and the object with the intiger field bound to the DIV's text.
+          Proact.js incorporates both the approaches - You have the three dependent streams - event/integer/accumulating
+          and the object with the integer field bound to the DIV's text.
           Now, the accumulating stream is plugged into the integer field.
           This means that the field is updated by every value comming from the accumulating stream.
         </p>
