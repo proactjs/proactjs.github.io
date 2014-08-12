@@ -3,14 +3,14 @@ a#forkme_banner {
 }
 
 div.shell {
-  width: 640px;
+  width: 100%;
 }
 
 
 header {
   max-width:640px;
   margin: 0;
-  top: 51px;
+  top: 0;
 }
 
 header span.ribbon-inner {

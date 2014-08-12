@@ -115,7 +115,7 @@ header, footer, section {
 
 div.shell {
   display: block;
-  width: 640px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -129,89 +129,47 @@ header {
   position: relative;
   z-index: 2;
   margin: 0;
-  max-width: 640px;
-  top: 51px;
+  top: 0;
 }
 
 header span.ribbon-inner {
   position: relative;
   display: block;
-  background-color: #cd596b;
-  border: 8px solid #7c334f;
+  background-color: #59cd6b;
+  border: 8px solid #337c4f;
   padding: 6px;
   z-index: 1;
 }
 
-header span.left-tail, header span.right-tail {
-  position: relative;
-  display: block;
-  width: 19px;
-  height: 10px;
-  background: transparent url(../images/ribbon-tail-sprite-2x.png) 0 0 no-repeat;
-  position: absolute;
-  bottom: -10px;
-  z-index: 0;
-}
-
-header span.left-tail {
-  background-position: 0 0;
-  left: 0;
-}
-
-header span.right-tail {
-  background-position: -19px 0;
-  right: 0;
-}
-
 header h1 {
-  background-color: #7c334f;
+  background-color: #337c4f;
   font-size: 2em;
   font-weight: bolder;
   font-style: normal;
   text-transform: uppercase;
-  color: #ece4d8;
+  color: #e4ecd8;
   text-align: center;
-  line-height:1;  
+  line-height:1;
   padding: 14px 20px 0;
 }
 
 header h2 {
-  background-color: #7c334f;
+  background-color: #337c4f;
   font: bold italic .85em/1.5 Georgia, Times, “Times New Roman”, serif;
-  color: #e69b95;
+  color: #9be695;
   padding-bottom: 14px;
   margin-top: -3px;
   text-align: center;
 }
 
-section#downloads {
-  position: relative;
-  display: block;
-  height: 171px;
-  width: 602px;
-  padding-bottom: 150px;
-  margin: 51px auto -250px;
-  z-index: 1;
-  background: transparent url(../images/shield.png) center 0 no-repeat;
-}
-
-section#downloads a {
-  display: none;
-}
-
-span.banner-fix {
-  background: transparent url(../images/shield-fallback.png) center top no-repeat;
-  display: block;
-  height: 31px;
-  position: absolute;
-  width: 640px;
-  top: 20px;
-
+section#navigation {
+  z-index: 2;
+  padding: 0px 20px 0;
 }
 
 section#main_content {
   z-index: 2;
-  padding: 20px 40px 0;
+  padding: 20px 20px 0;
   min-height:185px;
 }
 
@@ -221,21 +179,20 @@ footer {
   background: none;
   padding-top: 104px;
   margin: -94px auto 40px;
-  max-width:640px;
   text-align: center;
 }
 
 footer span.ribbon-outer {
   display: block;
   position: relative;
-  border-bottom: 2px solid #bdb6ad;
+  border-bottom: 2px solid #b6bdad;
 }
 
 footer span.ribbon-inner {
   position: relative;
   display: block;
-  background-color: #cd596b;
-  border: 8px solid #7c334f;
+  background-color: #59cd6b;
+  border: 8px solid #337c4f;
   padding: 6px;
   z-index: 1;
 }
@@ -248,13 +205,13 @@ footer p {
 }
 
 footer a {
-  color: #cd596b;
+  color: #59cd6b;
 }
 
 footer span.ribbon-inner p {
-  background-color: #7c334f;
+  background-color: #337c4f;
   margin: 0;
-  color: #e69b95;
+  color: #9be695;
   font: bold italic 22px/1 Georgia, Times, “Times New Roman”, serif;
   height: auto;
   line-height: 1.1;
@@ -275,28 +232,7 @@ footer span.ribbon-inner a {
 }
 
 footer span.ribbon-inner a:hover {
-  color: #7eb0d2;
-}
-
-footer span.left-tail, footer span.right-tail {
-  position: relative;
-  display: block;
-  width: 23px;
-  height: 126px;
-  background: transparent url(../images/small-ribbon-tail-sprite-2x.png) 0 0 no-repeat;
-  position: absolute;
-  top: -126px;
-  z-index: 0;
-}
-
-footer span.left-tail {
-  background-position: 0 0;
-  left: 0;
-}
-
-footer span.right-tail {
-  background-position: -23px 0;
-  right: 0;
+  color: #b07ed2;
 }
 
 footer span.octocat {
@@ -309,8 +245,8 @@ footer span.octocat {
 /* content */
 
 body {
-  background: #ece4d8;
-  font: normal normal 30px/1.5 Georgia, Palatino,” Palatino Linotype”, Times, “Times New Roman”, serif;
+  background: #f5f5f5;
+  font: normal normal 16px/1.5 Georgia, Palatino,” Palatino Linotype”, Times, “Times New Roman”, serif;
   color: #544943;
   -webkit-font-smoothing: antialiased;
 }
@@ -355,9 +291,13 @@ ul {
   padding-left: 1.35em;
 }
 
+ul.navigation {
+  margin-left: 140px;
+}
+
 ul li {
-  padding-left: 20px;
-  background: transparent url(../images/chevron-2x.png) left 15px no-repeat;
+  padding-left: 15px;
+  background: transparent url(../images/chevron.png) left 8px no-repeat;
 }
 
 blockquote {
@@ -374,6 +314,16 @@ img {
   box-shadow: 0px 4px 0px #bdb6ad;
   border: 4px solid #fff6e9;
   max-width: 556px;
+}
+
+img.navLogo {
+  margin-top: 10px;
+  width: 150px;
+  border: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  float: left;
 }
 
 hr {
@@ -469,7 +419,7 @@ dd p:first-child {
 .header-level-1 {
   font-size: 1.85em;
   border-bottom: .2em double #d3ccc1;
-  color: #7c334f;
+  color: #337c4f;
   text-align: center;
   font-style: italic;
   margin: 1.1em 0 .38em;
@@ -479,7 +429,7 @@ dd p:first-child {
 
 .header-level-2 {
   font-size: 1.58em;
-  color: #7c334f;
+  color: #337c4f;
   margin: .95em 0 .5em;
   border-bottom: .1em solid #D3CCC1;
   line-height: 1.2;
@@ -494,13 +444,13 @@ dd p:first-child {
 .header-level-4 {
   margin: .6em 0;
   font-size: 1.2em;
-  color: #cd596b;
+  color: #59cd6b;
 }
 
 .header-level-5 {
   margin: .7em 0;
   font-size: 1em;
-  color: #8b786f;
+  color: #788b6f;
 }
 
 .header-level-6 {

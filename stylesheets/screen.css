@@ -114,7 +114,7 @@ header, footer, section {
 
 div.shell {
   display: block;
-  width: 670px;
+  width: 640px;
   margin: 0 auto;
 }
 
@@ -248,13 +248,14 @@ span.banner-fix {
 
 section#navigation {
   z-index: 2;
-  padding: 0px 62px 0;
+  padding: 20px 82px 0;
 }
 
 section#main_content {
   z-index: 2;
   padding: 20px 82px 0;
   min-height:185px;
+  clear: both;
 }
 
 /* footer */
@@ -374,9 +375,17 @@ ul {
   padding-left: 1.35em;
 }
 
+ul.navigation {
+  margin-left: 300px;
+}
+
 ul li {
   padding-left: 10px;
   background: transparent url(../images/chevron.png) left 6px no-repeat;
+}
+
+ul li.current {
+  color: #337c4f;
 }
 
 blockquote {
@@ -393,6 +402,16 @@ img {
   box-shadow: 0px 2px 0px #bdb6ad;
   border: 2px solid #fff6e9;
   max-width: 502px;
+}
+
+img.navLogo {
+  margin-top: 10px;
+  width: 300px;
+  border: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  float: left;
 }
 
 hr {
