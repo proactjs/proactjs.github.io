@@ -164,6 +164,12 @@ Everything should be defined in this namespace. It can be used as P or Pro.</div
             <dt><a href="ProAct.PropertyProvider.html">PropertyProvider</a></dt>
             <dd></dd>
         
+            <dt><a href="ProAct.ProxyProperty.html">ProxyProperty</a></dt>
+            <dd></dd>
+        
+            <dt><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></dt>
+            <dd></dd>
+        
             <dt><a href="ProAct.Queue.html">Queue</a></dt>
             <dd></dd>
         
@@ -758,6 +764,223 @@ Everything should be defined in this namespace. It can be used as P or Pro.</div
     
 </dd>
 
+        
+            
+<dt>
+    <h4 class="name" id="proxy"><span class="type-signature">&lt;static> </span>proxy<span class="signature">(object, object, meta, targetMeta)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        The <a href="ProAct.html#proxy">ProAct.proxy</a> creates proxies or decorators to ProAct.js objects.
+<p>
+ The decorators extend the <i>target</i> and can add new properties which depend on the extended ones.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>object</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The object/value to make decorator to the <i>target</i>.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>object</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The object to decorate.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>meta</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Meta-data used to help in the reactive object creation for the proxy.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>targetMeta</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Meta-data used to help in the reactive object creation for the target, if it is not reactive.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prob.js.html">objects/prob.js</a>, <a href="prob.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Reactive representation of the passed <i>object</i>, decorating the passed <i>target</i>.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
         </dl>
     
     
@@ -774,13 +997,13 @@ Everything should be defined in this namespace. It can be used as P or Pro.</div
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Aug 14 2014 21:28:35 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 05:03:06 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

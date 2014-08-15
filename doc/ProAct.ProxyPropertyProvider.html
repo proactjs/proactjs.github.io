@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ArrayPropertyProvider</title>
+    <title>JSDoc: Class: ProxyPropertyProvider</title>
     
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Class: ArrayPropertyProvider</h1>
+    <h1 class="page-title">Class: ProxyPropertyProvider</h1>
     
     
 
@@ -29,7 +29,7 @@
     <h2>
         <span class="ancestors"><a href="ProAct.html">ProAct</a>.</span>
     
-    ArrayPropertyProvider
+    ProxyPropertyProvider
     </h2>
     
 </header>  
@@ -41,7 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="ArrayPropertyProvider"><span class="type-signature"></span>new ArrayPropertyProvider<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ProxyPropertyProvider"><span class="type-signature"></span>new ProxyPropertyProvider<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -50,13 +50,13 @@
     
     <div class="description">
         <p>
- Constructor for ProAct.ArrayPropertyProvider.
+ Constructor for ProAct.ProxyPropertyProvider.
 </p>
 <p>
- Provides <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a> instances for fields pointing to arrays.
+ Provides <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a> instances for fields that should point to properties.
 </p>
 <p>
- ProAct.ArrayPropertyProvider is part of the properties module of ProAct.js.
+ ProAct.ProxyPropertyProvider is part of the properties module of ProAct.js.
 </p>
     </div>
     
@@ -90,7 +90,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property_provider.js.html">properties/property_provider.js</a>, <a href="property_provider.js.html#line416">line 416</a>
+        <a href="property_provider.js.html">properties/property_provider.js</a>, <a href="property_provider.js.html#line556">line 556</a>
     </li></ul></dd>
     
     
@@ -100,7 +100,7 @@
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li><a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+            <li><a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
         </ul>
     </dd>
     
@@ -181,14 +181,14 @@
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy">
-            <li>ProAct.ArrayPropertyProvider</li>
+            <li>ProAct.ProxyPropertyProvider</li>
         </ul></dd>
     
     
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property_provider.js.html">properties/property_provider.js</a>, <a href="property_provider.js.html#line445">line 445</a>
+        <a href="property_provider.js.html">properties/property_provider.js</a>, <a href="property_provider.js.html#line585">line 585</a>
     </li></ul></dd>
     
     
@@ -220,7 +220,7 @@
     
     
     <div class="description">
-        Used to check if this <a href="ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a> is compliant with the field and meta data.
+        Used to check if this <a href="ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a> is compliant with the meta data.
     </div>
     
 
@@ -270,7 +270,7 @@
             
             
             
-            <td class="description last">The object to which a new <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a> instance should be provided.</td>
+            <td class="description last">The object to which a new <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a> instance should be provided.</td>
         </tr>
 	
 	
@@ -293,7 +293,7 @@
             
             
             
-            <td class="description last">The field name of the <i>object</i> to turn into a <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a>.</td>
+            <td class="description last">The field name of the <i>object</i> to turn into a <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a>.</td>
         </tr>
 	
 	
@@ -306,10 +306,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Array</span>
+<span class="param-type"><a href="ProAct.Property.html">ProAct.Property</a></span>
 
 
             
@@ -319,7 +316,8 @@
             
             
             
-            <td class="description last">Meta information to be used for filtering and configuration of the <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a> instance to be provided.</td>
+            <td class="description last">If the meta is present and of type <a href="ProAct.Property.html">ProAct.Property</a>, it becomes the target property of the
+     <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a> that will be provided.</td>
         </tr>
 	
 	
@@ -350,7 +348,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property_provider.js.html">properties/property_provider.js</a>, <a href="property_provider.js.html#line447">line 447</a>
+        <a href="property_provider.js.html">properties/property_provider.js</a>, <a href="property_provider.js.html#line587">line 587</a>
     </li></ul></dd>
     
     
@@ -375,7 +373,7 @@
     
             
 <div class="param-desc">
-    True if the value of <b>object[property]</b> an array.
+    True if <i>meta</i> argument is present and is instance of <a href="ProAct.Property.html">ProAct.Property</a>.
 </div>
 
 
@@ -400,7 +398,7 @@
         
             
 <dt>
-    <h4 class="name" id="provide"><span class="type-signature"></span>provide<span class="signature">(object, property, meta)</span><span class="type-signature"> &rarr; {<a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a>}</span></h4>
+    <h4 class="name" id="provide"><span class="type-signature"></span>provide<span class="signature">(object, property, meta)</span><span class="type-signature"> &rarr; {<a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a>}</span></h4>
     
     
 </dt>
@@ -408,7 +406,7 @@
     
     
     <div class="description">
-        Provides an instance of <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a>.
+        Provides an instance of <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a>.
     </div>
     
 
@@ -458,7 +456,7 @@
             
             
             
-            <td class="description last">The object to which a new <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a> instance should be provided.</td>
+            <td class="description last">The object to which a new <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a> instance should be provided.</td>
         </tr>
 	
 	
@@ -481,7 +479,7 @@
             
             
             
-            <td class="description last">The field of the <i>object</i> to turn into a <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a>.</td>
+            <td class="description last">The field of the <i>object</i> to turn into a <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a>.</td>
         </tr>
 	
 	
@@ -494,10 +492,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Array</span>
+<span class="param-type"><a href="ProAct.Property.html">ProAct.Property</a></span>
 
 
             
@@ -507,7 +502,7 @@
             
             
             
-            <td class="description last">Meta information to be used for filtering and configuration of the <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a> instance to be provided.</td>
+            <td class="description last">The target <a href="ProAct.Property.html">ProAct.Property</a> of the <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a> to be created.</td>
         </tr>
 	
 	
@@ -538,7 +533,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property_provider.js.html">properties/property_provider.js</a>, <a href="property_provider.js.html#line466">line 466</a>
+        <a href="property_provider.js.html">properties/property_provider.js</a>, <a href="property_provider.js.html#line611">line 611</a>
     </li></ul></dd>
     
     
@@ -563,7 +558,7 @@
     
             
 <div class="param-desc">
-    A <a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a> instance provided by <i>this</i> provider.
+    A <a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a> instance provided by <i>this</i> provider.
 </div>
 
 
@@ -574,7 +569,7 @@
 	</dt>
 	<dd>
 		
-<span class="param-type"><a href="ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></span>
+<span class="param-type"><a href="ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></span>
 
 
 	</dd>
@@ -607,7 +602,7 @@
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 05:03:07 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 05:03:12 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

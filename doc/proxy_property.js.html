@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: Configuration</title>
+    <title>JSDoc: Source: properties/proxy_property.js</title>
     
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,240 +17,131 @@
 
 <div id="main">
     
-    <h1 class="page-title">Namespace: Configuration</h1>
+    <h1 class="page-title">Source: properties/proxy_property.js</h1>
     
     
 
 
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * &lt;p>
+ *  Constructs a ProAct.ProxyProperty. This is a property, pointing to another {@link ProAct.Property}.
+ * &lt;/p>
+ * &lt;p>
+ *  The value of ProAct.ProxyProperty is the value of its target, if the target is updated, the proxy is updated.
+ * &lt;/p>
+ * &lt;p>
+ *  By setting the value of the proxy, the value of the target is updated, the proxy doesn't have its own value, it uses
+ *  the value of the target.
+ * &lt;/p>
+ * &lt;p>
+ *  ProAct.ProxyProperty is part of the properties module of ProAct.js.
+ * &lt;/p>
+ *
+ * @class ProAct.ProxyProperty
+ * @extends ProAct.Property
+ * @param {Object} proObject
+ *      A plain JavaScript object, holding a field, this property will represent.
+ * @param {String} property
+ *      The name of the field of the object, this property should represent.
+ * @param {ProAct.Property} target
+ *      The target {@link ProAct.Property}, that will provide the value of the new ProAct.ProxyProperty.
+ */
+ProAct.ProxyProperty = P.PXP = function (proObject, property, target) {
+  var self = this, getter, setter;
 
-<section>
-    
-<header>
-    <h2>
-        <span class="ancestors"><a href="ProAct.html">ProAct</a>.</span>
-    
-    Configuration
-    </h2>
-    
-</header>  
+  getter = function () {
+    self.addCaller();
+    return target.val;
+  };
 
-<article>
-    <div class="container-overview">
-    
-    
-    
-        
-            <div class="description">Contains various configurations for the ProAct.js library.</div>
-        
-        
-        
-<dl class="details">
-    
-        
-    
-    
-    
+  setter = function (newVal) {
+    if (target.val === newVal) {
+      return;
+    }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line407">line 407</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
+    target.oldVal = target.val;
+    target.val = P.Observable.transform(self, newVal);
 
-        
-        
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl>
-            
-<dt>
-    <h4 class="name" id="keypropList"><span class="type-signature">&lt;static> </span>keypropList<span class="type-signature"> :Array</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Defines a list of the keyword properties that can not be used in ProAct.js objects.
-The <a href="ProAct.Configuration.html#keyprops">ProAct.Configuration.keyprops</a> option must be set to true in order for this list to be used.
-    </div>
-    
-    
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Array</span>
+    if (target.val === null || target.val === undefined) {
+      P.P.reProb(target).update();
+      return;
+    }
 
+    self.update();
+  };
 
-            </li>
-        </ul>
-    
+  P.P.call(this, proObject, property, getter, setter);
 
-    
-<dl class="details">
-    
-        
-    
-    
-    
+  this.target = target;
+  this.target.on(this.makeListener());
+};
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line434">line 434</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="ProAct.Configuration.html#keyprops">ProAct.Configuration.keyprops</a></li>
-        </ul>
-    </dd>
-    
-    
-    
-</dl>
+ProAct.ProxyProperty.prototype = P.U.ex(Object.create(P.P.prototype), {
 
-    
-    
-</dd>
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @memberof ProAct.ProxyProperty
+   * @instance
+   * @constant
+   * @default ProAct.ProxyProperty
+   */
+  constructor: ProAct.ProxyProperty,
 
-        
-            
-<dt>
-    <h4 class="name" id="keyprops"><span class="type-signature">&lt;static> </span>keyprops<span class="type-signature"> :Boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        If this option is set to true, when a ProAct.js object is created and has properties named
-as one or more of the properties listed in <i>ProAct.Configuration.keypropList</i> an Error will be thrown.
-In other words declares some of the properties of every ProAct objects as keyword properties.
-    </div>
-    
-    
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Boolean</span>
+  /**
+   * Retrieves the {@link ProAct.Property.Types} value of &lt;i>this&lt;/i> property.
+   * &lt;p>
+   *  For ProAct.ProxyProperty this is the type if its &lt;i>target&lt;/i>.
+   * &lt;/p>
+   *
+   * @memberof ProAct.ProxyProperty
+   * @instance
+   * @method type
+   * @return {Number}
+   *      The right type of the property.
+   */
+  type: function () {
+    return this.target.type();
+  },
 
+  /**
+   * Creates the &lt;i>listener&lt;/i> of this ProAct.ProxyProperty.
+   * &lt;p>
+   *  This listener turns the observable in a observer.
+   * &lt;/p>
+   * &lt;p>
+   *  The listener for ProAct.ProxyProperty is an object defining an empty &lt;i>call&lt;/i> method.
+   * &lt;/p>
+   * &lt;p>
+   *  It has a &lt;i>property&lt;/i> field set to &lt;i>this&lt;/i>.
+   * &lt;/p>
+   *
+   * @memberof ProAct.ProxyProperty
+   * @instance
+   * @method makeListener
+   * @return {Object}
+   *      The &lt;i>listener of this ProAct.ProxyProperty&lt;/i>.
+   */
+  makeListener: function () {
+    if (!this.listener) {
+      var self = this;
 
-            </li>
-        </ul>
-    
+      this.listener = {
+        property: self,
+        call: P.N
+      };
+    }
 
-    
-<dl class="details">
-    
-        
-    
-    
-    
+    return this.listener;
+  },
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line423">line 423</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="ProAct.Configuration.html#keypropList">ProAct.Configuration.keypropList</a></li>
-        </ul>
-    </dd>
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-</article>
-
-</section>  
+});
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -264,7 +155,7 @@ In other words declares some of the properties of every ProAct objects as keywor
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 05:03:08 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 05:03:05 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>
