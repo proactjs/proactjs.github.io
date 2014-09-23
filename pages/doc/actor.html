@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+
+    <link rel="stylesheet" href="../stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="../stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="../javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>News</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/proactjs/proactjs">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>ProAct.js</h1>
+            <h2>News</h2>
+          </span>
+        </span>
+      </header>
+
+      <section id="navigation">
+        <img class="navLogo" src="../proact_logo_small.png" />
+        <ul class="navigation">
+          <li><a href="/">Home</a></li>
+          <li class="current">News</li>
+          <li><a href="/#download">Downloads</a></li>
+          <li><a href="/#documentation">Documentation</a></li>
+          <li><a href="/#examples">Examples</a></li>
+          <li><a href="/#authors-and-contributors">Contribution</a></li>
+          <li><a href="/#support-or-contact">Contacts</a></li>
+          <li><a href="https://github.com/proactjs/proactjs" targe="_blank">Github</a></li>
+        </ul>
+      </section>
+
+      <section id="main_content">
+
+        <h3>
+          <a name="version-one-one-zero-released" class="anchor" href="#version-one-one-zero-released">
+            <span class="octicon octicon-link">
+            </span>
+          </a>
+          Version 1.1.0 released
+        </h3>
+        <p>
+          Date : 2014-09-22, Author : <a href="https://github.com/meddle0x53" class="user-mention" target='_blank'>@meddle0x53</a>
+        </p>
+        <hr/>
+        <p>
+          Version 1.1.0 of ProAct.js has been released.
+        </p>
+        <p>
+          This version contains:
+        </p>
+        <ul>
+          <li>Better complex ProAct.Arrays (arrays containing ProAct.js objects)</li>
+          <li>Better array filtering</li>
+          <li>Many property, dsl and array related bugfixes</li>
+          <li>New utility methods - uuid (for uuid generation), clone (for deep array clonning), extendClass (basic structure for class system in the process of development.)</li>
+          <li>Arrays can be updated by stream and property events - for example we can set a stream to push elements to array or delete/pop elements.</li>
+          <li>ProAct.Event builder methods - again for array related events, because they need a lot of parameters/code to construct.</li>
+          <li>New DSL predefined mapping and filtering functions!</li>
+        </ul>
+        <p>
+          As I promised I began working on an example using the ProAct.js lib. But... it became something bigger.
+          I've created a minimal implementation of a MVS (Model View Streams) framework, while writing
+           <a href="http://todomvc.com" target='_blank'>TodoMVC</a> implementation.
+        </p>
+        <p>
+          While working on this example and framework I found a lot of bugs that I fixed for this release.
+          Soon the example will be available on this site and I'm going to write series of blogposts about how
+          the MVS framework implemented with ProAct.js works.
+        </p>
+        <p>
+          Many ideas popped up for the next release. The MVS framework will have its own repository soon. Its working title
+          is ProBono.js.
+        </p>
+
+        <h3>
+          <a name="version-one-zero-zero-released" class="anchor" href="#version-one-zero-zero-released">
+            <span class="octicon octicon-link">
+            </span>
+          </a>
+          Version 1.0.0 released
+        </h3>
+        <p>
+          Date : 2014-08-15, Author : <a href="https://github.com/meddle0x53" class="user-mention" target='_blank'>@meddle0x53</a>
+        </p>
+        <hr/>
+        <p>
+          Version 1.0.0, the first feature complete version of ProAct.js has been released.
+        </p>
+        <p>
+          This version contains full implementation of the 'properties' and 'arrays' modules of ProAct.js.
+          We have ProAct.js objects, arrays, value objects, proxy objects and their core fully implemented.
+        </p>
+        <p>
+          The library lacks of examples and good demo applications, so my focus will be set on writing some after this release.
+        </p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>
+              <a href="https://github.com/proactjs/proactjs">proactjs</a> - Reactive JavaScript
+            </p>
+          </span>
+        </span>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+
