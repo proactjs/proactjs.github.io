@@ -27,7 +27,7 @@
         <article>
             <pre class="prettyprint source"><code>/**
  * &lt;p>
- *  Constructs a ProAct.Property. The properties are simple {@link ProAct.Observable}s with state. The basic property
+ *  Constructs a ProAct.Property. The properties are simple {@link ProAct.Actor}s with state. The basic property
  *  has a state of a simple value - number/string/boolean.
  * &lt;/p>
  * &lt;p>
@@ -52,7 +52,7 @@
  * &lt;/p>
  *
  * @class ProAct.Property
- * @extends ProAct.Observable
+ * @extends ProAct.Actor
  * @param {Object} proObject
  *      A plain JavaScript object, holding a field, this property will represent.
  * @param {String} property
@@ -88,7 +88,7 @@ ProAct.Property = P.P = function (proObject, property, getter, setter) {
   this.g = this.get;
   this.s = this.set;
 
-  P.Observable.call(this); // Super!
+  P.Actor.call(this); // Super!
   this.parent = this.proObject.__pro__;
 
   this.init();
@@ -232,7 +232,7 @@ P.U.ex(ProAct.Property, {
       if (setter) {
         property.val = setter.call(property.proObject, newVal);
       } else {
-        property.val = P.Observable.transform(property, newVal);
+        property.val = P.Actor.transform(property, newVal);
       }
 
       if (property.val === null || property.val === undefined) {
@@ -301,7 +301,7 @@ P.U.ex(ProAct.Property, {
   }
 });
 
-ProAct.Property.prototype = P.U.ex(Object.create(P.Observable.prototype), {
+ProAct.Property.prototype = P.U.ex(Object.create(P.Actor.prototype), {
 
   /**
    * Reference to the constructor of this object.
@@ -368,7 +368,7 @@ ProAct.Property.prototype = P.U.ex(Object.create(P.Observable.prototype), {
    *  It has a &lt;i>property&lt;/i> field set to &lt;i>this&lt;/i>.
    * &lt;/p>
    * &lt;p>
-   *  On value changes the &lt;i>&lt;this&lt;/i> value is set to the new value using the {@link ProAct.Observable#transform} to transform it.
+   *  On value changes the &lt;i>&lt;this&lt;/i> value is set to the new value using the {@link ProAct.Actor#transform} to transform it.
    * &lt;/p>
    *
    * @memberof ProAct.Property
@@ -388,8 +388,7 @@ ProAct.Property.prototype = P.U.ex(Object.create(P.Observable.prototype), {
             newVal = newVal.args[0][newVal.target];
           }
 
-          self.oldVal = self.val;
-          self.val = P.Observable.transform(self, newVal);
+          self.set(newVal);
         }
       };
     }
@@ -510,13 +509,13 @@ ProAct.Property.prototype = P.U.ex(Object.create(P.Observable.prototype), {
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Actor.html">Actor</a></li><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 09:57:40 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:18 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

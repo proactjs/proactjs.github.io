@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Stream</title>
+    <title>JSDoc: Class: Actor</title>
     
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Class: Stream</h1>
+    <h1 class="page-title">Class: Actor</h1>
     
     
 
@@ -29,7 +29,7 @@
     <h2>
         <span class="ancestors"><a href="ProAct.html">ProAct</a>.</span>
     
-    Stream
+    Actor
     </h2>
     
 </header>  
@@ -41,7 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="Stream"><span class="type-signature"></span>new Stream<span class="signature">(source, transforms)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Actor"><span class="type-signature"></span>new Actor<span class="signature">(transforms)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -50,22 +50,21 @@
     
     <div class="description">
         <p>
- Constructs a ProAct.Stream. The stream is a simple <a href="ProAct.Actor.html">ProAct.Actor</a>, without state.
+ Constructs a ProAct.Actor. It can be used both as observer and observable.
 </p>
 <p>
- The streams are ment to emit values, events, changes and can be plugged into another actor.
- For example you can connect many streams, to merge them and to divide them, to plug them into properties.
+ The actors in ProAct.js form the dependency graph.
+ If some actor listens to changes from another - it depends on it.
 </p>
 <p>
- The reactive environment consists of the properties and the objects containing them, but
- the outside world is not reactive. It is possible to use the ProAct.Streams as connections from the
- outside world to the reactive environment.
+ The actors can transform the values or events incoming to them.
 </p>
 <p>
-   The transformations can be used to change the events or values emitetted.
+ Every actor can have a parent actor, that will be notified for all the changes
+ on the child-actor, it is something as special observer.
 </p>
 <p>
- ProAct.Stream is part of the streams module of ProAct.js.
+ ProAct.Actor is part of the core module of ProAct.js.
 </p>
     </div>
     
@@ -96,29 +95,6 @@
 	</thead>
 	
 	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>source</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">A default source of the stream, can be null.</td>
-        </tr>
-	
 	
 	
         <tr>
@@ -170,7 +146,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line1">line 1</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line1">line 1</a>
     </li></ul></dd>
     
     
@@ -199,12 +175,6 @@
     </div>
     
     
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li><a href="ProAct.Actor.html">ProAct.Actor</a></li>
-        </ul>
-    
     
     
     
@@ -220,14 +190,14 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="constructor"><span class="type-signature">&lt;constant> </span>constructor<span class="type-signature"> :Object</span></h4>
+    <h4 class="name" id="BadValue"><span class="type-signature">&lt;static, constant> </span>BadValue<span class="type-signature"> :Object</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        Reference to the constructor of this object.
+        A constant defining bad values or bad events.
     </div>
     
     
@@ -262,16 +232,70 @@
     
     
     
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="constructor"><span class="type-signature">&lt;constant> </span>constructor<span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Reference to the constructor of this object.
+    </div>
+    
+    
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy">
-            <li>ProAct.Stream</li>
+            <li>ProAct.Actor</li>
         </ul></dd>
     
     
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line47">line 47</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line84">line 84</a>
     </li></ul></dd>
     
     
@@ -295,7 +319,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="accumulate"><span class="type-signature"></span>accumulate<span class="signature">(initVal, accumulationFunction)</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
+    <h4 class="name" id="transforms"><span class="type-signature">&lt;static> </span>transforms<span class="signature">(actor, val)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
     
 </dt>
@@ -303,8 +327,173 @@
     
     
     <div class="description">
-        Creates a new ProAct.Stream instance with source <i>this</i> and accumulation
+        Transforms the passed <i>val</i> using the ProAct.Actor#transforms of the passed <i>actor</i>.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>actor</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The ProAct.Actor which transformations should be used.</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The value to transform.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The transformed value.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="accumulate"><span class="type-signature">&lt;abstract> </span>accumulate<span class="signature">(initVal, accumulationFunction)</span><span class="type-signature"> &rarr; {<a href="ProAct.Actor.html">ProAct.Actor</a>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Creates a new ProAct.Actor instance with source <i>this</i> and accumulation
 the passed <i>accumulation function</i>.
+<p>
+ Should be overridden with creating the right actor.
+</p>
     </div>
     
 
@@ -408,7 +597,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line278">line 278</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line519">line 519</a>
     </li></ul></dd>
     
     
@@ -440,7 +629,7 @@ the passed <i>accumulation function</i>.
     
             
 <div class="param-desc">
-    A new ProAct.Stream instance with the <i>accumulation</i> applied.
+    A new ProAct.Actor instance with the <i>accumulation</i> applied.
 </div>
 
 
@@ -451,7 +640,7 @@ the passed <i>accumulation function</i>.
 	</dt>
 	<dd>
 		
-<span class="param-type"><a href="ProAct.Stream.html">ProAct.Stream</a></span>
+<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
 
 
 	</dd>
@@ -566,11 +755,6 @@ the passed <i>accumulation function</i>.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#accumulation">ProAct.Actor#accumulation</a>
-    </li></dd>
-    
     
     
     
@@ -642,311 +826,6 @@ the passed <i>accumulation function</i>.
         
             
 <dt>
-    <h4 class="name" id="bufferit"><span class="type-signature"></span>bufferit<span class="signature">(size)</span><span class="type-signature"> &rarr; {<a href="ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Creates a new <a href="ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a> instance having as source <i>this</i>.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>size</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">The size of the buffer of the new ProAct.SizeBufferedStream.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="size_buffered_stream.js.html">streams/size_buffered_stream.js</a>, <a href="size_buffered_stream.js.html#line87">line 87</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    <h5>Throws:</h5>
-    
-            
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        SizeBufferedStream must contain size, if there is no size passed to it.
-        </div>
-    </dt>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">Error</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-</dl>
-
-
-        
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    A <a href="ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a> instance.
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="debounce"><span class="type-signature"></span>debounce<span class="signature">(delay)</span><span class="type-signature"> &rarr; {<a href="ProAct.DebouncingStream.html">ProAct.DebouncingStream</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Creates a new <a href="ProAct.DebouncingStream.html">ProAct.DebouncingStream</a> instance having as source <i>this</i>.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>delay</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">The time delay to be used for flushing the buffer of the new stream.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="debouncing_stream.js.html">streams/debouncing_stream.js</a>, <a href="debouncing_stream.js.html#line73">line 73</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    A <a href="ProAct.DebouncingStream.html">ProAct.DebouncingStream</a> instance.
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
     <h4 class="name" id="defaultActions"><span class="type-signature"></span>defaultActions<span class="signature">()</span><span class="type-signature"> &rarr; {Array|String}</span></h4>
     
     
@@ -973,11 +852,6 @@ the passed <i>accumulation function</i>.
     
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#defaultActions">ProAct.Actor#defaultActions</a>
-    </li></dd>
     
     
     
@@ -1080,11 +954,6 @@ It is used for resetting all the listeners too.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#defaultListeners">ProAct.Actor#defaultListeners</a>
-    </li></dd>
-    
     
     
     
@@ -1159,9 +1028,8 @@ It is used for resetting all the listeners too.
     <div class="description">
         Defers a ProAct.Actor listener.
 <p>
- For streams this means pushing it to active flow using <a href="ProAct.Flow.html#push">ProAct.Flow#push</a>.
- If the listener is object with 'property' field, it is done using <a href="ProAct.Actor.html#defer">ProAct.Actor#defer</a>.
- That way the reactive environment is updated only once, but the streams are not part of it.
+ By default this means that the listener is put into active <a href="ProAct.Flow.html">ProAct.Flow</a> using it's
+ <a href="ProAct.Flow.html#pushOnce">ProAct.Flow#pushOnce</a> method, but it can be overridden.
 </p>
     </div>
     
@@ -1266,7 +1134,7 @@ It is used for resetting all the listeners too.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line113">line 113</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line699">line 699</a>
     </li></ul></dd>
     
     
@@ -1327,7 +1195,7 @@ It is used for resetting all the listeners too.
         
             
 <dt>
-    <h4 class="name" id="delay"><span class="type-signature"></span>delay<span class="signature">(delay)</span><span class="type-signature"> &rarr; {<a href="ProAct.DelayedStream.html">ProAct.DelayedStream</a>}</span></h4>
+    <h4 class="name" id="filter"><span class="type-signature">&lt;abstract> </span>filter<span class="signature">(filteringFunction)</span><span class="type-signature"> &rarr; {<a href="ProAct.Actor.html">ProAct.Actor</a>}</span></h4>
     
     
 </dt>
@@ -1335,147 +1203,11 @@ It is used for resetting all the listeners too.
     
     
     <div class="description">
-        Creates a new <a href="ProAct.DelayedStream.html">ProAct.DelayedStream</a> instance having as source <i>this</i>.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>delay</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">The time delay to be used for flushing the buffer of the new stream.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="delayed_stream.js.html">streams/delayed_stream.js</a>, <a href="delayed_stream.js.html#line128">line 128</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    A <a href="ProAct.DelayedStream.html">ProAct.DelayedStream</a> instance.
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.DelayedStream.html">ProAct.DelayedStream</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="filter"><span class="type-signature"></span>filter<span class="signature">(filteringFunction)</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Creates a new ProAct.Stream instance with source <i>this</i> and filtering
+        Creates a new ProAct.Actor instance with source <i>this</i> and filtering
 the passed <i>filtering function</i>.
+<p>
+ Should be overridden with creating the right actor.
+</p>
     </div>
     
 
@@ -1556,7 +1288,7 @@ the passed <i>filtering function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line261">line 261</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line500">line 500</a>
     </li></ul></dd>
     
     
@@ -1588,7 +1320,7 @@ the passed <i>filtering function</i>.
     
             
 <div class="param-desc">
-    A new ProAct.Stream instance with the <i>filtering</i> applied.
+    A new ProAct.Actor instance with the <i>filtering</i> applied.
 </div>
 
 
@@ -1599,7 +1331,7 @@ the passed <i>filtering function</i>.
 	</dt>
 	<dd>
 		
-<span class="param-type"><a href="ProAct.Stream.html">ProAct.Stream</a></span>
+<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
 
 
 	</dd>
@@ -1691,11 +1423,6 @@ the passed <i>filtering function</i>.
     
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#filtering">ProAct.Actor#filtering</a>
-    </li></dd>
     
     
     
@@ -1858,11 +1585,6 @@ is listening for changes from the <i>sources</i>.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#into">ProAct.Actor#into</a>
-    </li></dd>
-    
     
     
     
@@ -1936,7 +1658,7 @@ is listening for changes from the <i>sources</i>.
         
             
 <dt>
-    <h4 class="name" id="makeErrListener"><span class="type-signature"></span>makeErrListener<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="makeErrListener"><span class="type-signature">&lt;abstract> </span>makeErrListener<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
     
 </dt>
@@ -1944,9 +1666,13 @@ is listening for changes from the <i>sources</i>.
     
     
     <div class="description">
-        Creates the <i>error listener</i> of this stream.
+        Creates the <i>error listener</i> of this actor.
+Every actor should have one error listener that should pass to other actors.
 <p>
- The listener just calls <a href="ProAct.Stream.html#triggerErr">ProAct.Stream#triggerErr</a> of <i>this</i> with the incoming error.
+ This listener turns the actor in a observer for errors.
+</p>
+<p>
+ Should be overriden with specific listener, by default it returns null.
 </p>
     </div>
     
@@ -1976,11 +1702,16 @@ is listening for changes from the <i>sources</i>.
     
     
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>null</li>
+        </ul></dd>
+    
     
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line90">line 90</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line138">line 138</a>
     </li></ul></dd>
     
     
@@ -2005,7 +1736,7 @@ is listening for changes from the <i>sources</i>.
     
             
 <div class="param-desc">
-    The <i>error listener of this stream</i>.
+    The <i>error listener of this observer</i>.
 </div>
 
 
@@ -2040,7 +1771,10 @@ is listening for changes from the <i>sources</i>.
     <div class="description">
         Creates the <i>event</i> to be send to the listeners on update.
 <p>
- Streams don't create new events by default, the event is the source.
+ The <i>event</i> should be an instance of <a href="ProAct.Event.html">ProAct.Event</a>.
+</p>
+<p>
+ By default this method returns <a href="ProAct.Event.Types.html#value">ProAct.Event.Types.value</a> event.
 </p>
     </div>
     
@@ -2118,11 +1852,16 @@ is listening for changes from the <i>sources</i>.
     
     
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>{ProAct.Event} with type <a href="ProAct.Event.Types.html#value">ProAct.Event.Types.value</a></li>
+        </ul></dd>
+    
     
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line49">line 49</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line158">line 158</a>
     </li></ul></dd>
     
     
@@ -2172,6 +1911,109 @@ is listening for changes from the <i>sources</i>.
         
             
 <dt>
+    <h4 class="name" id="makeListener"><span class="type-signature">&lt;abstract> </span>makeListener<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Creates the <i>listener</i> of this actor.
+Every actor should have one listener that should pass to other actors.
+<p>
+ This listener turns the actor in a observer.
+</p>
+<p>
+ Should be overriden with specific listener, by default it returns null.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>null</li>
+        </ul></dd>
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line118">line 118</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The <i>listener of this observer</i>.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
     <h4 class="name" id="makeListener"><span class="type-signature"></span>makeListener<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
     
@@ -2180,9 +2022,17 @@ is listening for changes from the <i>sources</i>.
     
     
     <div class="description">
-        Creates the <i>listener</i> of this stream.
+        Creates the <i>listener</i> of this ProAct.ArrayCore.
 <p>
- The listener of the stream just calls the method <a href="ProAct.Stream.html#trigger">ProAct.Stream#trigger</a> with the incoming event/value.
+ The right array typed events can change this' shell (array).
+</p>
+<p>
+ If a non-event element is passed to the listener, the element is pushed
+ to the shell.
+</p>
+<p>
+ If a value event is passed to the listener, the new value is pushed
+ to the shell.
 </p>
     </div>
     
@@ -2216,7 +2066,7 @@ is listening for changes from the <i>sources</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line67">line 67</a>
+        <a href="array_core.js.html">cores/array_core.js</a>, <a href="array_core.js.html#line111">line 111</a>
     </li></ul></dd>
     
     
@@ -2241,7 +2091,7 @@ is listening for changes from the <i>sources</i>.
     
             
 <div class="param-desc">
-    The <i>listener of this stream</i>.
+    The <i>listener of this ArrayCore</i>.
 </div>
 
 
@@ -2266,7 +2116,7 @@ is listening for changes from the <i>sources</i>.
         
             
 <dt>
-    <h4 class="name" id="map"><span class="type-signature"></span>map<span class="signature">(mappingFunction)</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
+    <h4 class="name" id="map"><span class="type-signature">&lt;abstract> </span>map<span class="signature">(mappingFunction)</span><span class="type-signature"> &rarr; {<a href="ProAct.Actor.html">ProAct.Actor</a>}</span></h4>
     
     
 </dt>
@@ -2274,8 +2124,11 @@ is listening for changes from the <i>sources</i>.
     
     
     <div class="description">
-        Creates a new ProAct.Stream instance with source <i>this</i> and mapping
+        Creates a new ProAct.Actor instance with source <i>this</i> and mapping
 the passed <i>mapping function</i>.
+<p>
+ Should be overridden with creating the right actor.
+</p>
     </div>
     
 
@@ -2356,7 +2209,7 @@ the passed <i>mapping function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line244">line 244</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line481">line 481</a>
     </li></ul></dd>
     
     
@@ -2388,7 +2241,7 @@ the passed <i>mapping function</i>.
     
             
 <div class="param-desc">
-    A new ProAct.Stream instance with the <i>mapping</i> applied.
+    A new ProAct.Actor instance with the <i>mapping</i> applied.
 </div>
 
 
@@ -2399,7 +2252,7 @@ the passed <i>mapping function</i>.
 	</dt>
 	<dd>
 		
-<span class="param-type"><a href="ProAct.Stream.html">ProAct.Stream</a></span>
+<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
 
 
 	</dd>
@@ -2493,11 +2346,6 @@ the passed <i>mapping function</i>.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#mapping">ProAct.Actor#mapping</a>
-    </li></dd>
-    
     
     
     
@@ -2556,153 +2404,6 @@ the passed <i>mapping function</i>.
 	<dd>
 		
 <span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="merge"><span class="type-signature"></span>merge<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Creates a new ProAct.Stream instance that merges this with other streams.
-The new instance will have new value on value from any of the source streams.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Argument</th>
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>...</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-                    
-                
-                    
-                
-                </td>
-            
-            
-            
-            
-            <td class="description last">A list of streams to be set as sources.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line297">line 297</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    A new ProAct.Stream instance with the sources this and all the passed streams.
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.Stream.html">ProAct.Stream</a></span>
 
 
 	</dd>
@@ -2823,11 +2524,6 @@ The new instance will have new value on value from any of the source streams.
     
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#off">ProAct.Actor#off</a>
-    </li></dd>
     
     
     
@@ -2979,11 +2675,6 @@ The new instance will have new value on value from any of the source streams.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#offErr">ProAct.Actor#offErr</a>
-    </li></dd>
-    
     
     
     
@@ -3129,11 +2820,6 @@ The new instance will have new value on value from any of the source streams.
     
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#offSource">ProAct.Actor#offSource</a>
-    </li></dd>
     
     
     
@@ -3311,11 +2997,6 @@ The listener may be function or object that defines a <i>call</i> method.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#on">ProAct.Actor#on</a>
-    </li></dd>
-    
     
     
     
@@ -3463,11 +3144,6 @@ The listener may be function or object that defines a <i>call</i> method.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#onErr">ProAct.Actor#onErr</a>
-    </li></dd>
-    
     
     
     
@@ -3614,11 +3290,6 @@ to the passed <i>destination</i> actor.
     
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#out">ProAct.Actor#out</a>
-    </li></dd>
     
     
     
@@ -3792,11 +3463,6 @@ to the passed <i>destination</i> actor.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#reduce">ProAct.Actor#reduce</a>
-    </li></dd>
-    
     
     
     
@@ -3857,145 +3523,6 @@ to the passed <i>destination</i> actor.
 	<dd>
 		
 <span class="param-type"><a href="ProAct.Val.html">ProAct.Val</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="throttle"><span class="type-signature"></span>throttle<span class="signature">(delay)</span><span class="type-signature"> &rarr; {<a href="ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Creates a new <a href="ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a> instance having as source <i>this</i>.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>delay</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">The time delay to be used for flushing the buffer of the new stream.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="throttling_stream.js.html">streams/throttling_stream.js</a>, <a href="throttling_stream.js.html#line75">line 75</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    A <a href="ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a> instance.
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></span>
 
 
 	</dd>
@@ -4094,11 +3621,6 @@ of <i>this actor</i>.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#transform">ProAct.Actor#transform</a>
-    </li></dd>
-    
     
     
     
@@ -4157,491 +3679,6 @@ of <i>this actor</i>.
 	<dd>
 		
 <span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="trigger"><span class="type-signature"></span>trigger<span class="signature">(event, useTransformations)</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>
- Triggers a new event/value to the stream. Anything that is listening for events from
- this stream will get updated.
-</p>
-<p>
- ProAct.Stream.t is alias of this method.
-</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">The event/value to pass to trigger.</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>useTransformations</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">If the stream should transform the triggered value. By default it is true (if not passed)</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line147">line 147</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="ProAct.Actor.html#update">ProAct.Actor#update</a></li>
-        </ul>
-    </dd>
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <i>this</i>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.Stream.html">ProAct.Stream</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="triggerErr"><span class="type-signature"></span>triggerErr<span class="signature">(err)</span><span class="type-signature"> &rarr; {<a href="ProAct.Actor.html">ProAct.Actor</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>
- Triggers a new error to the stream. Anything that is listening for errors from
- this stream will get updated.
-</p>
-<p>
- ProAct.Stream.te is alias of this method.
-</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>err</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Error</span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">The error to trigger.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line202">line 202</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="ProAct.Actor.html#update">ProAct.Actor#update</a></li>
-        </ul>
-    </dd>
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <i>this</i>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="triggerMany"><span class="type-signature"></span>triggerMany<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>
- Triggers all the passed params, using transformations.
-</p>
-<p>
- ProAct.Stream.tt is alias of this method.
-</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Argument</th>
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>...</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-                    
-                
-                    
-                
-                </td>
-            
-            
-            
-            
-            <td class="description last">A list of events/values to trigger</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line175">line 175</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="ProAct.Stream.html#trigger">ProAct.Stream#trigger</a></li>
-        </ul>
-    </dd>
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <i>this</i>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.Stream.html">ProAct.Stream</a></span>
 
 
 	</dd>
@@ -4792,11 +3829,6 @@ of <i>this actor</i>.
     
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#update">ProAct.Actor#update</a>
-    </li></dd>
     
     
     
@@ -5017,11 +4049,6 @@ of <i>this actor</i>.
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#willUpdate">ProAct.Actor#willUpdate</a>
-    </li></dd>
-    
     
     
     
@@ -5118,7 +4145,7 @@ of <i>this actor</i>.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:28 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:18 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

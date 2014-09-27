@@ -214,7 +214,7 @@ Every time the <i>function</i> is called the value <i>this</i> of this will be t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line249">line 249</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line330">line 330</a>
     </li></ul></dd>
     
     
@@ -251,6 +251,146 @@ Every time the <i>function</i> is called the value <i>this</i> of this will be t
 	<dd>
 		
 <span class="param-type">function</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="clone"><span class="type-signature">&lt;static> </span>clone<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Clones the passed object. It creates a deep copy of it.
+For now it clones only arrays.
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The object to clone.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line245">line 245</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Clone of the passed object.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
 
 
 	</dd>
@@ -376,7 +516,7 @@ Every time the <i>function</i> is called the value <i>this</i> of this will be t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line268">line 268</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line349">line 349</a>
     </li></ul></dd>
     
     
@@ -631,7 +771,7 @@ The property can be configured using the arguments passed if it is possible in t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line374">line 374</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line455">line 455</a>
     </li></ul></dd>
     
     
@@ -771,7 +911,7 @@ The property can be configured using the arguments passed if it is possible in t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line302">line 302</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line383">line 383</a>
     </li></ul></dd>
     
     
@@ -950,12 +1090,19 @@ The property can be configured using the arguments passed if it is possible in t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line227">line 227</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line267">line 267</a>
     </li></ul></dd>
     
     
     
     
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Utils.html#clone">ProAct.Utils.clone</a></li>
+        </ul>
+    </dd>
     
     
     
@@ -976,6 +1123,160 @@ The property can be configured using the arguments passed if it is possible in t
             
 <div class="param-desc">
     The changed destination object.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="extendClass"><span class="type-signature">&lt;static> </span>extendClass<span class="signature">(data)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Used for extending of classes.
+Example is:
+<pre>
+ var Bar = ProAct.Utils.extendClass.call(Foo, {
+   a: 1,
+   b: 2,
+   c: function () {}
+ });
+</pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Data to add new properties to the new class or override old ones.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line291">line 291</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Utils.html#ex">ProAct.Utils.ex</a></li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Child class.
 </div>
 
 
@@ -1089,7 +1390,7 @@ The property can be configured using the arguments passed if it is possible in t
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line158">line 158</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line176">line 176</a>
     </li></ul></dd>
     
     
@@ -1225,7 +1526,7 @@ Array like objects in ProAct.js are plain JavaScript arrays and <a href="ProAct.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line183">line 183</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line201">line 201</a>
     </li></ul></dd>
     
     
@@ -1367,7 +1668,7 @@ Array like objects in ProAct.js are plain JavaScript arrays and <a href="ProAct.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line128">line 128</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line146">line 146</a>
     </li></ul></dd>
     
     
@@ -1502,7 +1803,7 @@ Array like objects in ProAct.js are plain JavaScript arrays and <a href="ProAct.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line146">line 146</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line164">line 164</a>
     </li></ul></dd>
     
     
@@ -1637,7 +1938,7 @@ Array like objects in ProAct.js are plain JavaScript arrays and <a href="ProAct.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line92">line 92</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line110">line 110</a>
     </li></ul></dd>
     
     
@@ -1772,7 +2073,7 @@ Array like objects in ProAct.js are plain JavaScript arrays and <a href="ProAct.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line116">line 116</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line134">line 134</a>
     </li></ul></dd>
     
     
@@ -1907,7 +2208,7 @@ Array like objects in ProAct.js are plain JavaScript arrays and <a href="ProAct.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line170">line 170</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line188">line 188</a>
     </li></ul></dd>
     
     
@@ -2050,7 +2351,7 @@ ProAct.js object have a special '__pro__' object that is hidden in them, which s
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line197">line 197</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line215">line 215</a>
     </li></ul></dd>
     
     
@@ -2197,7 +2498,7 @@ ProAct.Value is a simple ProAct.js object that has only one reactive property - 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line213">line 213</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line231">line 231</a>
     </li></ul></dd>
     
     
@@ -2339,7 +2640,7 @@ ProAct.Value is a simple ProAct.js object that has only one reactive property - 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line104">line 104</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line122">line 122</a>
     </li></ul></dd>
     
     
@@ -2498,7 +2799,7 @@ If the <i>value</i> is not present in the passed <i>array</i> does nothing.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line284">line 284</a>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line365">line 365</a>
     </li></ul></dd>
     
     
@@ -2523,6 +2824,98 @@ If the <i>value</i> is not present in the passed <i>array</i> does nothing.
     
 </dd>
 
+        
+            
+<dt>
+    <h4 class="name" id="uuid"><span class="type-signature">&lt;static> </span>uuid<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Generates an unique id.
+The idea is to be used as keynames in the <a href="ProAct.Registry.html">ProAct.Registry</a>.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="pro.js.html">pro.js</a>, <a href="pro.js.html#line92">line 92</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Unique string.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">String</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
         </dl>
     
     
@@ -2539,13 +2932,13 @@ If the <i>value</i> is not present in the passed <i>array</i> does nothing.
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Actor.html">Actor</a></li><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 09:57:48 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:28 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

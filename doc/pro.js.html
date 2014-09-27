@@ -46,7 +46,7 @@
  *
  * @namespace ProAct
  * @license MIT
- * @version 1.0.0
+ * @version 1.1.1
  * @author meddle0x53
  */
 var ProAct = Pro = P = {},
@@ -87,7 +87,7 @@ var ProAct = Pro = P = {},
  * @static
  * @constant
  */
-ProAct.VERSION = '1.0.0';
+ProAct.VERSION = '1.1.1';
 
 /**
  * Defines the possible states of the ProAct objects.
@@ -115,6 +115,24 @@ ProAct.States = {
  * @namespace ProAct.Utils
  */
 ProAct.Utils = Pro.U = {
+
+  /**
+   * Generates an unique id.
+   * The idea is to be used as keynames in the {@link ProAct.Registry}.
+   *
+   * @memberof ProAct.Utils
+   * @function uuid
+   * @return {String}
+   *      Unique string.
+   */
+  uuid: function () {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0,
+          v = c === 'x' ? r : (r & 0x3 | 0x8);
+
+      return v.toString(16);
+    });
+  },
 
   /**
    * Checks if the passed value is a function or not.
@@ -252,6 +270,28 @@ ProAct.Utils = Pro.U = {
   },
 
   /**
+   * Clones the passed object. It creates a deep copy of it.
+   * For now it clones only arrays.
+   *
+   * @memberof ProAct.Utils
+   * @function clone
+   * @param {Object} obj
+   *      The object to clone.
+   * @return {Object}
+   *      Clone of the passed object.
+   */
+  clone: function (obj) {
+    if (P.U.isArray(obj)) {
+      var i, ln = obj.length, copy = [];
+      for (i = 0; i &lt; ln; i++) {
+        copy.push(P.U.clone(obj[i]));
+      }
+      return copy;
+    }
+    return obj;
+  },
+
+  /**
    * Extends the destination object with the properties and methods of the source object.
    *
    * @memberof ProAct.Utils
@@ -262,15 +302,56 @@ ProAct.Utils = Pro.U = {
    *      The source holding the properties and the functions to extend destination with.
    * @return {Object}
    *      The changed destination object.
+   * @see {@link ProAct.Utils.clone}
    */
   ex: function(destination, source) {
     var p;
+
     for (p in source) {
       if (source.hasOwnProperty(p)) {
-        destination[p] = source[p];
+        destination[p] = P.U.clone(source[p]);
       }
     }
     return destination;
+  },
+
+  /**
+   * Used for extending of classes.
+   * Example is:
+   * &lt;pre>
+   *  var Bar = ProAct.Utils.extendClass.call(Foo, {
+   *    a: 1,
+   *    b: 2,
+   *    c: function () {}
+   *  });
+   * &lt;/pre>
+   *
+   * @memberof ProAct.Utils
+   * @function extendClass
+   * @param {Object} data
+   *      Data to add new properties to the new class or override old ones.
+   * @return {Object}
+   *      Child class.
+   * @see {@link ProAct.Utils.ex}
+   */
+  extendClass: function (data) {
+    var parent = this,
+        child = function () {
+          parent.apply(this, slice.call(arguments));
+        };
+
+    P.U.ex(child, parent);
+
+    child.initData = {};
+    P.U.ex(child.initData, parent.initData);
+
+    P.U.ex(child.prototype, parent.prototype);
+    P.U.ex(child.initData, data);
+
+    child.uuid = P.U.uuid();
+    child.prototype.constructor = child;
+
+    return child;
   },
 
   /**
@@ -499,13 +580,13 @@ ProAct.currentCaller = null;
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Actor.html">Actor</a></li><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 09:57:40 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:18 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

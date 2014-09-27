@@ -133,7 +133,15 @@ ProAct.OpStore = {
             }
           }
 
-          actionObject[name] = opArguments;
+          if (!actionObject[name]) {
+            actionObject[name] = opArguments;
+          } else {
+            if (!P.U.isArray(actionObject[name][0])) {
+              actionObject[name] = [actionObject[name], opArguments];
+            } else {
+              actionObject[name].push(opArguments);
+            }
+          }
 
           actionObject.order = actionObject.order || [];
           actionObject.order.push(name);
@@ -159,10 +167,10 @@ opStoreAll = P.OpStore.all;
 /**
  * Contains implementation of the ProAct.js DSL.
  * &lt;p>
- *  The idea of the DSL is to define {@link ProAct.Observable}s and their dependencies on each other in a declarative and simple way.
+ *  The idea of the DSL is to define {@link ProAct.Actor}s and their dependencies on each other in a declarative and simple way.
  * &lt;/p>
  * &lt;p>
- *  The {@link ProAct.Registry} is used to store these observables.
+ *  The {@link ProAct.Registry} is used to store these actors.
  * &lt;/p>
  * &lt;p>
  *  For example if we want to have a stream configured to write in a property, it is very easy done using the DSL:
@@ -206,7 +214,7 @@ ProAct.DSL = {
   ops: {
 
     /**
-     * DSL operation for defining sources of {@link ProAct.Observable}s.
+     * DSL operation for defining sources of {@link ProAct.Actor}s.
      * &lt;p>
      *  For example
      *  &lt;pre>
@@ -219,7 +227,7 @@ ProAct.DSL = {
      *  &lt;pre>
      *    '&lt;&lt;($1)'
      *  &lt;/pre>
-     *  means that the source of the targed of the DSL should be an {@link ProAct.Observable} passed to the {@link ProAct.Dsl.run}
+     *  means that the source of the targed of the DSL should be an {@link ProAct.Actor} passed to the {@link ProAct.Dsl.run}
      *  method as the first argument after the targed object, the DSL data and the registry.
      * &lt;/p>
      *
@@ -228,13 +236,13 @@ ProAct.DSL = {
      * @constant
      * @see {@link ProAct.OpStore}
      * @see {@link ProAct.Registry}
-     * @see {@link ProAct.Observable}
+     * @see {@link ProAct.Actor}
      * @see {@link ProAct.DSL.run}
      */
     into: opStoreAll.simpleOp('into', '&lt;&lt;'),
 
     /**
-     * DSL operation for setting the targed of the DSL as sources of another {@link ProAct.Observable}s.
+     * DSL operation for setting the targed of the DSL as sources of another {@link ProAct.Actor}s.
      * &lt;p>
      *  For example
      *  &lt;pre>
@@ -247,7 +255,7 @@ ProAct.DSL = {
      *  &lt;pre>
      *    '>>($1)'
      *  &lt;/pre>
-     *  means that the targed of the DSL should become a source for an {@link ProAct.Observable} passed to the {@link ProAct.Dsl.run}
+     *  means that the targed of the DSL should become a source for an {@link ProAct.Actor} passed to the {@link ProAct.Dsl.run}
      *  method as the first argument after the targed object, the DSL data and the registry.
      * &lt;/p>
      *
@@ -256,20 +264,20 @@ ProAct.DSL = {
      * @constant
      * @see {@link ProAct.OpStore}
      * @see {@link ProAct.Registry}
-     * @see {@link ProAct.Observable}
+     * @see {@link ProAct.Actor}
      * @see {@link ProAct.DSL.run}
      */
     out: opStoreAll.simpleOp('out', '>>'),
 
     /**
-     * DSL operation for attaching listener to the target {@link ProAct.Observable} of the DSL.
+     * DSL operation for attaching listener to the target {@link ProAct.Actor} of the DSL.
      * &lt;p>
      *  For example
      *  &lt;pre>
      *    '@(f:bla)'
      *  &lt;/pre>
      *  means that listener function, stored in the {@link ProAct.Registry} as 'bla'
-     *  should be attached as a listener to the targed {@link ProAct.Observable} of the DSL.
+     *  should be attached as a listener to the targed {@link ProAct.Actor} of the DSL.
      * &lt;/p>
      *
      * @memberof ProAct.DSL.ops
@@ -277,20 +285,20 @@ ProAct.DSL = {
      * @constant
      * @see {@link ProAct.OpStore}
      * @see {@link ProAct.Registry}
-     * @see {@link ProAct.Observable}
+     * @see {@link ProAct.Actor}
      * @see {@link ProAct.DSL.run}
      */
     on: opStoreAll.simpleOp('on', '@'),
 
     /**
-     * DSL operation for adding mapping to the target {@link ProAct.Observable} of the DSL.
+     * DSL operation for adding mapping to the target {@link ProAct.Actor} of the DSL.
      * &lt;p>
      *  For example
      *  &lt;pre>
      *    'map(f:bla)'
      *  &lt;/pre>
      *  means that mapping function, stored in the {@link ProAct.Registry} as 'bla'
-     *  should be mapped to the targed {@link ProAct.Observable} of the DSL.
+     *  should be mapped to the targed {@link ProAct.Actor} of the DSL.
      * &lt;/p>
      * &lt;p>
      *  or
@@ -299,7 +307,7 @@ ProAct.DSL = {
      *  &lt;/pre>
      *  means that mapping function passed to the {@link ProAct.Dsl.run}
      *  method as the second argument after the targed object, the DSL data and the registry
-     *  should be mapped to the targed {@link ProAct.Observable} of the DSL.
+     *  should be mapped to the targed {@link ProAct.Actor} of the DSL.
      * &lt;/p>
      *
      * @memberof ProAct.DSL.ops
@@ -307,20 +315,20 @@ ProAct.DSL = {
      * @constant
      * @see {@link ProAct.OpStore}
      * @see {@link ProAct.Registry}
-     * @see {@link ProAct.Observable}
+     * @see {@link ProAct.Actor}
      * @see {@link ProAct.DSL.run}
      */
     mapping: opStoreAll.simpleOp('mapping', 'map'),
 
     /**
-     * DSL operation for adding filters to the target {@link ProAct.Observable} of the DSL.
+     * DSL operation for adding filters to the target {@link ProAct.Actor} of the DSL.
      * &lt;p>
      *  For example
      *  &lt;pre>
      *    'filter(f:bla)'
      *  &lt;/pre>
      *  means that filtering function, stored in the {@link ProAct.Registry} as 'bla'
-     *  should be add as filter to the targed {@link ProAct.Observable} of the DSL.
+     *  should be add as filter to the targed {@link ProAct.Actor} of the DSL.
      * &lt;/p>
      * &lt;p>
      *  or
@@ -329,7 +337,7 @@ ProAct.DSL = {
      *  &lt;/pre>
      *  means that filtering function passed to the {@link ProAct.Dsl.run}
      *  method as the first argument after the targed object, the DSL data and the registry
-     *  should be added as filter to the targed {@link ProAct.Observable} of the DSL.
+     *  should be added as filter to the targed {@link ProAct.Actor} of the DSL.
      * &lt;/p>
      *
      * @memberof ProAct.DSL.ops
@@ -337,20 +345,20 @@ ProAct.DSL = {
      * @constant
      * @see {@link ProAct.OpStore}
      * @see {@link ProAct.Registry}
-     * @see {@link ProAct.Observable}
+     * @see {@link ProAct.Actor}
      * @see {@link ProAct.DSL.run}
      */
     filtering: opStoreAll.simpleOp('filtering', 'filter'),
 
     /**
-     * DSL operation for adding accumulation to the target {@link ProAct.Observable} of the DSL.
+     * DSL operation for adding accumulation to the target {@link ProAct.Actor} of the DSL.
      * &lt;p>
      *  For example
      *  &lt;pre>
      *    'acc($1, f:bla)'
      *  &lt;/pre>
      *  means that accumulating function, stored in the {@link ProAct.Registry} as 'bla'
-     *  should be added as accumulation to the targed {@link ProAct.Observable} of the DSL,
+     *  should be added as accumulation to the targed {@link ProAct.Actor} of the DSL,
      *  and the first argument passed to {@link ProAct.DSL.run} after the targed object, the DSL data and the registry should
      *  be used as initial value for the accumulation.
      * &lt;/p>
@@ -360,7 +368,7 @@ ProAct.DSL = {
      * @constant
      * @see {@link ProAct.OpStore}
      * @see {@link ProAct.Registry}
-     * @see {@link ProAct.Observable}
+     * @see {@link ProAct.Actor}
      * @see {@link ProAct.DSL.run}
      */
     accumulation: opStoreAll.simpleOp('accumulation', 'acc')
@@ -488,6 +496,80 @@ ProAct.DSL = {
             return p;
           }
         };
+      },
+
+      /**
+       * Mapping operation for turning value in an
+       * ProAct.Array pop event.
+       * &lt;p>
+       *  Usage in a DSL expression:
+       *  &lt;pre>
+       *    map(pop)
+       *  &lt;/pre>
+       * &lt;/p>
+       *
+       * @memberof ProAct.DSL.predefined.mapping
+       * @static
+       * @method
+       * @see {@link ProAct.DSL.ops.map}
+       */
+      pop: function () {
+        return P.E.simple('array', 'pop');
+      },
+
+      /**
+       * Mapping operation for turning value in an
+       * ProAct.Array shift event.
+       * &lt;p>
+       *  Usage in a DSL expression:
+       *  &lt;pre>
+       *    map(shift)
+       *  &lt;/pre>
+       * &lt;/p>
+       *
+       * @memberof ProAct.DSL.predefined.mapping
+       * @static
+       * @method
+       * @see {@link ProAct.DSL.ops.map}
+       */
+      shift: function () {
+        return P.E.simple('array', 'shift');
+      },
+
+      /**
+       * Mapping operation for turning value event in its value.
+       * &lt;p>
+       *  Usage in a DSL expression:
+       *  &lt;pre>
+       *    map(eventToVal)
+       *  &lt;/pre>
+       * &lt;/p>
+       *
+       * @memberof ProAct.DSL.predefined.mapping
+       * @static
+       * @method
+       * @see {@link ProAct.DSL.ops.map}
+       */
+      eventToVal: function (event) {
+        return event.args[0][event.target];
+      },
+
+      /**
+       * Maps anything to the constant true.
+       * &lt;p>
+       *  Usage in a DSL expression:
+       *  &lt;pre>
+       *    map(true)
+       *  &lt;/pre>
+       * &lt;/p>
+       *
+       * @memberof ProAct.DSL.predefined.mapping
+       * @static
+       * @method
+       * @see {@link ProAct.DSL.ops.map}
+       */
+      'true': function (event) {
+        return true;
       }
     },
 
@@ -563,7 +645,44 @@ ProAct.DSL = {
        * @method
        * @see {@link ProAct.DSL.ops.filter}
        */
-      '-': function (el) { return el &lt;= 0; }
+      '-': function (el) { return el &lt;= 0; },
+
+      /**
+       * Filtering operation for filtering only values different from undefined.
+       * &lt;p>
+       *  Usage in a DSL expression:
+       *  &lt;pre>
+       *    filter(defined)
+       *  &lt;/pre>
+       * &lt;/p>
+       *
+       * @memberof ProAct.DSL.predefined.filtering
+       * @static
+       * @method
+       * @see {@link ProAct.DSL.ops.filter}
+       */
+      defined: function (event) {
+        return event.args[0][event.target] !== undefined;
+      },
+
+      /**
+       * Filtering operation for filtering only events
+       * that have null/undefined as a source.
+       * &lt;p>
+       *  Usage in a DSL expression:
+       *  &lt;pre>
+       *    filter(originalEvent)
+       *  &lt;/pre>
+       * &lt;/p>
+       *
+       * @memberof ProAct.DSL.predefined.filtering
+       * @static
+       * @method
+       * @see {@link ProAct.DSL.ops.filter}
+       */
+      originalEvent: function (event) {
+        return event.source === undefined || event.source === null;
+      }
     },
 
     /**
@@ -626,6 +745,20 @@ ProAct.DSL = {
     }
   },
 
+  defPredefined: function(type, id, operation) {
+    if (type === 'm' || type === 'map') {
+      type = 'mapping';
+    }
+    if (type === 'f' || type === 'filter') {
+      type = 'filtering';
+    }
+    if (type === 'a' || type === 'acc' || type === 'accumulate') {
+      type = 'accumulation';
+    }
+
+    ProAct.DSL.predefined[type][id] = operation;
+  },
+
   /**
    * Extracts DSL actions and options from a string.
    * &lt;p>
@@ -668,7 +801,7 @@ ProAct.DSL = {
    * Extracts DSL actions and options from an array of strings.
    * &lt;p>
    *  Example &lt;i>optionArray&lt;/i> is ['map($1)', 'filter(+)', @($2)'] and it will become options object of functions and arguments to
-   *  be applied on a target {@link ProAct.Observable} passed to the {@link ProAct.DSL.run} method.
+   *  be applied on a target {@link ProAct.Actor} passed to the {@link ProAct.DSL.run} method.
    * &lt;/p>
    *
    * @memberof ProAct.DSL
@@ -713,7 +846,7 @@ ProAct.DSL = {
   },
 
   /**
-   * Configures an {@link ProAct.Observable} using the DSL passed with the &lt;i>options&lt;/i> argument.
+   * Configures an {@link ProAct.Actor} using the DSL passed with the &lt;i>options&lt;/i> argument.
    * &lt;p>
    *  Uses the passed {@link ProAct.Registry} to read stored values from.
    * &lt;/p>
@@ -721,18 +854,18 @@ ProAct.DSL = {
    * @memberof ProAct.DSL
    * @static
    * @method
-   * @param {ProAct.Observable} observable
+   * @param {ProAct.Actor} actor
    *      The target of the DSL operations.
-   * @param {ProAct.Observable|String|Object} options
+   * @param {ProAct.Actor|String|Object} options
    *      The DSL formatted options to be used for the configuration.
    *      &lt;p>
-   *        If the value of this parameter is instance of {@link ProAct.Observable} it is set as a source to the &lt;i>target observable&lt;/i>.
+   *        If the value of this parameter is instance of {@link ProAct.Actor} it is set as a source to the &lt;i>target actor&lt;/i>.
    *      &lt;/p>
    *      &lt;p>
    *        If the value ot this parameter is String - {@link ProAct.DSL.optionsFromString} is used to be turned to an options object.
    *      &lt;/p>
    *      &lt;p>
-   *        If the values of this parameter is object, it is used to configure the &lt;i>targed observable&lt;/i>.
+   *        If the values of this parameter is object, it is used to configure the &lt;i>targed actor&lt;/i>.
    *      &lt;/p>
    *      &lt;p>
    *        The format of the object should be something like:
@@ -753,24 +886,25 @@ ProAct.DSL = {
    * @param [...]
    *      Parameters for the DSL operations.
    *      &lt;p>
-   *        For example if the array contains 'map($1)', the first argument passed after the &lt;i>observable&lt;/i>, &lt;i>options&lt;/i> and &lt;i>registry&lt;/i> arguments
+   *        For example if the array contains 'map($1)', the first argument passed after the &lt;i>actor&lt;/i>, &lt;i>options&lt;/i> and &lt;i>registry&lt;/i> arguments
    *        is passed to the 'map' operation.
    *      &lt;/p>
-   * @return {ProAct.Observable}
-   *      The configured observable.
+   * @return {ProAct.Actor}
+   *      The configured actor.
    * @see {@link ProAct.DSL.optionsFromString}
-   * @see {@link ProAct.Observable}
+   * @see {@link ProAct.Actor}
    */
-  run: function (observable, options, registry) {
+  run: function (actor, options, registry) {
     var isS = P.U.isString,
         args = slice.call(arguments, 3),
-        option, i, ln, opType;
+        option, i, ln, opType, oldOption,
+        multiple = {};
 
     if (options && isS(options)) {
       options = dsl.optionsFromString.apply(null, [options].concat(args));
     }
 
-    if (options && options instanceof P.Observable) {
+    if (options && options instanceof P.Actor) {
       options = {into: options};
     }
 
@@ -780,11 +914,28 @@ ProAct.DSL = {
         option = options.order[i];
         if (opType = dslOps[option]) {
           if (registry) {
+            if (options.order.indexOf(option) !== options.order.lastIndexOf(option)) {
+              if (multiple[option] === undefined) {
+                multiple[option] = -1;
+              }
+              multiple[option] = multiple[option] + 1;
+              oldOption = options[option];
+              options[option] = options[option][multiple[option]];
+            }
             options[option] = registry.toObjectArray(options[option]);
           }
 
-          opType.action(observable, options);
-          delete options[option];
+          opType.action(actor, options);
+          if (oldOption) {
+            options[option] = oldOption;
+            oldOption = undefined;
+
+            if (multiple[option] >= options[option].length - 1) {
+              delete options[option];
+            }
+          } else {
+            delete options[option];
+          }
         }
       }
     }
@@ -794,10 +945,10 @@ ProAct.DSL = {
         options[opType] = registry.toObjectArray(option);
       }
       opType = dslOps[opType];
-      opType.action(observable, options);
+      opType.action(actor, options);
     }
 
-    return observable;
+    return actor;
   }
 };
 
@@ -813,13 +964,13 @@ dslOps = dsl.ops;
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ProAct.Actor.html">Actor</a></li><li><a href="ProAct.Array.html">Array</a></li><li><a href="ProAct.ArrayCore.html">ArrayCore</a></li><li><a href="ProAct.ArrayProperty.html">ArrayProperty</a></li><li><a href="ProAct.ArrayPropertyProvider.html">ArrayPropertyProvider</a></li><li><a href="ProAct.AutoProperty.html">AutoProperty</a></li><li><a href="ProAct.AutoPropertyProvider.html">AutoPropertyProvider</a></li><li><a href="ProAct.BufferedStream.html">BufferedStream</a></li><li><a href="ProAct.Core.html">Core</a></li><li><a href="ProAct.DebouncingStream.html">DebouncingStream</a></li><li><a href="ProAct.DelayedStream.html">DelayedStream</a></li><li><a href="ProAct.Event.html">Event</a></li><li><a href="ProAct.Flow.html">Flow</a></li><li><a href="ProAct.NullProperty.html">NullProperty</a></li><li><a href="ProAct.NullPropertyProvider.html">NullPropertyProvider</a></li><li><a href="ProAct.ObjectCore.html">ObjectCore</a></li><li><a href="ProAct.ObjectProperty.html">ObjectProperty</a></li><li><a href="ProAct.ObjectPropertyProvider.html">ObjectPropertyProvider</a></li><li><a href="ProAct.Observable.html">Observable</a></li><li><a href="ProAct.Property.html">Property</a></li><li><a href="ProAct.PropertyProvider.html">PropertyProvider</a></li><li><a href="ProAct.ProxyProperty.html">ProxyProperty</a></li><li><a href="ProAct.ProxyPropertyProvider.html">ProxyPropertyProvider</a></li><li><a href="ProAct.Queue.html">Queue</a></li><li><a href="ProAct.Queues.html">Queues</a></li><li><a href="ProAct.Registry.html">Registry</a></li><li><a href="ProAct.Registry.FunctionProvider.html">FunctionProvider</a></li><li><a href="ProAct.Registry.ProObjectProvider.html">ProObjectProvider</a></li><li><a href="ProAct.Registry.Provider.html">Provider</a></li><li><a href="ProAct.Registry.StreamProvider.html">StreamProvider</a></li><li><a href="ProAct.SimplePropertyProvider.html">SimplePropertyProvider</a></li><li><a href="ProAct.SizeBufferedStream.html">SizeBufferedStream</a></li><li><a href="ProAct.Stream.html">Stream</a></li><li><a href="ProAct.ThrottlingStream.html">ThrottlingStream</a></li><li><a href="ProAct.Val.html">Val</a></li></ul><h3>Namespaces</h3><ul><li><a href="ProAct.html">ProAct</a></li><li><a href="ProAct.Array.Listeners.html">Listeners</a></li><li><a href="ProAct.Array.Operations.html">Operations</a></li><li><a href="ProAct.Configuration.html">Configuration</a></li><li><a href="ProAct.DSL.html">DSL</a></li><li><a href="ProAct.DSL.ops.html">ops</a></li><li><a href="ProAct.DSL.predefined.html">predefined</a></li><li><a href="ProAct.DSL.predefined.accumulation.html">accumulation</a></li><li><a href="ProAct.DSL.predefined.filtering.html">filtering</a></li><li><a href="ProAct.DSL.predefined.mapping.html">mapping</a></li><li><a href="ProAct.Event.Types.html">Types</a></li><li><a href="ProAct.OpStore.html">OpStore</a></li><li><a href="ProAct.Property.Types.html">Types</a></li><li><a href="ProAct.Registry.ProObjectProvider.types.html">types</a></li><li><a href="ProAct.Registry.Provider.types.html">types</a></li><li><a href="ProAct.Registry.StreamProvider.types.html">types</a></li><li><a href="ProAct.States.html">States</a></li><li><a href="ProAct.Utils.html">Utils</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Fri Aug 15 2014 09:57:40 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:18 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>
