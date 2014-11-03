@@ -41,7 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="Property"><span class="type-signature"></span>new Property<span class="signature">(proObject, property, getter, setter)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Property"><span class="type-signature"></span>new Property<span class="signature">(queueName, proObject, property, getter, setter)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -102,6 +102,37 @@
 	</thead>
 	
 	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>queueName</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the queue all the updates should be pushed to.
+     <p>
+       If this parameter is null/undefined the default queue of
+       <a href="ProAct.html#flow">ProAct.flow</a> is used.
+     </p>
+     <p>
+       If this parameter is not a string it is used as the
+       <i>proObject</i>.
+     </p></td>
+        </tr>
+	
 	
 	
         <tr>
@@ -337,7 +368,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line287">line 287</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line304">line 304</a>
     </li></ul></dd>
     
     
@@ -458,7 +489,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line167">line 167</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line184">line 184</a>
     </li></ul></dd>
     
     
@@ -631,7 +662,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line198">line 198</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line215">line 215</a>
     </li></ul></dd>
     
     
@@ -842,7 +873,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line237">line 237</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line254">line 254</a>
     </li></ul></dd>
     
     
@@ -970,7 +1001,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line267">line 267</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line284">line 284</a>
     </li></ul></dd>
     
     
@@ -1141,7 +1172,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line519">line 519</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line686">line 686</a>
     </li></ul></dd>
     
     
@@ -1318,7 +1349,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line456">line 456</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line623">line 623</a>
     </li></ul></dd>
     
     
@@ -1419,7 +1450,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line416">line 416</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line405">line 405</a>
     </li></ul></dd>
     
     
@@ -1455,7 +1486,7 @@ the passed <i>accumulation function</i>.
     
     
     <div class="description">
-        Called automatically after initialization of this property.
+        Called automatically after initialization of this actor.
 <p>
  By default it changes the state of <i>this</i> to ProAct.States.ready.
 </p>
@@ -1494,7 +1525,165 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line399">line 399</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line155">line 155</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="beforeDestroy"><span class="type-signature">&lt;abstract> </span>beforeDestroy<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Called immediately before destruction.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#beforeDestroy">ProAct.Actor#beforeDestroy</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line172">line 172</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Actor.html#destroy">ProAct.Actor#destroy</a></li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="canDestroy"><span class="type-signature"></span>canDestroy<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Checks if <i>this</i> can be dstroyed.
+<p>
+ Defaults to return true.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#canDestroy">ProAct.Actor#canDestroy</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line230">line 230</a>
     </li></ul></dd>
     
     
@@ -1573,7 +1762,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line103">line 103</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line262">line 262</a>
     </li></ul></dd>
     
     
@@ -1674,7 +1863,7 @@ It is used for resetting all the listeners too.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line86">line 86</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line244">line 244</a>
     </li></ul></dd>
     
     
@@ -1845,7 +2034,7 @@ It is used for resetting all the listeners too.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line699">line 699</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line896">line 896</a>
     </li></ul></dd>
     
     
@@ -1914,9 +2103,167 @@ It is used for resetting all the listeners too.
     
     
     <div class="description">
-        Destroys this ProAct.Property instance, by making the field it manages to a normal field.
+        Destroys this ProAct.Actor instance.
 <p>
  The state of <i>this</i> is set to ProAct.States.destroyed.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#destroy">ProAct.Actor#destroy</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line196">line 196</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="doDestroy"><span class="type-signature">&lt;abstract> </span>doDestroy<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Frees additional resources.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#doDestroy">ProAct.Actor#doDestroy</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line184">line 184</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Actor.html#destroy">ProAct.Actor#destroy</a></li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="doInit"><span class="type-signature"></span>doInit<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Initializes this property.
+<p>
+ First the property is defined as a field in its object, using <a href="ProAct.Property.html#defineProp">ProAct.Property.defineProp</a>.
 </p>
     </div>
     
@@ -1950,12 +2297,19 @@ It is used for resetting all the listeners too.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line434">line 434</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line390">line 390</a>
     </li></ul></dd>
     
     
     
     
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Actor.html#init">ProAct.Actor#init</a></li>
+        </ul>
+    </dd>
     
     
     
@@ -2076,7 +2430,7 @@ the passed <i>filtering function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line500">line 500</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line667">line 667</a>
     </li></ul></dd>
     
     
@@ -2231,7 +2585,7 @@ the passed <i>filtering function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line430">line 430</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line597">line 597</a>
     </li></ul></dd>
     
     
@@ -2296,15 +2650,12 @@ the passed <i>filtering function</i>.
     
     
     <div class="description">
-        Initializes this property.
+        Initializes this actor.
 <p>
  This method logic is run only if the current state of <i>this</i> is ProAct.States.init.
 </p>
 <p>
- First the property is defined as a field in its object, using <a href="ProAct.Property.html#defineProp">ProAct.Property.defineProp</a>.
-</p>
-<p>
- Then <a href="ProAct.Property.html#afterInit">ProAct.Property#afterInit</a> is called to finish the initialization.
+ Then ProAct.Actor#afterInit is called to finish the initialization.
 </p>
     </div>
     
@@ -2324,6 +2675,11 @@ the passed <i>filtering function</i>.
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#init">ProAct.Actor#init</a>
+    </li></dd>
+    
     
     
     
@@ -2338,7 +2694,7 @@ the passed <i>filtering function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line372">line 372</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line117">line 117</a>
     </li></ul></dd>
     
     
@@ -2348,7 +2704,9 @@ the passed <i>filtering function</i>.
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li><a href="ProAct.Property.html#afterInit">ProAct.Property#afterInit</a></li>
+            <li><a href="ProAct.Actor.html#doInit">ProAct.Actor#doInit</a></li>
+        
+            <li>ProAct.Actor#afterInit</li>
         </ul>
     </dd>
     
@@ -2482,7 +2840,7 @@ is listening for changes from the <i>sources</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line309">line 309</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line496">line 496</a>
     </li></ul></dd>
     
     
@@ -2528,6 +2886,114 @@ is listening for changes from the <i>sources</i>.
 	<dd>
 		
 <span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="makeCloseListener"><span class="type-signature">&lt;abstract> </span>makeCloseListener<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Creates the <i>closing listener</i> of this actor.
+Every actor should have one closing listener that should pass to other actors.
+<p>
+ This listener turns the actor in a observer for closing events.
+</p>
+<p>
+ Should be overriden with specific listener, by default it returns null.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#makeCloseListener">ProAct.Actor#makeCloseListener</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>null</li>
+        </ul></dd>
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line317">line 317</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The <i>closing listener of this observer</i>.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
 
 
 	</dd>
@@ -2599,7 +3065,7 @@ Every actor should have one error listener that should pass to other actors.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line138">line 138</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line297">line 297</a>
     </li></ul></dd>
     
     
@@ -2754,7 +3220,7 @@ Every actor should have one error listener that should pass to other actors.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line305">line 305</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line322">line 322</a>
     </li></ul></dd>
     
     
@@ -2857,7 +3323,7 @@ Every actor should have one error listener that should pass to other actors.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line332">line 332</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line349">line 349</a>
     </li></ul></dd>
     
     
@@ -3005,7 +3471,7 @@ the passed <i>mapping function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line481">line 481</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line648">line 648</a>
     </li></ul></dd>
     
     
@@ -3161,7 +3627,7 @@ the passed <i>mapping function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line409">line 409</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line576">line 576</a>
     </li></ul></dd>
     
     
@@ -3345,7 +3811,7 @@ the passed <i>mapping function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line224">line 224</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line403">line 403</a>
     </li></ul></dd>
     
     
@@ -3500,7 +3966,7 @@ the passed <i>mapping function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line293">line 293</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line472">line 472</a>
     </li></ul></dd>
     
     
@@ -3511,157 +3977,6 @@ the passed <i>mapping function</i>.
     <dd class="tag-see">
         <ul>
             <li><a href="ProAct.Actor.html#onErr">ProAct.Actor#onErr</a></li>
-        </ul>
-    </dd>
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <b>this</b>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="offSource"><span class="type-signature"></span>offSource<span class="signature">(source)</span><span class="type-signature"> &rarr; {<a href="ProAct.Actor.html">ProAct.Actor</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Removes a <i>source actor</i> from <i>this</i>.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>source</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">The ProAct.Actor to remove as <i>source</i>.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#offSource">ProAct.Actor#offSource</a>
-    </li></dd>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line362">line 362</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="ProAct.Actor.html#into">ProAct.Actor#into</a></li>
         </ul>
     </dd>
     
@@ -3832,7 +4147,7 @@ The listener may be function or object that defines a <i>call</i> method.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line180">line 180</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line359">line 359</a>
     </li></ul></dd>
     
     
@@ -3984,7 +4299,7 @@ The listener may be function or object that defines a <i>call</i> method.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line276">line 276</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line455">line 455</a>
     </li></ul></dd>
     
     
@@ -4136,7 +4451,7 @@ to the passed <i>destination</i> actor.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line343">line 343</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line530">line 530</a>
     </li></ul></dd>
     
     
@@ -4313,7 +4628,7 @@ to the passed <i>destination</i> actor.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line540">line 540</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line707">line 707</a>
     </li></ul></dd>
     
     
@@ -4416,7 +4731,7 @@ to the passed <i>destination</i> actor.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line461">line 461</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line433">line 433</a>
     </li></ul></dd>
     
     
@@ -4548,7 +4863,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line382">line 382</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line549">line 549</a>
     </li></ul></dd>
     
     
@@ -4649,7 +4964,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line289">line 289</a>
+        <a href="property.js.html">properties/property.js</a>, <a href="property.js.html#line306">line 306</a>
     </li></ul></dd>
     
     
@@ -4716,6 +5031,8 @@ of <i>this actor</i>.
  If <a href="ProAct.html#flow">ProAct.flow</a> is not running, a new instance is created and the
  ProAct.Actor.willUpdate action of <i>this</i> is called in it.
 </p>
+
+TODO Should be 'triggerActions'
     </div>
     
 
@@ -4856,7 +5173,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line562">line 562</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line729">line 729</a>
     </li></ul></dd>
     
     
@@ -4939,6 +5256,8 @@ of <i>this actor</i>.
  If <i>this</i> ProAct.Actor has a <i>parent</i> ProAct.Actor it will be notified in the running flow
  as well.
 </p>
+
+TODO Should be 'update'
     </div>
     
 
@@ -5080,7 +5399,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line606">line 606</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line779">line 779</a>
     </li></ul></dd>
     
     
@@ -5162,7 +5481,7 @@ of <i>this actor</i>.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:25 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Mon Nov 03 2014 09:40:37 GMT+0200 (EET)
 </footer>
 
 <script> prettyPrint(); </script>

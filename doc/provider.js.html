@@ -25,7 +25,29 @@
     
     <section>
         <article>
-            <pre class="prettyprint source"><code>P.U.ex(ProAct.Registry, {
+            <pre class="prettyprint source"><code>function Provider () {
+  this.stored = {};
+}
+function StreamProvider () {
+  P.R.Provider.call(this);
+}
+function FunctionProvider () {
+  P.R.Provider.call(this);
+}
+function ProObjectProvider () {
+  P.R.Provider.call(this);
+}
+
+function streamConstructArgs (args) {
+  var queueName;
+  if (args.length === 2) {
+    queueName = args[0];
+    args[0] = args[1];
+  }
+  return [queueName].concat(args);
+}
+
+P.U.ex(ProAct.Registry, {
 
   /**
    * Constructs a ProAct.Registry.Provider. The {@link ProAct.Registry} uses registered providers as storage for different objects.
@@ -41,9 +63,7 @@
    * @static
    * @see {@link ProAct.Registry}
    */
-  Provider: function () {
-    this.stored = {};
-  },
+  Provider: Provider,
 
   /**
    * Constructs a ProAct.Registry.StreamProvider. The {@link ProAct.Registry} uses registered stream providers as storage for {@link ProAct.Stream}s.
@@ -54,9 +74,7 @@
    * @static
    * @see {@link ProAct.Registry}
    */
-  StreamProvider: function () {
-    P.R.Provider.call(this);
-  },
+  StreamProvider: StreamProvider,
 
   /**
    * Constructs a ProAct.Registry.FunctionProvider. The {@link ProAct.Registry} uses registered function providers as storage for Functions.
@@ -70,9 +88,7 @@
    * @static
    * @see {@link ProAct.Registry}
    */
-  FunctionProvider: function () {
-    P.R.Provider.call(this);
-  },
+  FunctionProvider: FunctionProvider,
 
   /**
    * Constructs a ProAct.Registry.ProObjectProvider.
@@ -85,9 +101,7 @@
    * @see {@link ProAct.Registry}
    * @see {@link ProAct.Property}
    */
-  ProObjectProvider: function () {
-    P.R.Provider.call(this);
-  }
+  ProObjectProvider: ProObjectProvider
 });
 
 ProAct.Registry.Provider.prototype = {
@@ -306,7 +320,7 @@ ProAct.Registry.StreamProvider.prototype = P.U.ex(Object.create(P.R.Provider.pro
      *      An isntance of {@link ProAct.Stream}.
      * @see {@link ProAct.Stream}
      */
-    basic: function () { return new P.S(); },
+    basic: function (args) { return new P.S(args[0]); },
 
     /**
      * Constructs a {@link ProAct.DelayedStream}
@@ -325,7 +339,10 @@ ProAct.Registry.StreamProvider.prototype = P.U.ex(Object.create(P.R.Provider.pro
      *      An isntance of {@link ProAct.DelayedStream}.
      * @see {@link ProAct.DelayedStream}
      */
-    delayed: function (args) { return new P.DBS(parseInt(args[0], 10)); },
+    delayed: function (args) {
+      var args = streamConstructArgs(args);
+      return new P.DBS(args[0], parseInt(args[1], 10));
+    },
 
     /**
      * Constructs a {@link ProAct.SizeBufferedStream}
@@ -344,7 +361,10 @@ ProAct.Registry.StreamProvider.prototype = P.U.ex(Object.create(P.R.Provider.pro
      *      An isntance of {@link ProAct.SizeBufferedStream}.
      * @see {@link ProAct.SizeBufferedStream}
      */
-    size: function (args) { return new P.SBS(parseInt(args[0], 10)); },
+    size: function (args) {
+      var args = streamConstructArgs(args);
+      return new P.SBS(args[0], parseInt(args[1], 10));
+    },
 
     /**
      * Constructs a {@link ProAct.DebouncingStream}
@@ -363,7 +383,10 @@ ProAct.Registry.StreamProvider.prototype = P.U.ex(Object.create(P.R.Provider.pro
      *      An isntance of {@link ProAct.DebouncingStream}.
      * @see {@link ProAct.DebouncingStream}
      */
-    debouncing: function (args) { return new P.DDS(parseInt(args[0], 10)); },
+    debouncing: function (args) {
+      var args = streamConstructArgs(args);
+      return new P.DDS(args[0], parseInt(args[1], 10));
+    },
 
     /**
      * Constructs a {@link ProAct.ThrottlingStream}
@@ -382,9 +405,41 @@ ProAct.Registry.StreamProvider.prototype = P.U.ex(Object.create(P.R.Provider.pro
      *      An isntance of {@link ProAct.ThrottlingStream}.
      * @see {@link ProAct.ThrottlingStream}
      */
-    throttling: function (args) { return new P.TDS(parseInt(args[0], 10)); }
+    throttling: function (args) {
+      var args = streamConstructArgs(args);
+      return new P.TDS(args[0], parseInt(args[1], 10));
+    }
   }
 });
+
+var higher = {
+  split: function (provider, action, data) {
+    var keys = data.split(action),
+        ln = keys.length, i,
+        functions = [];
+    for (i = 0; i &lt; ln; i++) {
+      functions.push(provider.get(keys[i].trim()));
+    }
+
+    return functions;
+  },
+
+  accumulator: function (functions, initial, computation) {
+    return function () {
+      var i, ln = functions.length, result = initial;
+      for (i = 0; i &lt; ln; i++) {
+        result = computation(result, functions[i].apply(null, arguments));
+      }
+      return result;
+    };
+  },
+  or: function (tillNow, argument) {
+    return tillNow || argument;
+  },
+  and: function (tillNow, argument) {
+    return tillNow && argument;
+  }
+};
 
 ProAct.Registry.FunctionProvider.prototype = P.U.ex(Object.create(P.R.Provider.prototype), {
 
@@ -396,7 +451,63 @@ ProAct.Registry.FunctionProvider.prototype = P.U.ex(Object.create(P.R.Provider.p
    * @constant
    * @default ProAct.Registry.FunctionProvider
    */
-  constructor: ProAct.Registry.FunctionProvider
+  constructor: ProAct.Registry.FunctionProvider,
+
+  // Private stuff
+  predefinedActions: {
+    map: 'mapping',
+    filter: 'filtering',
+    acc: 'accumulation'
+  },
+
+  /**
+   * Reads a stored instance.
+   * &lt;p>
+   *  If stored instance is not found and the key is in the form:
+   *  actions(arg) - it is searched in the predefined lambdas, for example:
+   *  &lt;pre>
+   *    map(+)
+   *  &lt;/pre>
+   * &lt;/p>
+   *
+   * @memberof ProAct.Registry.FunctionProvider
+   * @instance
+   * @method get
+   * @param {String} key
+   *      The key to read.
+   * @return {Object}
+   *      The stored object corresponding to the passed &lt;i>key&lt;/i> or
+   *      predefined lambda or undefined if there is no such object.
+   */
+  get: function (key) {
+    var func,
+        reg, matched,
+        action, args,
+        i, ln;
+
+    if (key.indexOf('OR') !== -1) {
+      return higher.accumulator(higher.split(this, 'OR', key), false, higher.or);
+    } else if (key.indexOf('AND') !== -1) {
+      return higher.accumulator(higher.split(this, 'AND', key), true, higher.and);
+    } else if (key.indexOf('!') === 0) {
+      func = this.get(key.substring(1));
+      return function () {
+        return !func.apply(null, arguments);
+      };
+    }
+
+    func = this.stored[key];
+    if (!func) {
+      reg = new RegExp("(\\w*)\\(([\\s\\S]*)\\)");
+      matched = reg.exec(key);
+      if (matched) {
+        action = matched[1], args = matched[2],
+        func = dsl.predefined[this.predefinedActions[action]][args];
+      }
+    }
+
+    return func;
+  }
 });
 
 ProAct.Registry.ProObjectProvider.prototype = P.U.ex(Object.create(P.R.Provider.prototype), {
@@ -514,7 +625,7 @@ ProAct.registry = new P.R()
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:18 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Mon Nov 03 2014 09:40:31 GMT+0200 (EET)
 </footer>
 
 <script> prettyPrint(); </script>

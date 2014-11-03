@@ -41,7 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="BufferedStream"><span class="type-signature"></span>new BufferedStream<span class="signature">(source, transforms)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="BufferedStream"><span class="type-signature"></span>new BufferedStream<span class="signature">(queueName, source, transforms)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -94,6 +94,37 @@
 	</thead>
 	
 	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>queueName</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The name of the queue all the updates should be pushed to.
+     <p>
+       If this parameter is null/undefined the default queue of
+       <a href="ProAct.html#flow">ProAct.flow</a> is used.
+     </p>
+     <p>
+       If this parameter is not a string it is used as the
+       <i>source</i>.
+     </p></td>
+        </tr>
+	
 	
 	
         <tr>
@@ -269,7 +300,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffered_stream.js.html">streams/buffered_stream.js</a>, <a href="buffered_stream.js.html#line42">line 42</a>
+        <a href="buffered_stream.js.html">streams/buffered_stream.js</a>, <a href="buffered_stream.js.html#line59">line 59</a>
     </li></ul></dd>
     
     
@@ -411,7 +442,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line278">line 278</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line340">line 340</a>
     </li></ul></dd>
     
     
@@ -588,7 +619,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line456">line 456</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line623">line 623</a>
     </li></ul></dd>
     
     
@@ -638,6 +669,87 @@ the passed <i>accumulation function</i>.
 </dl>
 
         
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="beforeDestroy"><span class="type-signature">&lt;abstract> </span>beforeDestroy<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Called immediately before destruction.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#beforeDestroy">ProAct.Actor#beforeDestroy</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line172">line 172</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Actor.html#destroy">ProAct.Actor#destroy</a></li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
     
     
 </dd>
@@ -739,7 +851,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="size_buffered_stream.js.html">streams/size_buffered_stream.js</a>, <a href="size_buffered_stream.js.html#line87">line 87</a>
+        <a href="size_buffered_stream.js.html">streams/size_buffered_stream.js</a>, <a href="size_buffered_stream.js.html#line104">line 104</a>
     </li></ul></dd>
     
     
@@ -809,6 +921,83 @@ the passed <i>accumulation function</i>.
 </dl>
 
         
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="canDestroy"><span class="type-signature"></span>canDestroy<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Checks if <i>this</i> can be dstroyed.
+<p>
+ Defaults to return true.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#canDestroy">ProAct.Actor#canDestroy</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line230">line 230</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
     
     
 </dd>
@@ -910,7 +1099,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="debouncing_stream.js.html">streams/debouncing_stream.js</a>, <a href="debouncing_stream.js.html#line73">line 73</a>
+        <a href="debouncing_stream.js.html">streams/debouncing_stream.js</a>, <a href="debouncing_stream.js.html#line84">line 84</a>
     </li></ul></dd>
     
     
@@ -1011,7 +1200,7 @@ the passed <i>accumulation function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line103">line 103</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line262">line 262</a>
     </li></ul></dd>
     
     
@@ -1112,7 +1301,7 @@ It is used for resetting all the listeners too.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line86">line 86</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line244">line 244</a>
     </li></ul></dd>
     
     
@@ -1284,7 +1473,7 @@ It is used for resetting all the listeners too.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line113">line 113</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line154">line 154</a>
     </li></ul></dd>
     
     
@@ -1439,7 +1628,7 @@ It is used for resetting all the listeners too.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="delayed_stream.js.html">streams/delayed_stream.js</a>, <a href="delayed_stream.js.html#line128">line 128</a>
+        <a href="delayed_stream.js.html">streams/delayed_stream.js</a>, <a href="delayed_stream.js.html#line145">line 145</a>
     </li></ul></dd>
     
     
@@ -1482,6 +1671,248 @@ It is used for resetting all the listeners too.
 </dl>
 
         
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="destroy"><span class="type-signature"></span>destroy<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Destroys this ProAct.Actor instance.
+<p>
+ The state of <i>this</i> is set to ProAct.States.destroyed.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#destroy">ProAct.Actor#destroy</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line196">line 196</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="doDestroy"><span class="type-signature">&lt;abstract> </span>doDestroy<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Frees additional resources.
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#doDestroy">ProAct.Actor#doDestroy</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line184">line 184</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Actor.html#destroy">ProAct.Actor#destroy</a></li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="doInit"><span class="type-signature"></span>doInit<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Allocating of resources or initializing is done here.
+<p>
+ Empty by default.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#doInit">ProAct.Actor#doInit</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line142">line 142</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Actor.html#init">ProAct.Actor#init</a></li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
     
     
 </dd>
@@ -1584,7 +2015,7 @@ the passed <i>filtering function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line261">line 261</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line323">line 323</a>
     </li></ul></dd>
     
     
@@ -1739,7 +2170,7 @@ the passed <i>filtering function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line430">line 430</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line597">line 597</a>
     </li></ul></dd>
     
     
@@ -1838,7 +2269,7 @@ The buffer becomes empty.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffered_stream.js.html">streams/buffered_stream.js</a>, <a href="buffered_stream.js.html#line44">line 44</a>
+        <a href="buffered_stream.js.html">streams/buffered_stream.js</a>, <a href="buffered_stream.js.html#line61">line 61</a>
     </li></ul></dd>
     
     
@@ -1881,6 +2312,95 @@ The buffer becomes empty.
 </dl>
 
         
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="init"><span class="type-signature"></span>init<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Initializes this actor.
+<p>
+ This method logic is run only if the current state of <i>this</i> is ProAct.States.init.
+</p>
+<p>
+ Then ProAct.Actor#afterInit is called to finish the initialization.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Actor.html#init">ProAct.Actor#init</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line117">line 117</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Actor.html#doInit">ProAct.Actor#doInit</a></li>
+        
+            <li>ProAct.Actor#afterInit</li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
     
     
 </dd>
@@ -1997,7 +2517,7 @@ is listening for changes from the <i>sources</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line309">line 309</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line496">line 496</a>
     </li></ul></dd>
     
     
@@ -2043,6 +2563,105 @@ is listening for changes from the <i>sources</i>.
 	<dd>
 		
 <span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="makeCloseListener"><span class="type-signature"></span>makeCloseListener<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Creates the <i>closing listener</i> of this stream.
+<p>
+ The listener just calls <a href="ProAct.Stream.html#triggerClose">ProAct.Stream#triggerClose</a> of <i>this</i> with the incoming closing data.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Stream.html#makeCloseListener">ProAct.Stream#makeCloseListener</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line131">line 131</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The <i>closing listener of this stream</i>.
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
 
 
 	</dd>
@@ -2105,7 +2724,7 @@ is listening for changes from the <i>sources</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line90">line 90</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line108">line 108</a>
     </li></ul></dd>
     
     
@@ -2252,7 +2871,7 @@ is listening for changes from the <i>sources</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line49">line 49</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line67">line 67</a>
     </li></ul></dd>
     
     
@@ -2351,7 +2970,7 @@ is listening for changes from the <i>sources</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line67">line 67</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line85">line 85</a>
     </li></ul></dd>
     
     
@@ -2496,7 +3115,7 @@ the passed <i>mapping function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line244">line 244</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line306">line 306</a>
     </li></ul></dd>
     
     
@@ -2652,7 +3271,7 @@ the passed <i>mapping function</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line409">line 409</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line576">line 576</a>
     </li></ul></dd>
     
     
@@ -2811,7 +3430,7 @@ The new instance will have new value on value from any of the source streams.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line297">line 297</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line359">line 359</a>
     </li></ul></dd>
     
     
@@ -2988,7 +3607,7 @@ The new instance will have new value on value from any of the source streams.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line224">line 224</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line403">line 403</a>
     </li></ul></dd>
     
     
@@ -3143,7 +3762,7 @@ The new instance will have new value on value from any of the source streams.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line293">line 293</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line472">line 472</a>
     </li></ul></dd>
     
     
@@ -3154,157 +3773,6 @@ The new instance will have new value on value from any of the source streams.
     <dd class="tag-see">
         <ul>
             <li><a href="ProAct.Actor.html#onErr">ProAct.Actor#onErr</a></li>
-        </ul>
-    </dd>
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <b>this</b>
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="offSource"><span class="type-signature"></span>offSource<span class="signature">(source)</span><span class="type-signature"> &rarr; {<a href="ProAct.Actor.html">ProAct.Actor</a>}</span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        Removes a <i>source actor</i> from <i>this</i>.
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>source</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
-
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">The ProAct.Actor to remove as <i>source</i>.</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ProAct.Actor.html#offSource">ProAct.Actor#offSource</a>
-    </li></dd>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line362">line 362</a>
-    </li></ul></dd>
-    
-    
-    
-    
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="ProAct.Actor.html#into">ProAct.Actor#into</a></li>
         </ul>
     </dd>
     
@@ -3475,7 +3943,7 @@ The listener may be function or object that defines a <i>call</i> method.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line180">line 180</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line359">line 359</a>
     </li></ul></dd>
     
     
@@ -3627,7 +4095,7 @@ The listener may be function or object that defines a <i>call</i> method.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line276">line 276</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line455">line 455</a>
     </li></ul></dd>
     
     
@@ -3779,7 +4247,7 @@ to the passed <i>destination</i> actor.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line343">line 343</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line530">line 530</a>
     </li></ul></dd>
     
     
@@ -3956,7 +4424,7 @@ to the passed <i>destination</i> actor.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line540">line 540</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line707">line 707</a>
     </li></ul></dd>
     
     
@@ -4109,7 +4577,7 @@ to the passed <i>destination</i> actor.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="throttling_stream.js.html">streams/throttling_stream.js</a>, <a href="throttling_stream.js.html#line75">line 75</a>
+        <a href="throttling_stream.js.html">streams/throttling_stream.js</a>, <a href="throttling_stream.js.html#line86">line 86</a>
     </li></ul></dd>
     
     
@@ -4263,7 +4731,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line382">line 382</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line549">line 549</a>
     </li></ul></dd>
     
     
@@ -4443,7 +4911,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line147">line 147</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line189">line 189</a>
     </li></ul></dd>
     
     
@@ -4500,7 +4968,164 @@ of <i>this actor</i>.
         
             
 <dt>
-    <h4 class="name" id="triggerErr"><span class="type-signature"></span>triggerErr<span class="signature">(err)</span><span class="type-signature"> &rarr; {<a href="ProAct.Actor.html">ProAct.Actor</a>}</span></h4>
+    <h4 class="name" id="triggerClose"><span class="type-signature"></span>triggerClose<span class="signature">(data)</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>
+ Triggers a closing event to the stream. Anything that is listening for closing events from
+ this stream will get updated.
+</p>
+<p>
+ The stream will be closed and unusable.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Data connected to the closing event.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ProAct.Stream.html#triggerClose">ProAct.Stream#triggerClose</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line266">line 266</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="ProAct.Actor.html#update">ProAct.Actor#update</a></li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <i>this</i>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type"><a href="ProAct.Stream.html">ProAct.Stream</a></span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="triggerErr"><span class="type-signature"></span>triggerErr<span class="signature">(err)</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
     
     
 </dt>
@@ -4600,7 +5225,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line202">line 202</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line244">line 244</a>
     </li></ul></dd>
     
     
@@ -4643,7 +5268,7 @@ of <i>this actor</i>.
 	</dt>
 	<dd>
 		
-<span class="param-type"><a href="ProAct.Actor.html">ProAct.Actor</a></span>
+<span class="param-type"><a href="ProAct.Stream.html">ProAct.Stream</a></span>
 
 
 	</dd>
@@ -4763,7 +5388,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line175">line 175</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line217">line 217</a>
     </li></ul></dd>
     
     
@@ -4837,6 +5462,8 @@ of <i>this actor</i>.
  If <a href="ProAct.html#flow">ProAct.flow</a> is not running, a new instance is created and the
  ProAct.Actor.willUpdate action of <i>this</i> is called in it.
 </p>
+
+TODO Should be 'triggerActions'
     </div>
     
 
@@ -4977,7 +5604,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line562">line 562</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line729">line 729</a>
     </li></ul></dd>
     
     
@@ -5060,6 +5687,8 @@ of <i>this actor</i>.
  If <i>this</i> ProAct.Actor has a <i>parent</i> ProAct.Actor it will be notified in the running flow
  as well.
 </p>
+
+TODO Should be 'update'
     </div>
     
 
@@ -5201,7 +5830,7 @@ of <i>this actor</i>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line606">line 606</a>
+        <a href="actor.js.html">actor.js</a>, <a href="actor.js.html#line779">line 779</a>
     </li></ul></dd>
     
     
@@ -5283,7 +5912,7 @@ of <i>this actor</i>.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:21 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Mon Nov 03 2014 09:40:34 GMT+0200 (EET)
 </footer>
 
 <script> prettyPrint(); </script>

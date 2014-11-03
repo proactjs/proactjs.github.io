@@ -45,20 +45,41 @@
  * &lt;/p>
  *
  * @class ProAct.Actor
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p>
+ *        If this parameter is null/undefined the default queue of
+ *        {@link ProAct.flow} is used.
+ *      &lt;/p>
+ *      &lt;p>
+ *        If this parameter is not a string it is used as the
+ *        &lt;i>transforms&lt;/i>.
+ *      &lt;/p>
  * @param {Array} transforms
  *      A list of transformation to be used on all incoming chages.
  */
-ProAct.Actor = P.Pro = function (transforms) {
+function Actor (queueName, transforms) {
+  if (queueName && !P.U.isString(queueName)) {
+    transforms = queueName;
+    queueName = null;
+  }
+
   P.U.defValProp(this, 'listeners', false, false, true, this.defaultListeners());
-  this.sources = [];
 
-  this.listener = null;
-  this.errListener = null;
+  P.U.defValProp(this, 'listener', false, false, true, null);
+  P.U.defValProp(this, 'errListener', false, false, true, null);
+  P.U.defValProp(this, 'closeListener', false, false, true, null);
+  P.U.defValProp(this, 'parent', false, false, true, null);
 
-  this.transforms = transforms ? transforms : [];
+  P.U.defValProp(this, 'queueName', false, false, false, queueName);
+  P.U.defValProp(this, 'transforms', false, false, true,
+                 (transforms ? transforms : []));
 
-  this.parent = null;
-};
+  P.U.defValProp(this, 'state', false, false, true, P.States.init);
+
+  this.init();
+}
+ProAct.Actor = P.Pro = Actor;
 
 P.U.ex(P.Actor, {
 
@@ -71,6 +92,16 @@ P.U.ex(P.Actor, {
    * @constant
    */
   BadValue: {},
+
+  /**
+   * A constant defining closing or ending events.
+   *
+   * @memberof ProAct.Actor
+   * @type Object
+   * @static
+   * @constant
+   */
+  Close: {},
 
   /**
    * Transforms the passed &lt;i>val&lt;/i> using the ProAct.Actor#transforms of the passed &lt;i>actor&lt;/i>.
@@ -111,6 +142,133 @@ P.Actor.prototype = {
   constructor: ProAct.Actor,
 
   /**
+   * Initializes this actor.
+   * &lt;p>
+   *  This method logic is run only if the current state of &lt;i>this&lt;/i> is {@link ProAct.States.init}.
+   * &lt;/p>
+   * &lt;p>
+   *  Then {@link ProAct.Actor#afterInit} is called to finish the initialization.
+   * &lt;/p>
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method init
+   * @see {@link ProAct.Actor#doInit}
+   * @see {@link ProAct.Actor#afterInit}
+   */
+  init: function () {
+    if (this.state !== P.States.init) {
+      return;
+    }
+
+    this.doInit();
+
+    this.afterInit();
+  },
+
+  /**
+   * Allocating of resources or initializing is done here.
+   * &lt;p>
+   *  Empty by default.
+   * &lt;/p>
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method doInit
+   * @see {@link ProAct.Actor#init}
+   */
+  doInit: function () {},
+
+  /**
+   * Called automatically after initialization of this actor.
+   * &lt;p>
+   *  By default it changes the state of &lt;i>this&lt;/i> to {@link ProAct.States.ready}.
+   * &lt;/p>
+   * &lt;p>
+   *  It can be overridden to define more complex initialization logic.
+   * &lt;/p>
+   *
+   * @memberof ProAct.Property
+   * @instance
+   * @method afterInit
+   */
+  afterInit: function () {
+    this.state = P.States.ready;
+  },
+
+  /**
+   * Called immediately before destruction.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method beforeDestroy
+   * @see {@link ProAct.Actor#destroy}
+   */
+  beforeDestroy: function () {
+  },
+
+  /**
+   * Frees additional resources.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method doDestroy
+   * @see {@link ProAct.Actor#destroy}
+   */
+  doDestroy: function () {
+  },
+
+  /**
+   * Destroys this ProAct.Actor instance.
+   * &lt;p>
+   *  The state of &lt;i>this&lt;/i> is set to {@link ProAct.States.destroyed}.
+   * &lt;/p>
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method destroy
+   */
+  destroy: function () {
+    if (this.state === P.States.destroyed) {
+      return;
+    }
+
+    this.beforeDestroy();
+    this.doDestroy();
+
+    this.listeners = undefined;
+
+    if (this.listener) {
+      this.listener.destroyed = true;
+    }
+    this.listener = undefined;
+    this.errListener = undefined;
+    this.closeListener = undefined;
+    this.parent = undefined;
+
+    this.queueName = undefined;
+    this.transforms = undefined;
+
+    this.state = P.States.destroyed;
+  },
+
+  /**
+   * Checks if &lt;i>this&lt;/i> can be dstroyed.
+   * &lt;p>
+   *  Defaults to return true.
+   * &lt;/p>
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method canDestroy
+   */
+  canDestroy: function () {
+    return true;
+  },
+
+  /**
    * Generates the initial listeners object. It can be overridden for alternative listeners collections.
    * It is used for resetting all the listeners too.
    *
@@ -123,7 +281,8 @@ P.Actor.prototype = {
   defaultListeners: function () {
     return {
       change: [],
-      error: []
+      error: [],
+      close: []
     };
   },
 
@@ -181,6 +340,26 @@ P.Actor.prototype = {
    *      The &lt;i>error listener of this observer&lt;/i>.
    */
   makeErrListener: P.N,
+
+  /**
+   * Creates the &lt;i>closing listener&lt;/i> of this actor.
+   * Every actor should have one closing listener that should pass to other actors.
+   * &lt;p>
+   *  This listener turns the actor in a observer for closing events.
+   * &lt;/p>
+   * &lt;p>
+   *  Should be overriden with specific listener, by default it returns null.
+   * &lt;/p>
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method makeCloseListener
+   * @default null
+   * @return {Object}
+   *      The &lt;i>closing listener of this observer&lt;/i>.
+   */
+  makeCloseListener: P.N,
 
   /**
    * Creates the &lt;i>event&lt;/i> to be send to the listeners on update.
@@ -333,6 +512,14 @@ P.Actor.prototype = {
     return this.off('error', listener);
   },
 
+  onClose: function (listener) {
+    return this.on('close', listener);
+  },
+
+  offClose: function (listener) {
+    return this.off('close', listener);
+  },
+
   /**
    * Links source actors into this actor. This means that &lt;i>this actor&lt;/i>
    * is listening for changes from the &lt;i>sources&lt;/i>.
@@ -359,9 +546,9 @@ P.Actor.prototype = {
         ln = args.length, i, source;
     for (i = 0; i &lt; ln; i++) {
       source = args[i];
-      this.sources.push(source);
       source.on(this.makeListener());
       source.onErr(this.makeErrListener());
+      source.onClose(this.makeCloseListener());
     }
 
     return this;
@@ -382,26 +569,6 @@ P.Actor.prototype = {
    */
   out: function (destination) {
     destination.into(this);
-
-    return this;
-  },
-
-  /**
-   * Removes a &lt;i>source actor&lt;/i> from &lt;i>this&lt;/i>.
-   *
-   * @memberof ProAct.Actor
-   * @instance
-   * @method offSource
-   * @param {ProAct.Actor} source
-   *      The ProAct.Actor to remove as &lt;i>source&lt;/i>.
-   * @return {ProAct.Actor}
-   *      &lt;b>this&lt;/b>
-   * @see {@link ProAct.Actor#into}
-   */
-  offSource: function (source) {
-    P.U.remove(this.sources, source);
-    source.off(this.listener);
-    source.offErr(this.errListener);
 
     return this;
   },
@@ -597,6 +764,8 @@ P.Actor.prototype = {
    *  {@link ProAct.Actor.willUpdate} action of &lt;i>this&lt;/i> is called in it.
    * &lt;/p>
    *
+   * TODO Should be 'triggerActions'
+   *
    * @memberof ProAct.Actor
    * @instance
    * @method update
@@ -619,6 +788,10 @@ P.Actor.prototype = {
    * @see {@link ProAct.flow}
    */
   update: function (source, actions, eventData) {
+    if (this.state === ProAct.States.destroyed) {
+      throw new Error('You can not trigger actions on destroyed actors!');
+    }
+
     var actor = this;
     if (!P.flow.isRunning()) {
       P.flow.run(function () {
@@ -645,6 +818,8 @@ P.Actor.prototype = {
    *  If &lt;i>this&lt;/i> ProAct.Actor has a &lt;i>parent&lt;/i> ProAct.Actor it will be notified in the running flow
    *  as well.
    * &lt;/p>
+   *
+   * TODO Should be 'update'
    *
    * @memberof ProAct.Actor
    * @instance
@@ -674,7 +849,7 @@ P.Actor.prototype = {
       actions = this.defaultActions();
     }
 
-    var ln, i,
+    var ln, i, j,
         listener,
         listeners,
         length,
@@ -683,6 +858,10 @@ P.Actor.prototype = {
     if (P.U.isString(actions)) {
       listeners = this.listeners[actions];
     } else {
+      while (actions.indexOf('close') !== -1) {
+        P.U.remove(actions, 'close');
+      }
+
       listeners = [];
       ln = actions.length;
 
@@ -694,12 +873,22 @@ P.Actor.prototype = {
         listenersForAction = this.listeners[actions[i]];
 
         if (listenersForAction) {
+          for (j = 0; j &lt; listenersForAction.length; j++) {
+            if (listenersForAction[j].destroyed) {
+              this.off(actions[i], listenersForAction[j]);
+              continue;
+            }
+          }
           listeners = listeners.concat(listenersForAction);
         }
       }
     }
 
-    if (listeners.length === 0 && this.parent === null) {
+    if (listeners.length === 0 && this.parent === null && actions !== 'close') {
+      return this;
+    }
+
+    if (actions === 'close' && !this.canDestroy()) {
       return this;
     }
 
@@ -708,6 +897,10 @@ P.Actor.prototype = {
 
     for (i = 0; i &lt; length; i++) {
       listener = listeners[i];
+      if (P.U.isString(actions) && listener.destroyed) {
+        this.off(actions, listener);
+        continue;
+      }
 
       this.defer(event, listener);
 
@@ -718,6 +911,10 @@ P.Actor.prototype = {
 
     if (this.parent && this.parent.call) {
       this.defer(event, this.parent);
+    }
+
+    if (actions === 'close') {
+      P.flow.pushClose(this, this.destroy);
     }
 
     return this;
@@ -744,10 +941,12 @@ P.Actor.prototype = {
    * @see {@link ProAct.flow}
    */
   defer: function (event, listener) {
+    var queueName = (listener.queueName) ? listener.queueName : this.queueName;
+
     if (P.U.isFunction(listener)) {
-      P.flow.pushOnce(listener, [event]);
+      P.flow.pushOnce(queueName, listener, [event]);
     } else {
-      P.flow.pushOnce(listener, listener.call, [event]);
+      P.flow.pushOnce(queueName, listener, listener.call, [event]);
     }
     return this;
   },
@@ -795,7 +994,7 @@ ProAct.Observable = ProAct.Actor;
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:18 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Mon Nov 03 2014 09:40:31 GMT+0200 (EET)
 </footer>
 
 <script> prettyPrint(); </script>

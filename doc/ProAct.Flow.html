@@ -284,7 +284,7 @@ TODO ProAct.Flow#start and ProAct.Flow#stop are confusing names - should be rena
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line64">line 64</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line63">line 63</a>
     </li></ul></dd>
     
     
@@ -306,6 +306,126 @@ TODO ProAct.Flow#start and ProAct.Flow#stop are confusing names - should be rena
         <h3 class="subsection-title">Methods</h3>
         
         <dl>
+            
+<dt>
+    <h4 class="name" id="addQueue"><span class="type-signature"></span>addQueue<span class="signature">(queueName)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Appends a new queue name to the list of <i>this</i>' queues.
+<p>
+ When a new <i>flowInstance</i> is created the updated list will be used.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>queueName</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">The queue name to add.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
             
 <dt>
     <h4 class="name" id="errStream"><span class="type-signature"></span>errStream<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="ProAct.Stream.html">ProAct.Stream</a>}</span></h4>
@@ -350,7 +470,7 @@ If there is no error stream, it is created.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line319">line 319</a>
+        <a href="stream.js.html">streams/stream.js</a>, <a href="stream.js.html#line395">line 395</a>
     </li></ul></dd>
     
     
@@ -441,7 +561,7 @@ If there is no error stream, it is created.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line243">line 243</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line279">line 279</a>
     </li></ul></dd>
     
     
@@ -521,7 +641,7 @@ TODO This should be named 'isActive'.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line228">line 228</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line264">line 264</a>
     </li></ul></dd>
     
     
@@ -601,7 +721,7 @@ are skipped.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line152">line 152</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line188">line 188</a>
     </li></ul></dd>
     
     
@@ -818,7 +938,7 @@ TODO Errors should be put in constants!
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line256">line 256</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line292">line 292</a>
     </li></ul></dd>
     
     
@@ -1063,7 +1183,7 @@ TODO Errors should be put in constants!
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line305">line 305</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line341">line 341</a>
     </li></ul></dd>
     
     
@@ -1169,7 +1289,7 @@ The flow becomes active again and actions can be pushed into it.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line167">line 167</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line203">line 203</a>
     </li></ul></dd>
     
     
@@ -1324,7 +1444,7 @@ and then stops the action flow, executing all the pushed by the <i>callback</i> 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line180">line 180</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line216">line 216</a>
     </li></ul></dd>
     
     
@@ -1343,6 +1463,127 @@ and then stops the action flow, executing all the pushed by the <i>callback</i> 
             <li><a href="ProAct.Flow.html#pushOnce">ProAct.Flow#pushOnce</a></li>
         </ul>
     </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="setQueues"><span class="type-signature"></span>setQueues<span class="signature">(queueNames)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Sets the queue names of <i>this</i> flow.
+<p>
+ When a new <i>flowInstance</i> is created the new list will be used.
+</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>queueNames</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">Array with the names of the sub-queues of the <a href="ProAct.Queues.html">ProAct.Queues</a>es of the flow.
+     The size of this array determines the number of the sub-queues.</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line116">line 116</a>
+    </li></ul></dd>
+    
+    
+    
+    
     
     
     
@@ -1417,7 +1658,7 @@ and then stops the action flow, executing all the pushed by the <i>callback</i> 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line66">line 66</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line65">line 65</a>
     </li></ul></dd>
     
     
@@ -1506,7 +1747,7 @@ last call of <a href="ProAct.Flow.html#start">ProAct.Flow#start</a> and then sto
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line101">line 101</a>
+        <a href="flow.js.html">flow/flow.js</a>, <a href="flow.js.html#line136">line 136</a>
     </li></ul></dd>
     
     
@@ -1553,7 +1794,7 @@ last call of <a href="ProAct.Flow.html#start">ProAct.Flow#start</a> and then sto
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Sep 27 2014 08:55:23 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Mon Nov 03 2014 09:40:36 GMT+0200 (EET)
 </footer>
 
 <script> prettyPrint(); </script>
