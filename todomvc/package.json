@@ -1,0 +1,24 @@
+{
+  "name": "todomvc-proact",
+  "version": "0.1.0",
+  "author": "meddle0x53",
+  "license": "MIT",
+  "scripts": {
+    "test": "grunt spec"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "0.1.11",
+    "grunt-browser-sync": "~1.3.2",
+    "load-grunt-tasks": "~0.1.0",
+    "phantomjs": "~1.9.1-0",
+    "grunt-karma": "~0.5",
+    "karma": "~0.10",
+    "karma-coverage": "^0.2.4",
+    "karma-chrome-launcher": "~0.1",
+    "karma-script-launcher": "~0.1",
+    "karma-firefox-launcher": "~0.1",
+    "karma-jasmine": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1"
+  }
+}

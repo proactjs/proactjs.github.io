@@ -1,0 +1,10 @@
+*.diff
+*.patch
+
+/bower_components
+/node_modules
+/doc
+
+npm-debug.log
+
+coverage
