@@ -1,0 +1,34 @@
+{
+  "name": "proact.js",
+  "version": "1.2.0",
+  "main": "dist/js/proact.min.js",
+  "description": "Reactive JavaScript Objects Properties.",
+  "license": "MIT",
+  "authors": [
+    "meddle0x53 <n.tzvetinov@gmail.com>"
+  ],
+  "ignore": [
+    "node_modules",
+    "spec",
+    "src",
+    "coverage",
+    "bower.json",
+    "Gruntfile.js",
+    "kl.sh",
+    "npm-debug.log",
+    "package.json",
+    "README.md",
+    "todo.txt",
+    ".gitignore"
+  ],
+  "homepage": "https://github.com/proactjs/proactjs",
+  "_release": "1.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.2.0",
+    "commit": "01ef9b47659607fe42265f3bf75cc6ae3c1fd2b1"
+  },
+  "_source": "git://github.com/proactjs/proactjs.git",
+  "_target": "1.2.0",
+  "_originalSource": "proact.js"
+}
