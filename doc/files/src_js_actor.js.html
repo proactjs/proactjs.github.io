@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/js/actor.js - proact.js</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="proact.js" src="../../proact_logo_icon.png" style="max-height: 65%;" title="proact.js">
+        
+            proact.js
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.2.2</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.Configuration", "classes/ProAct.Observable", "classes/ProAct.States", "classes/ProAct.Utils", "modules/proact", "modules/proact-core"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/ProAct.html">ProAct</a></li>
+                    
+                        <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
+                    
+                        <li><a href="../classes/ProAct.ActorUtil.html">ProAct.ActorUtil</a></li>
+                    
+                        <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
+                    
+                        <li><a href="../classes/ProAct.Observable.html">ProAct.Observable</a></li>
+                    
+                        <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/proact.html">proact</a></li>
+                    
+                        <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/js/actor.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact
+ * @submodule proact-core
+ */
+
+/**
+ * TODO Move it to its own file.
+ *
+ * @namespace ProAct
+ * @class ActorUtil
+ * @static
+ */
+ActorUtil = {
+  update: function (source, actions, eventData) {
+    if (this.state === ProAct.States.destroyed) {
+      throw new Error(&#x27;You can not trigger actions on destroyed actors!&#x27;);
+    }
+
+    if (this.state === ProAct.States.closed) {
+      return;
+    }
+
+    var actor = this;
+    if (!P.flow.isRunning()) {
+      P.flow.run(function () {
+        ActorUtil.doUpdate.call(actor, source, actions, eventData);
+      });
+    } else {
+      ActorUtil.doUpdate.call(actor, source, actions, eventData);
+    }
+    return this;
+  },
+
+  doUpdate: function (source, actions, eventData) {
+    if (!actions) {
+      actions = this.defaultActions();
+    }
+
+    var ln, i, j,
+        listener,
+        listeners,
+        length,
+        event;
+
+    if (P.U.isString(actions)) {
+      listeners = this.listeners[actions];
+    } else {
+      while (actions.indexOf(&#x27;close&#x27;) !== -1) {
+        P.U.remove(actions, &#x27;close&#x27;);
+      }
+
+      listeners = [];
+      ln = actions.length;
+
+      if (this.parent === null &amp;&amp; actions.length === 0) {
+        return this;
+      }
+
+      for (i = 0; i &lt; ln; i++) {
+        listenersForAction = this.listeners[actions[i]];
+
+        if (listenersForAction) {
+          for (j = 0; j &lt; listenersForAction.length; j++) {
+            if (listenersForAction[j].destroyed || listenersForAction[j].closed) {
+              this.off(actions[i], listenersForAction[j]);
+              continue;
+            }
+          }
+          listeners = listeners.concat(listenersForAction);
+        }
+      }
+    }
+
+    if (listeners.length === 0 &amp;&amp; this.parent === null &amp;&amp; actions !== &#x27;close&#x27;) {
+      return this;
+    }
+
+    if (actions === &#x27;close&#x27; &amp;&amp; !this.canClose()) {
+      return this;
+    }
+
+    length = listeners.length;
+    event = this.makeEvent(source, eventData);
+
+    for (i = 0; i &lt; length; i++) {
+      listener = listeners[i];
+      if (!listener) {
+        throw new Error(&#x27;Invalid null listener for actions : &#x27; + actions);
+      }
+
+      if (P.U.isString(actions) &amp;&amp; listener.destroyed) {
+        this.off(actions, listener);
+        continue;
+      }
+
+      this.defer(event, listener);
+
+      if (listener.property) {
+        ActorUtil.doUpdate.call(listener.property, event);
+      }
+    }
+
+    if (this.parent &amp;&amp; this.parent.call) {
+      this.defer(event, this.parent);
+    }
+
+    if (actions === &#x27;close&#x27;) {
+      P.flow.pushClose(this, this.doClose);
+    }
+
+    return this;
+  }
+};
+P.U.defValProp(ProAct, &#x27;ActorUtil&#x27;, false, false, false, ActorUtil);
+
+/**
+ * &lt;p&gt;
+ *  Constructs a ProAct.Actor. It can be used both as observer and observable.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The actors in ProAct.js form the dependency graph.
+ *  If some actor listens to changes from another - it depends on it.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The actors can transform the values or events incoming to them.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Every actor can have a parent actor, that will be notified for all the changes
+ *  on the child-actor, it is something as special observer.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  ProAct.Actor is part of the core module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.Actor
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {@link ProAct.flow} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;transforms&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {Array} transforms
+ *      A list of transformation to be used on all incoming chages.
+ */
+function Actor (queueName, transforms) {
+  if (queueName &amp;&amp; !P.U.isString(queueName)) {
+    transforms = queueName;
+    queueName = null;
+  }
+
+  P.U.defValProp(this, &#x27;listeners&#x27;, false, false, true, this.defaultListeners());
+
+  P.U.defValProp(this, &#x27;listener&#x27;, false, false, true, null);
+  P.U.defValProp(this, &#x27;errListener&#x27;, false, false, true, null);
+  P.U.defValProp(this, &#x27;closeListener&#x27;, false, false, true, null);
+  P.U.defValProp(this, &#x27;parent&#x27;, false, false, true, null);
+
+  P.U.defValProp(this, &#x27;queueName&#x27;, false, false, false, queueName);
+  P.U.defValProp(this, &#x27;transforms&#x27;, false, false, true,
+                 (transforms ? transforms : []));
+
+  P.U.defValProp(this, &#x27;state&#x27;, false, false, true, P.States.init);
+
+  this.init();
+}
+ProAct.Actor = P.Pro = Actor;
+
+P.U.ex(P.Actor, {
+
+  /**
+   * A constant defining bad values or bad events.
+   *
+   * @memberof ProAct.Actor
+   * @type Object
+   * @static
+   * @constant
+   */
+  BadValue: {},
+
+  /**
+   * A constant defining closing or ending events.
+   *
+   * @memberof ProAct.Actor
+   * @type Object
+   * @static
+   * @constant
+   */
+  Close: {},
+
+  /**
+   * Transforms the passed &lt;i&gt;val&lt;/i&gt; using the ProAct.Actor#transforms of the passed &lt;i&gt;actor&lt;/i&gt;.
+   *
+   * @function transforms
+   * @memberof ProAct.Actor
+   * @static
+   * @param {ProAct.Actor} actor
+   *      The ProAct.Actor which transformations should be used.
+   * @param {Object} val
+   *      The value to transform.
+   * @return {Object}
+   *      The transformed value.
+   */
+  transform: function (actor, val) {
+    var i, t = actor.transforms, ln = t.length;
+    for (i = 0; i &lt; ln; i++) {
+      val = t[i].call(actor, val);
+      if (val === P.Actor.BadValue) {
+        break;
+      }
+
+      if (val === P.Actor.Close) {
+        break;
+      }
+    }
+
+    return val;
+  }
+});
+
+P.Actor.prototype = {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @constant
+   * @default ProAct.Actor
+   */
+  constructor: ProAct.Actor,
+
+  /**
+   * Initializes this actor.
+   * &lt;p&gt;
+   *  This method logic is run only if the current state of &lt;i&gt;this&lt;/i&gt; is {@link ProAct.States.init}.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  Then {@link ProAct.Actor#afterInit} is called to finish the initialization.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method init
+   * @see {@link ProAct.Actor#doInit}
+   * @see {@link ProAct.Actor#afterInit}
+   */
+  init: function () {
+    if (this.state !== P.States.init) {
+      return;
+    }
+
+    this.doInit();
+
+    this.afterInit();
+  },
+
+  /**
+   * Allocating of resources or initializing is done here.
+   * &lt;p&gt;
+   *  Empty by default.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method doInit
+   * @see {@link ProAct.Actor#init}
+   */
+  doInit: function () {},
+
+  /**
+   * Called automatically after initialization of this actor.
+   * &lt;p&gt;
+   *  By default it changes the state of &lt;i&gt;this&lt;/i&gt; to {@link ProAct.States.ready}.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  It can be overridden to define more complex initialization logic.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Property
+   * @instance
+   * @method afterInit
+   */
+  afterInit: function () {
+    this.state = P.States.ready;
+  },
+
+  close: function () {
+    if (this.state === P.States.closed) {
+      return;
+    }
+    return ActorUtil.update.call(this, P.Actor.Close, &#x27;close&#x27;);
+  },
+
+  doClose: function () {
+    this.state = P.States.closed;
+    this.offAll();
+    if (this.listener) {
+      this.listener.closed = true;
+    }
+  },
+
+  /**
+   * Called immediately before destruction.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method beforeDestroy
+   * @see {@link ProAct.Actor#destroy}
+   */
+  beforeDestroy: function () {
+  },
+
+  /**
+   * Frees additional resources.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method doDestroy
+   * @see {@link ProAct.Actor#destroy}
+   */
+  doDestroy: function () {
+  },
+
+  /**
+   * Destroys this ProAct.Actor instance.
+   * &lt;p&gt;
+   *  The state of &lt;i&gt;this&lt;/i&gt; is set to {@link ProAct.States.destroyed}.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method destroy
+   */
+  destroy: function () {
+    if (this.state === P.States.destroyed) {
+      return;
+    }
+
+    this.beforeDestroy();
+    this.doDestroy();
+
+    this.listeners = undefined;
+
+    if (this.listener) {
+      this.listener.destroyed = true;
+    }
+    this.listener = undefined;
+    this.errListener = undefined;
+    this.closeListener = undefined;
+    this.parent = undefined;
+
+    this.queueName = undefined;
+    this.transforms = undefined;
+
+    this.state = P.States.destroyed;
+  },
+
+  /**
+   * Checks if &lt;i&gt;this&lt;/i&gt; can be closed.
+   * &lt;p&gt;
+   *  Defaults to return true.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method canClose
+   */
+  canClose: function () {
+    return true;
+  },
+
+  /**
+   * Generates the initial listeners object. It can be overridden for alternative listeners collections.
+   * It is used for resetting all the listeners too.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method defaultListeners
+   * @return {Object}
+   *      A map containing the default listeners collections.
+   */
+  defaultListeners: function () {
+    return {
+      change: [],
+      error: [],
+      close: []
+    };
+  },
+
+  /**
+   * A list of actions or action to be used when no action is passed for the methods working with actions.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method defaultActions
+   * @default &#x27;change&#x27;
+   * @return {Array|String}
+   *      The actions to be used if no actions are provided to action related methods,
+   *      like {@link ProAct.Actor#on}, {@link ProAct.Actor#off}, {@link ProAct.Actor#update}, {@link ProAct.Actor#willUpdate}.
+   */
+  defaultActions: function () {
+    return &#x27;change&#x27;;
+  },
+
+  /**
+   * Creates the &lt;i&gt;listener&lt;/i&gt; of this actor.
+   * Every actor should have one listener that should pass to other actors.
+   * &lt;p&gt;
+   *  This listener turns the actor in a observer.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  Should be overriden with specific listener, by default it returns null.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method makeListener
+   * @default null
+   * @return {Object}
+   *      The &lt;i&gt;listener of this observer&lt;/i&gt;.
+   */
+  makeListener: P.N,
+
+  /**
+   * Creates the &lt;i&gt;error listener&lt;/i&gt; of this actor.
+   * Every actor should have one error listener that should pass to other actors.
+   * &lt;p&gt;
+   *  This listener turns the actor in a observer for errors.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  Should be overriden with specific listener, by default it returns null.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method makeErrListener
+   * @default null
+   * @return {Object}
+   *      The &lt;i&gt;error listener of this observer&lt;/i&gt;.
+   */
+  makeErrListener: P.N,
+
+  /**
+   * Creates the &lt;i&gt;closing listener&lt;/i&gt; of this actor.
+   * Every actor should have one closing listener that should pass to other actors.
+   * &lt;p&gt;
+   *  This listener turns the actor in a observer for closing events.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  Should be overriden with specific listener, by default it returns null.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method makeCloseListener
+   * @default null
+   * @return {Object}
+   *      The &lt;i&gt;closing listener of this observer&lt;/i&gt;.
+   */
+  makeCloseListener: P.N,
+
+  /**
+   * Creates the &lt;i&gt;event&lt;/i&gt; to be send to the listeners on update.
+   * &lt;p&gt;
+   *  The &lt;i&gt;event&lt;/i&gt; should be an instance of {@link ProAct.Event}.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  By default this method returns {@link ProAct.Event.Types.value} event.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method makeEvent
+   * @default {ProAct.Event} with type {@link ProAct.Event.Types.value}
+   * @param {ProAct.Event} source
+   *      The source event of the event. It can be null
+   * @return {ProAct.Event}
+   *      The event.
+   */
+  makeEvent: function (source) {
+    return new P.Event(source, this, P.Event.Types.value);
+  },
+
+  /**
+   * Attaches a new listener to this ProAct.Actor.
+   * The listener may be function or object that defines a &lt;i&gt;call&lt;/i&gt; method.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method on
+   * @param {Array|String} actions
+   *      The action/actions to listen for. If this parameter is skipped or null/undefined, the actions from {@link ProAct.Actor#defaultActions} are used.
+   *      &lt;p&gt;
+   *        The actions can be skipped and on their place as first parameter to be passed the &lt;i&gt;listener&lt;/i&gt;.
+   *      &lt;/p&gt;
+   * @param {Object} listener
+   *      The listener to attach. It must be instance of Function or object with a &lt;i&gt;call&lt;/i&gt; method.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#defaultActions}
+   */
+  on: function (actions, listener) {
+    if (!P.U.isString(actions) &amp;&amp; !P.U.isArray(actions)) {
+      listener = actions;
+      actions = this.defaultActions();
+    }
+    if (!P.U.isArray(actions)) {
+      actions = [actions];
+    }
+
+    var ln = actions.length,
+        action, i, listeners;
+
+    for (i = 0; i &lt; ln; i ++) {
+      action = actions[i];
+      listeners = this.listeners[action];
+
+      if (!listeners) {
+        listeners = this.listeners[action] = [];
+      }
+
+      listeners.push(listener);
+    }
+
+    return this;
+  },
+
+  /**
+   * Removes a &lt;i&gt;listener&lt;/i&gt; from the passed &lt;i&gt;action&lt;/i&gt;.
+   * &lt;p&gt;
+   *  If this method is called without parameters, all the listeners for all the actions are removed.
+   *  The listeners are reset using {@link ProAct.Actor#defaultListeners}.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method off
+   * @param {Array|String} actions
+   *      The action/actions to stop listening for. If this parameter is skipped or null/undefined, the actions from {@link ProAct.Actor#defaultActions} are used.
+   *      &lt;p&gt;
+   *        The actions can be skipped and on their place as first parameter to be passed the &lt;i&gt;listener&lt;/i&gt;.
+   *      &lt;/p&gt;
+   * @param {Object} listener
+   *      The listener to detach. If it is skipped, null or undefined all the listeners are removed from this actor.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#on}
+   * @see {@link ProAct.Actor#defaultActions}
+   * @see {@link ProAct.Actor#defaultListeners}
+   */
+  off: function (actions, listener) {
+    if (!actions &amp;&amp; !listener) {
+      this.listeners = this.defaultListeners();
+      return this;
+    }
+
+    if (!P.U.isString(actions) &amp;&amp; !P.U.isArray(actions)) {
+      listener = actions;
+      actions = this.defaultActions();
+    }
+    if (!P.U.isArray(actions)) {
+      actions = [actions];
+    }
+
+    var ln = actions.length,
+        action, i, listeners;
+
+    for (i = 0; i &lt; ln; i ++) {
+      action = actions[i];
+      listeners = this.listeners[action];
+
+      if (listeners) {
+        P.U.remove(listeners, listener);
+      }
+    }
+
+    return this;
+  },
+
+  /**
+   * Attaches a new error listener to this ProAct.Actor.
+   * The listener may be function or object that defines a &lt;i&gt;call&lt;/i&gt; method.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method onErr
+   * @param {Object} listener
+   *      The listener to attach. It must be instance of Function or object with a &lt;i&gt;call&lt;/i&gt; method.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#on}
+   */
+  onErr: function (listener) {
+    return this.on(&#x27;error&#x27;, listener);
+  },
+
+  /**
+   * Removes an error &lt;i&gt;listener&lt;/i&gt; from the passed &lt;i&gt;action&lt;/i&gt;.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method offErr
+   * @param {Object} listener
+   *      The listener to detach. If it is skipped, null or undefined all the listeners are removed from this actor.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#onErr}
+   */
+  offErr: function (listener) {
+    return this.off(&#x27;error&#x27;, listener);
+  },
+
+  onClose: function (listener) {
+    return this.on(&#x27;close&#x27;, listener);
+  },
+
+  offClose: function (listener) {
+    return this.off(&#x27;close&#x27;, listener);
+  },
+
+  onAll: function (listener) {
+    return this.on(listener).onClose(listener).onErr(listener);
+  },
+
+  offAll: function (listener) {
+    this.off(listener);
+    this.off(&#x27;error&#x27;, listener);
+    return this.off(&#x27;close&#x27;, listener);
+  },
+
+  /**
+   * Links source actors into this actor. This means that &lt;i&gt;this actor&lt;/i&gt;
+   * is listening for changes from the &lt;i&gt;sources&lt;/i&gt;.
+   * &lt;p&gt;
+   *  A good example is one stream to have another as as source -&gt; if data comes into the source
+   *  stream, it is passed to the listening too. That way the source stream is plugged &lt;b&gt;into&lt;/b&gt; the listening one.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  The listeners from {@link ProAct.Actor#makeListener} and {@link ProAct.Actor#makeErrListener} are used.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method into
+   * @param [...]
+   *      Zero or more source ProAct.Actors to set as sources.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#makeListener}
+   * @see {@link ProAct.Actor#makeErrListener}
+   */
+  into: function () {
+    var args = slice.call(arguments),
+        ln = args.length, i, source;
+    for (i = 0; i &lt; ln; i++) {
+      source = args[i];
+      source.on(this.makeListener());
+      source.onErr(this.makeErrListener());
+      source.onClose(this.makeCloseListener());
+    }
+
+    return this;
+  },
+
+  /**
+   * The reverse of {@link ProAct.Actor#into} - sets &lt;i&gt;this actor&lt;/i&gt; as a source
+   * to the passed &lt;i&gt;destination&lt;/i&gt; actor.
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method out
+   * @param {ProAct.Actor} destination
+   *      The actor to set as source &lt;i&gt;this&lt;/i&gt; to.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#into}
+   */
+  out: function (destination) {
+    destination.into(this);
+
+    return this;
+  },
+
+  /**
+   * Adds a new &lt;i&gt;transformation&lt;/i&gt; to the list of transformations
+   * of &lt;i&gt;this actor&lt;/i&gt;.
+   * &lt;p&gt;
+   *  A transformation is a function or an object that has a &lt;i&gt;call&lt;/i&gt; method defined.
+   *  This function or call method should have one argument and to return a transformed version of it.
+   *  If the returned value is {@link ProAct.Actor.BadValue}, the next transformations are skipped and the updating
+   *  value/event becomes - bad value.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  Every value/event that updates &lt;i&gt;this actor&lt;/i&gt; will be transformed using the new transformation.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method transform
+   * @param {Object} transformation
+   *      The transformation to add.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor.transform}
+   */
+  transform: function (transformation) {
+    this.transforms.push(transformation);
+    return this;
+  },
+
+  transformStored: function (transformation, type) {
+    if (P.registry &amp;&amp; P.U.isString(transformation)) {
+      P.DSL.run(this, type + &#x27;(&#x27; + transformation + &#x27;)&#x27;, P.registry);
+      return this;
+    }
+
+    return this.transform(transformation);
+  },
+
+  /**
+   * Adds a mapping transformation to &lt;i&gt;this actor&lt;/i&gt;.
+   * &lt;p&gt;
+   *  Mapping transformations just transform one value into another. For example if we get update with
+   *  the value of &lt;i&gt;3&lt;/i&gt; and we have mapping transformation that returns the updating value powered by &lt;i&gt;2&lt;/i&gt;,
+   *  we&#x27;ll get &lt;i&gt;9&lt;/i&gt; as actual updating value.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method mapping
+   * @param {Object} mappingFunction
+   *      Function or object with a &lt;i&gt;call method&lt;/i&gt; to use as map function.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#transform}
+   */
+  mapping: function (mappingFunction) {
+    return this.transformStored(mappingFunction, &#x27;map&#x27;);
+  },
+
+  /**
+   * Adds a filtering transformation to &lt;i&gt;this actor&lt;/i&gt;.
+   * &lt;p&gt;
+   *  Filtering can be used to filter the incoming update values. For example you can
+   *  filter by only odd numbers as update values.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method filtering
+   * @param {Object} filteringFunction
+   *      The filtering function or object with a call method, should return boolean.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#transform}
+   */
+  filtering: function(filteringFunction) {
+    var self = this,
+    filter = filteringFunction.call ? function (val) {
+      if (filteringFunction.call(self, val)) {
+        return val;
+      };
+      return P.Actor.BadValue;
+    } : filteringFunction;
+
+    return this.transformStored(filter, &#x27;filter&#x27;);
+  },
+
+  /**
+   * Adds an accumulation transformation to &lt;i&gt;this actor&lt;/i&gt;.
+   * &lt;p&gt;
+   *  Accumulation is used to compute a value based on the previous one.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method accumulation
+   * @param {Object} initVal
+   *      Initial value for the accumulation. For example &#x27;0&#x27; for sum.
+   * @param {Object} accumulationFunction
+   *      The function to accumulate.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   * @see {@link ProAct.Actor#transform}
+   */
+  accumulation: function (initVal, accumulationFunction) {
+    if (!accumulationFunction) {
+      accumulationFunction = initVal;
+      initVal = undefined;
+    }
+
+    var self = this,
+        val = initVal,
+        acc = accumulationFunction.call ? function (newVal) {
+          val = accumulationFunction.call(self, val, newVal)
+          return val;
+        } : accumulationFunction;
+    return this.transformStored(acc, &#x27;acc&#x27;);
+  },
+
+  /**
+   * Creates a new ProAct.Actor instance with source &lt;i&gt;this&lt;/i&gt; and mapping
+   * the passed &lt;i&gt;mapping function&lt;/i&gt;.
+   * &lt;p&gt;
+   *  Should be overridden with creating the right actor.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method map
+   * @param {Object} mappingFunction
+   *      Function or object with a &lt;i&gt;call method&lt;/i&gt; to use as map function.
+   * @return {ProAct.Actor}
+   *      A new ProAct.Actor instance with the &lt;i&gt;mapping&lt;/i&gt; applied.
+   * @see {@link ProAct.Actor#mapping}
+   */
+  map: P.N,
+
+  /**
+   * Creates a new ProAct.Actor instance with source &lt;i&gt;this&lt;/i&gt; and filtering
+   * the passed &lt;i&gt;filtering function&lt;/i&gt;.
+   * &lt;p&gt;
+   *  Should be overridden with creating the right actor.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method filter
+   * @param {Object} filteringFunction
+   *      The filtering function or object with a call method, should return boolean.
+   * @return {ProAct.Actor}
+   *      A new ProAct.Actor instance with the &lt;i&gt;filtering&lt;/i&gt; applied.
+   * @see {@link ProAct.Actor#filtering}
+   */
+  filter: P.N,
+
+  /**
+   * Creates a new ProAct.Actor instance with source &lt;i&gt;this&lt;/i&gt; and accumulation
+   * the passed &lt;i&gt;accumulation function&lt;/i&gt;.
+   * &lt;p&gt;
+   *  Should be overridden with creating the right actor.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @abstract
+   * @method accumulate
+   * @param {Object} initVal
+   *      Initial value for the accumulation. For example &#x27;0&#x27; for sum.
+   * @param {Object} accumulationFunction
+   *      The function to accumulate.
+   * @return {ProAct.Actor}
+   *      A new ProAct.Actor instance with the &lt;i&gt;accumulation&lt;/i&gt; applied.
+   * @see {@link ProAct.Actor#accumulation}
+   */
+  accumulate: P.N,
+
+  /**
+   * Generates a new {@link ProAct.Property} containing the state of an accumulations.
+   * &lt;p&gt;
+   *  The value will be updated with every update coming to this actor.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method reduce
+   * @param {Object} initVal
+   *      Initial value for the accumulation. For example &#x27;0&#x27; for sum.
+   * @param {Object} accumulationFunction
+   *      The function to accumulate.
+   * @return {ProAct.Property}
+   *      A {@link ProAct.Property} instance observing &lt;i&gt;this&lt;/i&gt; with the accumulation applied.
+   * @see {@link ProAct.Actor#accumulate}
+   * @see {@link ProAct.Property}
+   */
+  reduce: function (initVal, accumulationFunction) {
+    return P.P.value(initVal).into(this.accumulate(initVal, accumulationFunction));
+  },
+
+
+  /**
+   * Defers a ProAct.Actor listener.
+   * &lt;p&gt;
+   *  By default this means that the listener is put into active {@link ProAct.Flow} using it&#x27;s
+   *  {@link ProAct.Flow#pushOnce} method, but it can be overridden.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.Actor
+   * @instance
+   * @method defer
+   * @param {Object} event
+   *      The event/value to pass to the listener.
+   * @param {Object} listener
+   *      The listener to defer. It should be a function or object defining the &lt;i&gt;call&lt;/i&gt; method.
+   * @return {ProAct.Actor}
+   *      &lt;i&gt;this&lt;/i&gt;
+   * @see {@link ProAct.Actor#makeListener}
+   * @see {@link ProAct.flow}
+   */
+  defer: function (event, listener) {
+    var queueName = (listener.queueName) ? listener.queueName : this.queueName;
+
+    if (P.U.isFunction(listener)) {
+      P.flow.pushOnce(queueName, listener, [event]);
+    } else {
+      P.flow.pushOnce(queueName, listener, listener.call, [event]);
+    }
+    return this;
+  }
+};
+
+/**
+ * &lt;p&gt;
+ *  Constructs a ProAct.Observable. It can be used both as observer and actor.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The observables in ProAct.js form the dependency graph.
+ *  If some observable listens to changes from another - it depends on it.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The observables can transform the values or events incoming to them.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Every observable can have a parent observable, that will be notified for all the changes
+ *  on the child-observable, it is something as special observer.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  ProAct.Observable is part of the core module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.Observable
+ * @param {Array} transforms
+ *      A list of transformation to be used on all incoming chages.
+ * @deprecated since version 1.1.1. Use {@link ProAct.Actor} instead.
+ * @see {@link ProAct.Actor}
+ */
+ProAct.Observable = ProAct.Actor;
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

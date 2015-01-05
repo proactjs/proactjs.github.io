@@ -1,0 +1,1812 @@
+{
+    "project": {
+        "name": "proact.js",
+        "description": "Reactive JavaScript Objects Properties.",
+        "version": "1.2.2",
+        "url": "",
+        "logo": "../proact_logo_icon.png"
+    },
+    "files": {
+        "src/js/actor.js": {
+            "name": "src/js/actor.js",
+            "modules": {
+                "proact-core": 1
+            },
+            "classes": {
+                "ProAct.ActorUtil": 1,
+                "ProAct.Actor": 1,
+                "ProAct.Observable": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "ProAct": 1
+            }
+        },
+        "src/js/pro.js": {
+            "name": "src/js/pro.js",
+            "modules": {
+                "proact": 1
+            },
+            "classes": {
+                "ProAct": 1,
+                "ProAct.States": 1,
+                "ProAct.Utils": 1,
+                "ProAct.Configuration": 1
+            },
+            "fors": {
+                "ProAct": 1,
+                "ProAct.States": 1,
+                "ProAct.Configuration": 1
+            },
+            "namespaces": {
+                "ProAct": 1
+            }
+        }
+    },
+    "modules": {
+        "proact": {
+            "name": "proact",
+            "submodules": {
+                "proact-core": 1
+            },
+            "classes": {
+                "ProAct.ActorUtil": 1,
+                "ProAct.Actor": 1,
+                "ProAct.Observable": 1,
+                "ProAct": 1,
+                "ProAct.States": 1,
+                "ProAct.Utils": 1,
+                "ProAct.Configuration": 1
+            },
+            "fors": {
+                "ProAct": 1,
+                "ProAct.States": 1,
+                "ProAct.Configuration": 1
+            },
+            "namespaces": {
+                "ProAct": 1
+            },
+            "file": "src/js/pro.js",
+            "line": 533,
+            "tag": "main",
+            "itemtype": "main"
+        },
+        "proact-core": {
+            "name": "proact-core",
+            "submodules": {},
+            "classes": {
+                "ProAct.ActorUtil": 1,
+                "ProAct.Actor": 1,
+                "ProAct.Observable": 1,
+                "ProAct": 1,
+                "ProAct.States": 1,
+                "ProAct.Utils": 1,
+                "ProAct.Configuration": 1
+            },
+            "fors": {
+                "ProAct": 1,
+                "ProAct.States": 1,
+                "ProAct.Configuration": 1
+            },
+            "is_submodule": 1,
+            "namespaces": {
+                "ProAct": 1
+            },
+            "module": "proact",
+            "namespace": "",
+            "file": "src/js/pro.js",
+            "line": 533,
+            "tag": "main",
+            "itemtype": "main",
+            "description": "TODO Move it to its own file."
+        }
+    },
+    "classes": {
+        "ProAct.ActorUtil": {
+            "name": "ProAct.ActorUtil",
+            "shortname": "ProAct.ActorUtil",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct",
+            "file": "src/js/actor.js",
+            "line": 6,
+            "description": "TODO Move it to its own file.",
+            "static": 1
+        },
+        "ProAct.Actor": {
+            "name": "ProAct.Actor",
+            "shortname": "ProAct.Actor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct",
+            "file": "src/js/actor.js",
+            "line": 116,
+            "description": "<p>\n Constructs a ProAct.Actor. It can be used both as observer and observable.\n</p>\n<p>\n The actors in ProAct.js form the dependency graph.\n If some actor listens to changes from another - it depends on it.\n</p>\n<p>\n The actors can transform the values or events incoming to them.\n</p>\n<p>\n Every actor can have a parent actor, that will be notified for all the changes\n on the child-actor, it is something as special observer.\n</p>\n<p>\n ProAct.Actor is part of the core module of ProAct.js.\n</p>",
+            "params": [
+                {
+                    "name": "queueName",
+                    "description": "The name of the queue all the updates should be pushed to.\n     <p>\n       If this parameter is null/undefined the default queue of\n       {@link ProAct.flow} is used.\n     </p>\n     <p>\n       If this parameter is not a string it is used as the\n       <i>transforms</i>.\n     </p>",
+                    "type": "String"
+                },
+                {
+                    "name": "transforms",
+                    "description": "A list of transformation to be used on all incoming chages.",
+                    "type": "Array"
+                }
+            ]
+        },
+        "ProAct.Observable": {
+            "name": "ProAct.Observable",
+            "shortname": "ProAct.Observable",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct",
+            "file": "src/js/actor.js",
+            "line": 923,
+            "description": "<p>\n Constructs a ProAct.Observable. It can be used both as observer and actor.\n</p>\n<p>\n The observables in ProAct.js form the dependency graph.\n If some observable listens to changes from another - it depends on it.\n</p>\n<p>\n The observables can transform the values or events incoming to them.\n</p>\n<p>\n Every observable can have a parent observable, that will be notified for all the changes\n on the child-observable, it is something as special observer.\n</p>\n<p>\n ProAct.Observable is part of the core module of ProAct.js.\n</p>",
+            "params": [
+                {
+                    "name": "transforms",
+                    "description": "A list of transformation to be used on all incoming chages.",
+                    "type": "Array"
+                }
+            ],
+            "deprecated": true,
+            "deprecationMessage": "since version 1.1.1. Use {@link ProAct.Actor} instead.",
+            "see": [
+                "{@link ProAct.Actor}"
+            ]
+        },
+        "ProAct": {
+            "name": "ProAct",
+            "shortname": "ProAct",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "",
+            "file": "src/js/pro.js",
+            "line": 7,
+            "description": "ProAct.js turns plain JavaScript objects into holders of reactive properties.\nYou can define the dependencies between these objects and properties using the 'vanilla' js syntax.\nFor example if an object should have a property 'x', that depends on its two fields 'a' and 'b', the only thing that's needed\nis to define a function 'x', that refers to 'this.a' and 'this.b'.\n\nSo ProAct.js can turn every vanilla JavaScript value to a set of reactive properties, and this generates a dependency graph between them.\nThe data flow in this oriented graph is determined by its edges. So if we should receive data from the outside of this dependency system we'll need\na powerful but easy to use tool to turn every user or server generated action into a data event, common to the graph. Enter the ProAct.Stream - the functional\npart of ProAct.js\n\nProAct.js can be used to define bindings, to separate views from models (mv*), for performance optimizations... It is a tool.\nA powerful tool for creating other, high level tools, or applications.\nEverything should be defined in this namespace. It can be used as P or Pro.\n\nProAct is powerful Functional Reactive Programming (FRP) lib too. Its streams and events\n\nare integrated with the reactive properties mentioned above.\nEverything can be described using declarative expressions.\nAll ProAct classes and functions are defined in this namespace.\nYou can use `Pro` and `P` instead of `ProAct` too.\n\nThe `proact-core` module provides base utilties and common functionality for all the other\nmodules of the lib.",
+            "static": 1
+        },
+        "ProAct.States": {
+            "name": "ProAct.States",
+            "shortname": "ProAct.States",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct",
+            "file": "src/js/pro.js",
+            "line": 77,
+            "description": "Defines the possible states of the {{#crossLink \"ProAct.Actor\"}}{{/crossLink}} instances.",
+            "static": 1
+        },
+        "ProAct.Utils": {
+            "name": "ProAct.Utils",
+            "shortname": "ProAct.Utils",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct",
+            "file": "src/js/pro.js",
+            "line": 158,
+            "description": "Contains a set of utility functions to ease working with arrays and objects.\nCan be reffered by using `ProAct.U` too.\n\nThis class is part of the `proact-core` module of ProAct.js.",
+            "static": 1
+        },
+        "ProAct.Configuration": {
+            "name": "ProAct.Configuration",
+            "shortname": "ProAct.Configuration",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct",
+            "file": "src/js/pro.js",
+            "line": 533,
+            "description": "Contains various configuration settings for the ProAct.js library.",
+            "static": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/js/actor.js",
+            "line": 174,
+            "description": "A constant defining bad values or bad events.",
+            "memberof": "ProAct.Actor",
+            "type": "Object",
+            "static": 1,
+            "constant": "",
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 184,
+            "description": "A constant defining closing or ending events.",
+            "memberof": "ProAct.Actor",
+            "type": "Object",
+            "static": 1,
+            "constant": "",
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 194,
+            "description": "Transforms the passed <i>val</i> using the ProAct.Actor#transforms of the passed <i>actor</i>.",
+            "itemtype": "method",
+            "name": "transforms",
+            "memberof": "ProAct.Actor",
+            "static": 1,
+            "params": [
+                {
+                    "name": "actor",
+                    "description": "The ProAct.Actor which transformations should be used.",
+                    "type": "ProAct.Actor"
+                },
+                {
+                    "name": "val",
+                    "description": "The value to transform.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "The transformed value.",
+                "type": "Object"
+            },
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 226,
+            "description": "Reference to the constructor of this object.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "constant": "",
+            "default": "ProAct.Actor",
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 236,
+            "description": "Initializes this actor.\n<p>\n This method logic is run only if the current state of <i>this</i> is {@link ProAct.States.init}.\n</p>\n<p>\n Then {@link ProAct.Actor#afterInit} is called to finish the initialization.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "init",
+            "see": [
+                "{@link ProAct.Actor#doInit}",
+                "{@link ProAct.Actor#afterInit}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 261,
+            "description": "Allocating of resources or initializing is done here.\n<p>\n Empty by default.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "doInit",
+            "see": [
+                "{@link ProAct.Actor#init}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 274,
+            "description": "Called automatically after initialization of this actor.\n<p>\n By default it changes the state of <i>this</i> to {@link ProAct.States.ready}.\n</p>\n<p>\n It can be overridden to define more complex initialization logic.\n</p>",
+            "memberof": "ProAct.Property",
+            "instance": "",
+            "itemtype": "method",
+            "name": "afterInit",
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 306,
+            "description": "Called immediately before destruction.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "abstract": "",
+            "itemtype": "method",
+            "name": "beforeDestroy",
+            "see": [
+                "{@link ProAct.Actor#destroy}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 318,
+            "description": "Frees additional resources.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "abstract": "",
+            "itemtype": "method",
+            "name": "doDestroy",
+            "see": [
+                "{@link ProAct.Actor#destroy}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 330,
+            "description": "Destroys this ProAct.Actor instance.\n<p>\n The state of <i>this</i> is set to {@link ProAct.States.destroyed}.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "destroy",
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 364,
+            "description": "Checks if <i>this</i> can be closed.\n<p>\n Defaults to return true.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "canClose",
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 378,
+            "description": "Generates the initial listeners object. It can be overridden for alternative listeners collections.\nIt is used for resetting all the listeners too.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "defaultListeners",
+            "return": {
+                "description": "A map containing the default listeners collections.",
+                "type": "Object"
+            },
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 396,
+            "description": "A list of actions or action to be used when no action is passed for the methods working with actions.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "defaultActions",
+            "default": "'change'",
+            "return": {
+                "description": "The actions to be used if no actions are provided to action related methods,\n     like {@link ProAct.Actor#on}, {@link ProAct.Actor#off}, {@link ProAct.Actor#update}, {@link ProAct.Actor#willUpdate}.",
+                "type": "Array|String"
+            },
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 411,
+            "description": "Creates the <i>listener</i> of this actor.\nEvery actor should have one listener that should pass to other actors.\n<p>\n This listener turns the actor in a observer.\n</p>\n<p>\n Should be overriden with specific listener, by default it returns null.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "abstract": "",
+            "itemtype": "method",
+            "name": "makeListener",
+            "default": "null",
+            "return": {
+                "description": "The <i>listener of this observer</i>.",
+                "type": "Object"
+            },
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 431,
+            "description": "Creates the <i>error listener</i> of this actor.\nEvery actor should have one error listener that should pass to other actors.\n<p>\n This listener turns the actor in a observer for errors.\n</p>\n<p>\n Should be overriden with specific listener, by default it returns null.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "abstract": "",
+            "itemtype": "method",
+            "name": "makeErrListener",
+            "default": "null",
+            "return": {
+                "description": "The <i>error listener of this observer</i>.",
+                "type": "Object"
+            },
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 451,
+            "description": "Creates the <i>closing listener</i> of this actor.\nEvery actor should have one closing listener that should pass to other actors.\n<p>\n This listener turns the actor in a observer for closing events.\n</p>\n<p>\n Should be overriden with specific listener, by default it returns null.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "abstract": "",
+            "itemtype": "method",
+            "name": "makeCloseListener",
+            "default": "null",
+            "return": {
+                "description": "The <i>closing listener of this observer</i>.",
+                "type": "Object"
+            },
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 471,
+            "description": "Creates the <i>event</i> to be send to the listeners on update.\n<p>\n The <i>event</i> should be an instance of {@link ProAct.Event}.\n</p>\n<p>\n By default this method returns {@link ProAct.Event.Types.value} event.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "makeEvent",
+            "default": "{ProAct.Event} with type {@link ProAct.Event.Types.value}",
+            "params": [
+                {
+                    "name": "source",
+                    "description": "The source event of the event. It can be null",
+                    "type": "ProAct.Event"
+                }
+            ],
+            "return": {
+                "description": "The event.",
+                "type": "ProAct.Event"
+            },
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 493,
+            "description": "Attaches a new listener to this ProAct.Actor.\nThe listener may be function or object that defines a <i>call</i> method.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "actions",
+                    "description": "The action/actions to listen for. If this parameter is skipped or null/undefined, the actions from {@link ProAct.Actor#defaultActions} are used.\n     <p>\n       The actions can be skipped and on their place as first parameter to be passed the <i>listener</i>.\n     </p>",
+                    "type": "Array|String"
+                },
+                {
+                    "name": "listener",
+                    "description": "The listener to attach. It must be instance of Function or object with a <i>call</i> method.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#defaultActions}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 537,
+            "description": "Removes a <i>listener</i> from the passed <i>action</i>.\n<p>\n If this method is called without parameters, all the listeners for all the actions are removed.\n The listeners are reset using {@link ProAct.Actor#defaultListeners}.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "off",
+            "params": [
+                {
+                    "name": "actions",
+                    "description": "The action/actions to stop listening for. If this parameter is skipped or null/undefined, the actions from {@link ProAct.Actor#defaultActions} are used.\n     <p>\n       The actions can be skipped and on their place as first parameter to be passed the <i>listener</i>.\n     </p>",
+                    "type": "Array|String"
+                },
+                {
+                    "name": "listener",
+                    "description": "The listener to detach. If it is skipped, null or undefined all the listeners are removed from this actor.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#on}",
+                "{@link ProAct.Actor#defaultActions}",
+                "{@link ProAct.Actor#defaultListeners}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 589,
+            "description": "Attaches a new error listener to this ProAct.Actor.\nThe listener may be function or object that defines a <i>call</i> method.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "onErr",
+            "params": [
+                {
+                    "name": "listener",
+                    "description": "The listener to attach. It must be instance of Function or object with a <i>call</i> method.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#on}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 606,
+            "description": "Removes an error <i>listener</i> from the passed <i>action</i>.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "offErr",
+            "params": [
+                {
+                    "name": "listener",
+                    "description": "The listener to detach. If it is skipped, null or undefined all the listeners are removed from this actor.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#onErr}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 640,
+            "description": "Links source actors into this actor. This means that <i>this actor</i>\nis listening for changes from the <i>sources</i>.\n<p>\n A good example is one stream to have another as as source -> if data comes into the source\n stream, it is passed to the listening too. That way the source stream is plugged <b>into</b> the listening one.\n</p>\n<p>\n The listeners from {@link ProAct.Actor#makeListener} and {@link ProAct.Actor#makeErrListener} are used.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "into",
+            "params": [
+                {
+                    "name": "...",
+                    "description": "Zero or more source ProAct.Actors to set as sources.",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#makeListener}",
+                "{@link ProAct.Actor#makeErrListener}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 674,
+            "description": "The reverse of {@link ProAct.Actor#into} - sets <i>this actor</i> as a source\nto the passed <i>destination</i> actor.",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "out",
+            "params": [
+                {
+                    "name": "destination",
+                    "description": "The actor to set as source <i>this</i> to.",
+                    "type": "ProAct.Actor"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#into}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 693,
+            "description": "Adds a new <i>transformation</i> to the list of transformations\nof <i>this actor</i>.\n<p>\n A transformation is a function or an object that has a <i>call</i> method defined.\n This function or call method should have one argument and to return a transformed version of it.\n If the returned value is {@link ProAct.Actor.BadValue}, the next transformations are skipped and the updating\n value/event becomes - bad value.\n</p>\n<p>\n Every value/event that updates <i>this actor</i> will be transformed using the new transformation.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "transform",
+            "params": [
+                {
+                    "name": "transformation",
+                    "description": "The transformation to add.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor.transform}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 729,
+            "description": "Adds a mapping transformation to <i>this actor</i>.\n<p>\n Mapping transformations just transform one value into another. For example if we get update with\n the value of <i>3</i> and we have mapping transformation that returns the updating value powered by <i>2</i>,\n we'll get <i>9</i> as actual updating value.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "mapping",
+            "params": [
+                {
+                    "name": "mappingFunction",
+                    "description": "Function or object with a <i>call method</i> to use as map function.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#transform}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 750,
+            "description": "Adds a filtering transformation to <i>this actor</i>.\n<p>\n Filtering can be used to filter the incoming update values. For example you can\n filter by only odd numbers as update values.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "filtering",
+            "params": [
+                {
+                    "name": "filteringFunction",
+                    "description": "The filtering function or object with a call method, should return boolean.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#transform}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 778,
+            "description": "Adds an accumulation transformation to <i>this actor</i>.\n<p>\n Accumulation is used to compute a value based on the previous one.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "accumulation",
+            "params": [
+                {
+                    "name": "initVal",
+                    "description": "Initial value for the accumulation. For example '0' for sum.",
+                    "type": "Object"
+                },
+                {
+                    "name": "accumulationFunction",
+                    "description": "The function to accumulate.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<b>this</b>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#transform}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 810,
+            "description": "Creates a new ProAct.Actor instance with source <i>this</i> and mapping\nthe passed <i>mapping function</i>.\n<p>\n Should be overridden with creating the right actor.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "abstract": "",
+            "itemtype": "method",
+            "name": "map",
+            "params": [
+                {
+                    "name": "mappingFunction",
+                    "description": "Function or object with a <i>call method</i> to use as map function.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "A new ProAct.Actor instance with the <i>mapping</i> applied.",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#mapping}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 829,
+            "description": "Creates a new ProAct.Actor instance with source <i>this</i> and filtering\nthe passed <i>filtering function</i>.\n<p>\n Should be overridden with creating the right actor.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "abstract": "",
+            "itemtype": "method",
+            "name": "filter",
+            "params": [
+                {
+                    "name": "filteringFunction",
+                    "description": "The filtering function or object with a call method, should return boolean.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "A new ProAct.Actor instance with the <i>filtering</i> applied.",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#filtering}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 848,
+            "description": "Creates a new ProAct.Actor instance with source <i>this</i> and accumulation\nthe passed <i>accumulation function</i>.\n<p>\n Should be overridden with creating the right actor.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "abstract": "",
+            "itemtype": "method",
+            "name": "accumulate",
+            "params": [
+                {
+                    "name": "initVal",
+                    "description": "Initial value for the accumulation. For example '0' for sum.",
+                    "type": "Object"
+                },
+                {
+                    "name": "accumulationFunction",
+                    "description": "The function to accumulate.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "A new ProAct.Actor instance with the <i>accumulation</i> applied.",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#accumulation}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 869,
+            "description": "Generates a new {@link ProAct.Property} containing the state of an accumulations.\n<p>\n The value will be updated with every update coming to this actor.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "reduce",
+            "params": [
+                {
+                    "name": "initVal",
+                    "description": "Initial value for the accumulation. For example '0' for sum.",
+                    "type": "Object"
+                },
+                {
+                    "name": "accumulationFunction",
+                    "description": "The function to accumulate.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "A {@link ProAct.Property} instance observing <i>this</i> with the accumulation applied.",
+                "type": "ProAct.Property"
+            },
+            "see": [
+                "{@link ProAct.Actor#accumulate}",
+                "{@link ProAct.Property}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/actor.js",
+            "line": 892,
+            "description": "Defers a ProAct.Actor listener.\n<p>\n By default this means that the listener is put into active {@link ProAct.Flow} using it's\n {@link ProAct.Flow#pushOnce} method, but it can be overridden.\n</p>",
+            "memberof": "ProAct.Actor",
+            "instance": "",
+            "itemtype": "method",
+            "name": "defer",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "The event/value to pass to the listener.",
+                    "type": "Object"
+                },
+                {
+                    "name": "listener",
+                    "description": "The listener to defer. It should be a function or object defining the <i>call</i> method.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "<i>this</i>",
+                "type": "ProAct.Actor"
+            },
+            "see": [
+                "{@link ProAct.Actor#makeListener}",
+                "{@link ProAct.flow}"
+            ],
+            "class": "ProAct.Actor",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 68,
+            "itemtype": "property",
+            "name": "VERSION",
+            "type": "String",
+            "static": 1,
+            "class": "ProAct",
+            "module": "proact",
+            "submodule": "proact-core"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 86,
+            "description": "Initialized : It is not usable yet.\n\nFor example a computed property (property depending on other properties/actors) is\nin `init` state when it's created and not read yet.\nWhen something reads its value it computes it for the the first time and becomes in `ready`\nstate.",
+            "itemtype": "property",
+            "name": "init",
+            "type": "Number",
+            "final": 1,
+            "class": "ProAct.States",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 101,
+            "description": "Ready for use.\n\nActive {{#crossLink \"ProAct.Actor\"}}Actors{{/crossLink}} have this state. It can be listened to, it\ncan be updated and notify all of its dependencies.",
+            "itemtype": "property",
+            "name": "ready",
+            "type": "Number",
+            "final": 1,
+            "class": "ProAct.States",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 114,
+            "description": "Ended it's lifecycle.\n\nEvery {{#crossLink \"ProAct.Actor\"}}{{/crossLink}} can be `destroyed`. All the resources it uses are freed.\nAll the dependent objects don't depend on it anymore.\n\nFor example if an application has states/routing, {{#crossLink \"ProAct.Actor\"}}Actors{{/crossLink}} that were active in one\nof the states should be `destroyed` before going into other route/state.",
+            "itemtype": "property",
+            "name": "destroyed",
+            "type": "Number",
+            "final": 1,
+            "class": "ProAct.States",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 130,
+            "description": "Error has occured in the {{#crossLink \"ProAct.Actor\"}}{{/crossLink}}'s lifecycle.\n\nFor example, if there was an exception in the object's initialization.",
+            "itemtype": "property",
+            "name": "error",
+            "type": "Number",
+            "final": 1,
+            "class": "ProAct.States",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 142,
+            "description": "A closed ProAct object.\n\nStreams that can emmit events anymore are closed streams.\n\nProperties which value can not be updated are closed (constants).",
+            "itemtype": "property",
+            "name": "closed",
+            "type": "Number",
+            "final": 1,
+            "class": "ProAct.States",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 170,
+            "description": "Generates an universally unique identifier.",
+            "itemtype": "method",
+            "name": "uuid",
+            "return": {
+                "description": "Unique string.",
+                "type": "String"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 185,
+            "description": "Checks if the passed value is a Function or not.",
+            "itemtype": "method",
+            "name": "isFunction",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The object/value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the passed value is a Function.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 196,
+            "description": "Checks if the passed value is a String instance or not.",
+            "itemtype": "method",
+            "name": "isString",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The object/value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the passed value is a String.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 207,
+            "description": "Checks if the passed value is a JavaScript object or not.",
+            "itemtype": "method",
+            "name": "isObject",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the passed values is not primitive.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 218,
+            "description": "Checks if the passed value is {} or not.",
+            "itemtype": "method",
+            "name": "isEmptyObject",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the value is object that has no own fields.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 235,
+            "description": "Checks if the passed value is a valid JavaScript Error instance or not.",
+            "itemtype": "method",
+            "name": "isError",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the passed `value` is instance of an Error.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 246,
+            "description": "Checks if the passed value is a valid JavaScript Array instance or not.",
+            "itemtype": "method",
+            "name": "isArray",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the passed `value` is Array.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 257,
+            "description": "Checks if the passed value is instance of the {{#crossLink \"ProAct.Array\"}}{{/crossLink}} type or not.\nTODO Move to the proact-arrays module.",
+            "itemtype": "method",
+            "name": "isProArray",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the passed `value` is a ProAct.Array instance.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 269,
+            "description": "Checks if the passed value is a valid array-like object or not.\nArray like objects in ProAct.js are plain JavaScript arrays and {{#crossLink \"ProAct.Array\"}}{{/crossLink}}s.\nTODO Move to the proact-arrays module.",
+            "itemtype": "method",
+            "name": "isArrayObject",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the passed `value` is an Array or ProAct.Array instance.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 282,
+            "description": "Checks if the passed value is a valid ProAct.js object or not.\nProAct.js object have a special `__pro__` object that is hidden in them, which should be instance of {{#crossLink \"ProAct.Core\"}}{{/crossLink}}.\nTODO Move to the proact-properties module.",
+            "itemtype": "method",
+            "name": "isProObject",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The value to check.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True if the value is object containing {{#crossLink \"ProAct.Property\"}}{{/crossLink}} instances and has a `core`.",
+                "type": "Boolean"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 295,
+            "description": "Clones the passed object. It creates a deep copy of it.\nFor now it clones only arrays.\n\nTODO It is not fully implemented...",
+            "itemtype": "method",
+            "name": "clone",
+            "beta": 1,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The object to clone.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Clone of the passed object.",
+                "type": "Object"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 317,
+            "description": "Extends the destination object with the properties and methods of the source object.\n\n```\n var obj1 = {a: 3};\n var obj2 = {b: 4;}\n ProAct.Utils.ex(obj2, obj1);\n\n console.log(obj2);\n // This prints : {a: 3, b: 4}\n\n```",
+            "itemtype": "method",
+            "name": "ex",
+            "params": [
+                {
+                    "name": "destination",
+                    "description": "The object to be extended - it will be modified.",
+                    "type": "Object"
+                },
+                {
+                    "name": "source",
+                    "description": "The source holding the properties and the functions to extend destination with.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "The changed destination object.",
+                "type": "Object"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 346,
+            "description": "Used for extending of classes.\nExample is:\n```\n\n var Bar = ProAct.Utils.extendClass.call(Foo, {\n   a: 1,\n   b: 2,\n   c: function () {}\n });\n\n```",
+            "itemtype": "method",
+            "name": "extendClass",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Data to add new properties to the new class or override old ones.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Child class.",
+                "type": "Object"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 383,
+            "description": "Binds a `function` to an `object context`.\n\nEvery time the `function` is called, `this` will point to the passed `object`.\n\n```\n\n var context = {a: 3};\n var f = ProAct.Utils.bind(context, function () {\n   return this;\n });\n\n var result = f();\n console.log(result === context); // prints 'true'\n\n```",
+            "itemtype": "method",
+            "name": "bind",
+            "params": [
+                {
+                    "name": "ctx",
+                    "description": "The `context` to bind the `this` of the function to.",
+                    "type": "Object"
+                },
+                {
+                    "name": "func",
+                    "description": "The `function` to bind.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "The bound `function`.",
+                "type": "Function"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 411,
+            "description": "Removes the first appearance of the passed `value` in the passed `array`.\nIf the `value` is not present in the passed `array` does nothing.\n\n```\n\n var array = [1, 2, 3];\n ProAct.Utils.remove(array, 2);\n\n console.log(array); // prints [1, 3]\n\n```",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "array",
+                    "description": "The `array` to remove from.",
+                    "type": "Array"
+                },
+                {
+                    "name": "value",
+                    "description": "The `value` to be removed.",
+                    "type": "Object"
+                }
+            ],
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 435,
+            "description": "A powerful function that creates a diff object containing the differences between two arrays.",
+            "itemtype": "method",
+            "name": "diff",
+            "params": [
+                {
+                    "name": "array1",
+                    "description": "",
+                    "type": "Array"
+                },
+                {
+                    "name": "array2",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "<p>The object returned contains a property for every index there is a difference between the passed arrays.</p>\n     <p>The object set on the index has two array properties : 'o' and 'n'.</p>\n     <p>The 'o' property represents the owned elemetns of the first array that are different from the other's.</p>\n     <p>The 'n' property contains all the elements that are not owned by the first array, but present in the other.</p>\n     <p>Example:</p>\n```\n  var array1 = [1, 3, 4, 5],\n      array2 = [1, 2, 7, 5, 6]\n      diff;\n\n  diff = ProAct.Utils.diff(array1, array2);\n\n  console.log(diff[0]); // undefined - the arrays are the same at he index 0\n  console.log(diff[1]); // {o: [3, 4], n: [2, 7]}\n  console.log(diff[2]); // undefined the change began from index 1, so it is stored there\n  console.log(diff[3]); // undefined - the arrays are the same at index 3\n  console.log(diff[4]); // {o: [], n: [6]}\n```",
+                "type": "Object"
+            },
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 506,
+            "description": "Defines a property to an object that contains a initial value.\n\nThe property can be configured using the arguments passed if it is possible in the javascript implementation.",
+            "itemtype": "method",
+            "name": "defValProp",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The object to define a property in.",
+                    "type": "Object"
+                },
+                {
+                    "name": "prop",
+                    "description": "The name of the property to define.",
+                    "type": "String"
+                },
+                {
+                    "name": "enumerable",
+                    "description": "If the property should be enumerable.<br /> In other words visible when doing <pre>for (p in obj) {}</pre>",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "configurable",
+                    "description": "If the property should be configurable.<br /> In other words if the parameters of the property for example enumerable or writable can be changed in the future.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "writable",
+                    "description": "If the property can be changed.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "val",
+                    "description": "The initial value of the property.",
+                    "type": "Object"
+                }
+            ],
+            "class": "ProAct.Utils",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 542,
+            "description": "If this option is set to true, when a ProAct.js object is created and has properties named\nas one or more of the properties listed in\n{{#crossLink \"ProAct.Configuration.keypropList\"}}{{/crossLink}} an `Error` will be thrown.\n\nIn other words declares some of the properties of every ProAct objects as keyword properties.",
+            "itemtype": "property",
+            "name": "keyprops",
+            "type": "Boolean",
+            "static": 1,
+            "class": "ProAct.Configuration",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 556,
+            "description": "Defines a list of the keyword properties that can not be used in ProAct.js objects.\nThe {{#crossLink \"ProAct.Configuration.keyprops\"}}{{/crossLink}} option must be set to true in order for this list to be used.",
+            "itemtype": "property",
+            "name": "keypropList",
+            "type": "Array",
+            "static": 1,
+            "class": "ProAct.Configuration",
+            "module": "proact",
+            "submodule": "proact-core",
+            "namespace": "ProAct"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 568,
+            "description": "No-action or emtpy function. Represent an action that does nothing.",
+            "itemtype": "method",
+            "name": "N",
+            "class": "ProAct",
+            "module": "proact",
+            "submodule": "proact-core"
+        },
+        {
+            "file": "src/js/pro.js",
+            "line": 577,
+            "description": "<p>\n Represents the current caller of a method, the initiator of the current action.\n</p>\n<p>\n This property does the magic when for example an {{#crossLink \"ProAct.AutoProperty\"}}{{/crossLink}} is called\n for the first time and the dependencies to the other properties are created.\n The current caller expects to be used in a single threaded environment.\n</p>\n<p>\n Do not remove or modify this property manually.\n</p>\nTODO move to proact-properties module.",
+            "itemtype": "property",
+            "name": "currentCaller",
+            "type": "Object",
+            "default": "null",
+            "static": 1,
+            "class": "ProAct",
+            "module": "proact",
+            "submodule": "proact-core"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:174"
+        },
+        {
+            "message": "unknown tag: constant",
+            "line": " src/js/actor.js:174"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:184"
+        },
+        {
+            "message": "unknown tag: constant",
+            "line": " src/js/actor.js:184"
+        },
+        {
+            "message": "replacing incorrect tag: function with method",
+            "line": " src/js/actor.js:194"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:194"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:226"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:226"
+        },
+        {
+            "message": "unknown tag: constant",
+            "line": " src/js/actor.js:226"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:236"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:236"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:261"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:261"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:274"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:274"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:306"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:306"
+        },
+        {
+            "message": "unknown tag: abstract",
+            "line": " src/js/actor.js:306"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:318"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:318"
+        },
+        {
+            "message": "unknown tag: abstract",
+            "line": " src/js/actor.js:318"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:330"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:330"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:364"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:364"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:378"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:378"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:396"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:396"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:411"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:411"
+        },
+        {
+            "message": "unknown tag: abstract",
+            "line": " src/js/actor.js:411"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:431"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:431"
+        },
+        {
+            "message": "unknown tag: abstract",
+            "line": " src/js/actor.js:431"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:451"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:451"
+        },
+        {
+            "message": "unknown tag: abstract",
+            "line": " src/js/actor.js:451"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:471"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:471"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:493"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:493"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:537"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:537"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:589"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:589"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:606"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:606"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:640"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:640"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:674"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:674"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:693"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:693"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:729"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:729"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:750"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:750"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:778"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:778"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:810"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:810"
+        },
+        {
+            "message": "unknown tag: abstract",
+            "line": " src/js/actor.js:810"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:829"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:829"
+        },
+        {
+            "message": "unknown tag: abstract",
+            "line": " src/js/actor.js:829"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:848"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:848"
+        },
+        {
+            "message": "unknown tag: abstract",
+            "line": " src/js/actor.js:848"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:869"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:869"
+        },
+        {
+            "message": "unknown tag: memberof",
+            "line": " src/js/actor.js:892"
+        },
+        {
+            "message": "unknown tag: instance",
+            "line": " src/js/actor.js:892"
+        },
+        {
+            "message": "Missing item type\nA constant defining bad values or bad events.",
+            "line": " src/js/actor.js:174"
+        },
+        {
+            "message": "Missing item type\nA constant defining closing or ending events.",
+            "line": " src/js/actor.js:184"
+        },
+        {
+            "message": "Missing item type\nReference to the constructor of this object.",
+            "line": " src/js/actor.js:226"
+        }
+    ]
+}
