@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/streams/size_buffered_stream.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,134 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/streams/size_buffered_stream.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * &lt;p&gt;
+ *  Constructs a ProAct.SizeBufferedStream. When the buffer is full (has the same size as &lt;i&gt;this&lt;/i&gt; size), it is flushed.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  ProAct.SizeBufferedStream is part of the streams module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.SizeBufferedStream
+ * @extends ProAct.BufferedStream
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {@link ProAct.flow} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;source&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {ProAct.Actor} source
+ *      A default source of the stream, can be null.
+ *      &lt;p&gt;
+ *        If this is the only one passed argument and it is a number - it becomes the size of the buffer.
+ *      &lt;/p&gt;
+ * @param {Array} transforms
+ *      A list of transformation to be used on all incoming chages.
+ *      &lt;p&gt;
+ *        If the arguments passed are two and this is a number - it becomes the size of the buffer.
+ *      &lt;/p&gt;
+ * @param {Number} size
+ *      The size of the buffer.
+ * @throws {Error} SizeBufferedStream must contain size, if there is no size passed to it.
+ */
+function SizeBufferedStream (queueName, source, transforms, size) {
+  if (queueName &amp;&amp; !P.U.isString(queueName)) {
+    size = transforms;
+    transforms = source;
+    source = queueName;
+    queueName = null;
+  }
+  if (typeof source === &#x27;number&#x27;) {
+    size = source;
+    source = null;
+  } else if (typeof transforms === &#x27;number&#x27;) {
+    size = transforms;
+    transforms = null;
+  }
+  P.BS.call(this, queueName, source, transforms);
 
-    
+  if (!size) {
+    throw new Error(&#x27;SizeBufferedStream must contain size!&#x27;);
+  }
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
+  this.size = size;
+}
+ProAct.SizeBufferedStream = P.SBS = SizeBufferedStream;
 
-    
-</div>
+ProAct.SizeBufferedStream.prototype = P.U.ex(Object.create(P.BS.prototype), {
 
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @memberof ProAct.SizeBufferedStream
+   * @instance
+   * @constant
+   * @type {Object}
+   * @default ProAct.SizeBufferedStream
+   */
+  constructor: ProAct.SizeBufferedStream,
 
+  /**
+   * &lt;p&gt;
+   *  Triggers a new event/value to the stream. If the buffer is full, anything that is listening for events from
+   *  this stream will get updated with all the values/events in the buffer.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  ProAct.Stream.t is alias of this method.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.SizeBufferedStream
+   * @instance
+   * @method trigger
+   * @param {Object} event
+   *      The event/value to pass to trigger.
+   * @param {Boolean} useTransformations
+   *      If the stream should transform the triggered value. By default it is true (if not passed)
+   * @return {ProAct.Stream}
+   *      &lt;i&gt;this&lt;/i&gt;
+   * @see {@link ProAct.BufferedStream#flush}
+   */
+  trigger: function (event, useTransformations) {
+    this.buffer.push(event, useTransformations);
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+    if (this.size !== null &amp;&amp; (this.buffer.length / 2) === this.size) {
+      this.flush();
+    }
+    return this;
+  }
+});
 
-</div>
+P.U.ex(P.S.prototype, {
 
+  /**
+   * Creates a new {@link ProAct.SizeBufferedStream} instance having as source &lt;i&gt;this&lt;/i&gt;.
+   *
+   * @memberof ProAct.Stream
+   * @instance
+   * @method bufferit
+   * @param {Number} size
+   *      The size of the buffer of the new ProAct.SizeBufferedStream.
+   * @return {ProAct.SizeBufferedStream}
+   *      A {@link ProAct.SizeBufferedStream} instance.
+   * @throws {Error} SizeBufferedStream must contain size, if there is no size passed to it.
+   */
+  bufferit: function (size) {
+    return new P.SBS(this, this.queueName, size);
+  }
+});
 
+P.SBS.prototype.t = P.SBS.prototype.trigger;
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
-
-    <div class="yui3-u-1-2">
-        
-    </div>
+    </pre>
 </div>
 
                     </div>

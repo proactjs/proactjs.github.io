@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ProAct.Actor - proact.js</title>
+    <title>ProAct.ArrayProperty - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,23 +153,27 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>ProAct.Actor <small>Class</small></h1>
+    <h1>ProAct.ArrayProperty <small>Class</small></h1>
 </div>
 
 <div class="well well-small">
     
 
     
+        <div class="extends">
+            Extends <a href="../classes/ProAct.Property.html" class="crosslink">ProAct.Property</a>
+        </div>
+    
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_js_core_actor.js.html#l5"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:5</code></a>
+            Defined in: <a href="../files/src_js_properties_array_property.js.html#l5"><code>src&#x2F;js&#x2F;properties&#x2F;array_property.js:5</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/proact-core.html">proact-core</a>
+            Module: <a href="../modules/proact-properties.html">proact-properties</a>
         
     
 
@@ -180,30 +184,34 @@
 
 <div class="well well-small">
     <p>
- <code>ProAct.Actor</code> is the basic observer-observable functionallity in ProAct.js
+ Constructs a <code>ProAct.ArrayProperty</code>.
+ A property is a simple <a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a> with state.
 </p>
 <p>
- The actors in ProAct.js form the dependency graph.
- If some actor listens to changes from another - it depends on it.
+ The value of <code>ProAct.ArrayProperty</code> is an array, turned to reactive ProAct.js array -
+ ProAct.Array.
 </p>
 <p>
- The actors can transform the values or events incoming to them.
+ On changing the array value to another array the listeners for indices/length are moved from the old value to the new value.
 </p>
 <p>
- Every actor can have a parent actor, that will be notified for all the changes
- on the child-actor, it is something as special observer.
+ If set to null or undefined, the property is re-defined, using
+ <a href="../classes/ProAct.Property.html#method_reProb" class="crosslink">reProb</a>.
 </p>
 <p>
- ProAct.Actor is part of the core module of ProAct.js.
-   System.out.println();
+ <code>ProAct.ArrayProperty</code> is lazy - its object is made reactive on the first read of the property.
+ Its state is set to <a href="../classes/ProAct.States.html#property_ready" class="crosslink">ready</a> on the first read too.
+</p>
+<p>
+ <code>ProAct.ArrayProperty</code> is part of the proact-arrays module of ProAct.js.
 </p>
 </div>
 
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_ProAct.Actor" class="method item">
-    <h3 class="name"><code>ProAct.Actor</code></h3>
+        <div id="method_ProAct.ArrayProperty" class="method item">
+    <h3 class="name"><code>ProAct.ArrayProperty</code></h3>
 
     
         <div class="args">
@@ -211,13 +219,19 @@
             
                 <li class="arg">
                     
-                        <code class="optional">[queueName]</code>
+                        <code>queueName</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code class="optional">[transforms]</code>
+                        <code>proObject</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>property</code>
                     
                 </li>
             
@@ -250,7 +264,7 @@
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l5"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:5</code></a>
+        <a href="../files/src_js_properties_array_property.js.html#l5"><code>src&#x2F;js&#x2F;properties&#x2F;array_property.js:5</code></a>
         
         </p>
 
@@ -272,9 +286,8 @@
             
                 <li class="param">
                     
-                        <code class="param-name optional">[queueName]</code>
+                        <code class="param-name">queueName</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
@@ -283,11 +296,11 @@
                         <p>The name of the queue all the updates should be pushed to.
      <p>
        If this parameter is null/undefined the default queue of
-       {@link ProAct.flow} is used.
+       ProAct/flow:property is used.
      </p>
      <p>
        If this parameter is not a string it is used as the
-       <i>transforms</i>.
+       <i>proObject</i>.
      </p></p>
 
                     </div>
@@ -297,15 +310,30 @@
             
                 <li class="param">
                     
-                        <code class="param-name optional">[transforms]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                        <code class="param-name">proObject</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>A list of transformation to be used on all incoming chages.</p>
+                        <p>A plain JavaScript object, holding a field, this property will represent.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">property</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the field of the object, this property should represent.</p>
 
                     </div>
 
@@ -346,271 +374,276 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
 
-                    <ul class="index-list methods">
+                    <ul class="index-list methods extends">
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_accumulate" data-tablink="accumulate">accumulate</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_accumulation" data-tablink="accumulation">accumulation</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_addCaller" data-tablink="addCaller">addCaller</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_afterInit" data-tablink="afterInit">afterInit</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_beforeDestroy" data-tablink="beforeDestroy">beforeDestroy</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_canClose" data-tablink="canClose">canClose</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_close" data-tablink="close">close</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_defaultActions" data-tablink="defaultActions">defaultActions</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_defaultListeners" data-tablink="defaultListeners">defaultListeners</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_defer" data-tablink="defer">defer</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_destroy" data-tablink="destroy">destroy</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_doClose" data-tablink="doClose">doClose</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_doInit" data-tablink="doInit">doInit</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_filter" data-tablink="filter">filter</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_filter" data-tablink="filter">filter</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_filtering" data-tablink="filtering">filtering</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_init" data-tablink="init">init</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_into" data-tablink="into">into</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_makeCloseListener" data-tablink="makeCloseListener">makeCloseListener</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_makeErrListener" data-tablink="makeErrListener">makeErrListener</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_makeEvent" data-tablink="makeEvent">makeEvent</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_makeListener" data-tablink="makeListener">makeListener</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_map" data-tablink="map">map</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_mapping" data-tablink="mapping">mapping</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_off" data-tablink="off">off</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_offAll" data-tablink="offAll">offAll</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_offClose" data-tablink="offClose">offClose</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_offErr" data-tablink="offErr">offErr</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_on" data-tablink="on">on</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_onAll" data-tablink="onAll">onAll</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_onClose" data-tablink="onClose">onClose</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_onErr" data-tablink="onErr">onErr</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_out" data-tablink="out">out</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_reduce" data-tablink="reduce">reduce</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_toProperty" data-tablink="toProperty">toProperty</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_toStream" data-tablink="toStream">toStream</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_toString" data-tablink="toString">toString</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_transform" data-tablink="transform">transform</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_transforms" data-tablink="transforms">transforms</a>
+                            <li class="index-item method protected inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_transformStored" data-tablink="transformStored">transformStored</a>
 
-                                
-                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_transformStored" data-tablink="transformStored">transformStored</a>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_type" data-tablink="type">type</a>
 
                                 
                                 
@@ -624,27 +657,9 @@
                 <div class="index-section properties">
                     <h3>Properties</h3>
 
-                    <ul class="index-list properties">
+                    <ul class="index-list properties extends">
                         
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_BadValue" data-tablink="BadValue">BadValue</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#" data-tabid="#properties" data-anchor="#property_Close" data-tablink="Close">Close</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
+                            <li class="index-item property inherited">
                                 <a href="#" data-tabid="#properties" data-anchor="#property_constructor" data-tablink="constructor">constructor</a>
 
                                 
@@ -665,7 +680,7 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_accumulate" class="method item">
+                    <div id="method_accumulate" class="method item inherited">
     <h3 class="name"><code>accumulate</code></h3>
 
     
@@ -690,7 +705,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"><a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a></span>
+            <span class="type"><a href="../classes/ProAct.Property.html" class="crosslink">ProAct.Property</a></span>
         </span>
     
 
@@ -708,16 +723,16 @@
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#method_accumulate">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l975"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:975</code></a>
+        <a href="../files/src_js_properties_property.js.html#l691"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:691</code></a>
         
         </p>
 
@@ -728,17 +743,25 @@
     </div>
 
     <div class="description">
-        <p>Creates a new ProAct.Actor instance with source <i>this</i> and accumulation
+        <p>Creates a new <code>ProAct.Property</code> instance with source <i>this</i> and accumulation
 the passed <i>accumulation function</i>.</p>
-<p>
- Should be overridden with creating the right actor.
-</p>
-
-<pre class="code prettyprint"><code> var actor = sourceActor.accumulate(0, function (current, el) {
+<p>Some examples:</p>
+<pre class="code prettyprint"><code> var prop = ProAct.Property.value(3);
+ var acc = prop.accumulate(0, function (current, el) {
    return current + el;
- });</code></pre>
+ });
+
+ acc.get(); // 3
+
+ prop.set(5);
+
+ acc.get(); // 8
+
+ prop.set(2);
+
+ acc.get(); // 10</code></pre>
 <p>or</p>
-<pre class="code prettyprint"><code> var actor = sourceActor.accumulate(&#39;+&#39;);</code></pre>
+<pre class="code prettyprint"><code> var acc = prop.accumulate(&#39;+&#39;); // The same as the above if the DSL module is present.</code></pre>
 
     </div>
 
@@ -791,9 +814,9 @@ the passed <i>accumulation function</i>.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a></span>:
+                        <span class="type"><a href="../classes/ProAct.Property.html" class="crosslink">ProAct.Property</a></span>:
                     
-                    <p>A new ProAct.Actor instance with the <i>accumulation</i> applied.</p>
+                    <p>A new <code>ProAct.Property</code> instance with the <i>accumulation</i> applied.</p>
 
                 
             </div>
@@ -804,7 +827,7 @@ the passed <i>accumulation function</i>.</p>
 </div>
 
                 
-                    <div id="method_accumulation" class="method item protected">
+                    <div id="method_accumulation" class="method item protected inherited">
     <h3 class="name"><code>accumulation</code></h3>
 
     
@@ -850,11 +873,8 @@ the passed <i>accumulation function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_accumulation">ProAct.Actor</a>:
             
         
         
@@ -937,6 +957,63 @@ the passed <i>accumulation function</i>.</p>
 </div>
 
                 
+                    <div id="method_addCaller" class="method item protected inherited">
+    <h3 class="name"><code>addCaller</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/ProAct.Property.html#method_addCaller">ProAct.Property</a>:
+            
+        
+        
+        <a href="../files/src_js_properties_property.js.html#l558"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:558</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Uses <a href="../classes/ProAct.html#property_currentCaller" class="crosslink">currentCaller</a> to
+automatically add a new listener to this property if the caller is set.</p>
+<p>
+ This method is used by the default getter to make every reader of the property a listener to it.
+</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_afterInit" class="method item protected">
     <h3 class="name"><code>afterInit</code></h3>
 
@@ -962,16 +1039,16 @@ the passed <i>accumulation function</i>.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#method_afterInit">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l170"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:170</code></a>
+        <a href="../files/src_js_properties_array_property.js.html#l162"><code>src&#x2F;js&#x2F;properties&#x2F;array_property.js:162</code></a>
         
         </p>
 
@@ -982,12 +1059,10 @@ the passed <i>accumulation function</i>.</p>
     </div>
 
     <div class="description">
-        <p>Called automatically after initialization of this actor.</p>
+        <p>Called automatically after initialization of this property.</p>
 <p>
- By default it changes the state of <i>this</i> to <a href="../classes/ProAct.States.html#property_ready" class="crosslink">ready</a>.
-</p>
-<p>
- It can be overridden to define more complex initialization logic.
+ For <code>ProAct.ArrayProperty</code> it does nothing -
+ the real initialization is lazy and is performed on the first read of <i>this</i>.
 </p>
     </div>
 
@@ -999,7 +1074,7 @@ the passed <i>accumulation function</i>.</p>
 </div>
 
                 
-                    <div id="method_beforeDestroy" class="method item protected">
+                    <div id="method_beforeDestroy" class="method item protected inherited">
     <h3 class="name"><code>beforeDestroy</code></h3>
 
     
@@ -1024,16 +1099,16 @@ the passed <i>accumulation function</i>.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#method_beforeDestroy">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l254"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:254</code></a>
+        <a href="../files/src_js_properties_property.js.html#l578"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:578</code></a>
         
         </p>
 
@@ -1044,8 +1119,9 @@ the passed <i>accumulation function</i>.</p>
     </div>
 
     <div class="description">
-        <p>Called immediately before destruction.</p>
-<p>The idea is to be implemented by extenders to free additional resources on destroy.</p>
+        <p>A hook that is called right before destruction, the extenders use it to clean up resources.</p>
+<p>The <code>ProAct.Property</code> deletes its state and is removed from its core container.</p>
+<p>Don&#39;t override it.</p>
 
     </div>
 
@@ -1057,7 +1133,7 @@ the passed <i>accumulation function</i>.</p>
 </div>
 
                 
-                    <div id="method_canClose" class="method item protected">
+                    <div id="method_canClose" class="method item protected inherited">
     <h3 class="name"><code>canClose</code></h3>
 
     
@@ -1083,11 +1159,8 @@ the passed <i>accumulation function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_canClose">ProAct.Actor</a>:
             
         
         
@@ -1116,7 +1189,7 @@ the passed <i>accumulation function</i>.</p>
 </div>
 
                 
-                    <div id="method_close" class="method item">
+                    <div id="method_close" class="method item inherited">
     <h3 class="name"><code>close</code></h3>
 
     
@@ -1144,11 +1217,8 @@ the passed <i>accumulation function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_close">ProAct.Actor</a>:
             
         
         
@@ -1163,10 +1233,10 @@ the passed <i>accumulation function</i>.</p>
     </div>
 
     <div class="description">
-        <p>Closes this actor =&gt; it state becomes <a href="../classes/ProAct.States.html#property_closed" class="crosslink">closed</a>.</p>
-<p>This sends a <code>close</code> event to all the subscribers to closing.</p>
-<p>After closing the actor it can&#39;t emit events anymore.</p>
-<p>Example:</p>
+        <p><p>Closes this actor =&gt; it state becomes <a href="../classes/ProAct.States.html#property_closed" class="crosslink">closed</a>.</p></p>
+<p><p>This sends a <code>close</code> event to all the subscribers to closing.</p></p>
+<p><p>After closing the actor it can&#39;t emit events anymore.</p></p>
+<p><p>Example:</p></p>
 <pre class="code prettyprint"><code> var actor = new ProAct.Actor();
  actor.onClose(function () {
    console.log(&#39;Done!&#39;);
@@ -1198,7 +1268,7 @@ the passed <i>accumulation function</i>.</p>
 </div>
 
                 
-                    <div id="method_defaultActions" class="method item protected">
+                    <div id="method_defaultActions" class="method item protected inherited">
     <h3 class="name"><code>defaultActions</code></h3>
 
     
@@ -1228,11 +1298,8 @@ the passed <i>accumulation function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_defaultActions">ProAct.Actor</a>:
             
         
         
@@ -1276,7 +1343,7 @@ the passed <i>accumulation function</i>.</p>
 </div>
 
                 
-                    <div id="method_defaultListeners" class="method item protected">
+                    <div id="method_defaultListeners" class="method item protected inherited">
     <h3 class="name"><code>defaultListeners</code></h3>
 
     
@@ -1306,11 +1373,8 @@ the passed <i>accumulation function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_defaultListeners">ProAct.Actor</a>:
             
         
         
@@ -1325,10 +1389,10 @@ the passed <i>accumulation function</i>.</p>
     </div>
 
     <div class="description">
-        <p>Generates the initial listeners object.
+        <p><p>Generates the initial listeners object.
 It can be overridden for alternative listeners collections.
-It is used for resetting all the listeners too.</p>
-<p>The default types of listeners are:</p>
+It is used for resetting all the listeners too.</p></p>
+<p><p>The default types of listeners are:</p></p>
 <pre class="code prettyprint"><code> {
    change: [],
    error: [],
@@ -1359,7 +1423,7 @@ It is used for resetting all the listeners too.</p>
 </div>
 
                 
-                    <div id="method_defer" class="method item protected">
+                    <div id="method_defer" class="method item protected inherited">
     <h3 class="name"><code>defer</code></h3>
 
     
@@ -1405,11 +1469,8 @@ It is used for resetting all the listeners too.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_defer">ProAct.Actor</a>:
             
         
         
@@ -1499,7 +1560,7 @@ it is updated only once with the last update value.</p>
 </div>
 
                 
-                    <div id="method_destroy" class="method item">
+                    <div id="method_destroy" class="method item inherited">
     <h3 class="name"><code>destroy</code></h3>
 
     
@@ -1523,11 +1584,8 @@ it is updated only once with the last update value.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_destroy">ProAct.Actor</a>:
             
         
         
@@ -1559,7 +1617,7 @@ it is updated only once with the last update value.</p>
 </div>
 
                 
-                    <div id="method_doClose" class="method item protected">
+                    <div id="method_doClose" class="method item protected inherited">
     <h3 class="name"><code>doClose</code></h3>
 
     
@@ -1585,11 +1643,8 @@ it is updated only once with the last update value.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_doClose">ProAct.Actor</a>:
             
         
         
@@ -1619,7 +1674,7 @@ state to <a href="../classes/ProAct.States.html#property_closed" class="crosslin
 </div>
 
                 
-                    <div id="method_doInit" class="method item protected">
+                    <div id="method_doInit" class="method item protected inherited">
     <h3 class="name"><code>doInit</code></h3>
 
     
@@ -1644,16 +1699,16 @@ state to <a href="../classes/ProAct.States.html#property_closed" class="crosslin
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#method_doInit">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l157"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:157</code></a>
+        <a href="../files/src_js_properties_property.js.html#l541"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:541</code></a>
         
         </p>
 
@@ -1664,9 +1719,10 @@ state to <a href="../classes/ProAct.States.html#property_closed" class="crosslin
     </div>
 
     <div class="description">
-        <p>Allocating of resources or initializing is done here.</p>
+        <p>Initializes this property.</p>
 <p>
- Empty by default.
+ First the property is defined as a field in its object,
+ using <a href="../classes/ProAct.Property.html#method_defineProp" class="crosslink">defineProp</a>.
 </p>
     </div>
 
@@ -1678,7 +1734,7 @@ state to <a href="../classes/ProAct.States.html#property_closed" class="crosslin
 </div>
 
                 
-                    <div id="method_filter" class="method item">
+                    <div id="method_filter" class="method item inherited">
     <h3 class="name"><code>filter</code></h3>
 
     
@@ -1715,12 +1771,12 @@ state to <a href="../classes/ProAct.States.html#property_closed" class="crosslin
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#method_filter">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
@@ -1795,134 +1851,7 @@ the passed <i>filtering function</i>.</p>
 </div>
 
                 
-                    <div id="method_filter" class="method item">
-    <h3 class="name"><code>filter</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>filteringFunction</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="../classes/ProAct.Property.html" class="crosslink">ProAct.Property</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/proact-properties.html">proact-properties</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/src_js_properties_property.js.html#l645"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:645</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Creates a new <code>ProAct.Property</code> instance with source <i>this</i> and filtering
-the passed <i>filtering function</i>.</p>
-<p>When the source changes, the product, may be updated.</p>
-<p>TODO On creation if the filter fails, the property keeps the original value.
-What to do? Also these kinds of properties shouldn&#39;t be set manually.</p>
-<pre class="code prettyprint"><code> var prop = ProAct.Property.value(4);
- var even = sourceActor.filter(function (el) {
-   return el % 2 == 0;
- });
-
- even.get(); // 4
-
- prop.set(5);
- even.get(); // 4
-
- prop.set(6);
- even.get(); // 6</code></pre>
-<p>or</p>
-<pre class="code prettyprint"><code> var actor = sourceActor.filter(&#39;odd&#39;);</code></pre>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">filteringFunction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The filtering function or object with a call method, should return boolean.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="../classes/ProAct.Property.html" class="crosslink">ProAct.Property</a></span>:
-                    
-                    <p>A new ProAct.Actor instance with the <i>filtering</i> applied.</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_filtering" class="method item protected">
+                    <div id="method_filtering" class="method item protected inherited">
     <h3 class="name"><code>filtering</code></h3>
 
     
@@ -1962,11 +1891,8 @@ What to do? Also these kinds of properties shouldn&#39;t be set manually.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_filtering">ProAct.Actor</a>:
             
         
         
@@ -2034,7 +1960,7 @@ What to do? Also these kinds of properties shouldn&#39;t be set manually.</p>
 </div>
 
                 
-                    <div id="method_init" class="method item">
+                    <div id="method_init" class="method item inherited">
     <h3 class="name"><code>init</code></h3>
 
     
@@ -2058,11 +1984,8 @@ What to do? Also these kinds of properties shouldn&#39;t be set manually.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_init">ProAct.Actor</a>:
             
         
         
@@ -2095,7 +2018,7 @@ What to do? Also these kinds of properties shouldn&#39;t be set manually.</p>
 </div>
 
                 
-                    <div id="method_into" class="method item">
+                    <div id="method_into" class="method item inherited">
     <h3 class="name"><code>into</code></h3>
 
     
@@ -2133,11 +2056,8 @@ What to do? Also these kinds of properties shouldn&#39;t be set manually.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_into">ProAct.Actor</a>:
             
         
         
@@ -2223,7 +2143,7 @@ is listening for changes from the <i>sources</i>.</p>
 </div>
 
                 
-                    <div id="method_makeCloseListener" class="method item protected">
+                    <div id="method_makeCloseListener" class="method item protected inherited">
     <h3 class="name"><code>makeCloseListener</code></h3>
 
     
@@ -2253,11 +2173,8 @@ is listening for changes from the <i>sources</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_makeCloseListener">ProAct.Actor</a>:
             
         
         
@@ -2304,7 +2221,7 @@ is listening for changes from the <i>sources</i>.</p>
 </div>
 
                 
-                    <div id="method_makeErrListener" class="method item protected">
+                    <div id="method_makeErrListener" class="method item protected inherited">
     <h3 class="name"><code>makeErrListener</code></h3>
 
     
@@ -2334,11 +2251,8 @@ is listening for changes from the <i>sources</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_makeErrListener">ProAct.Actor</a>:
             
         
         
@@ -2385,7 +2299,7 @@ is listening for changes from the <i>sources</i>.</p>
 </div>
 
                 
-                    <div id="method_makeEvent" class="method item protected">
+                    <div id="method_makeEvent" class="method item protected inherited">
     <h3 class="name"><code>makeEvent</code></h3>
 
     
@@ -2404,7 +2318,7 @@ is listening for changes from the <i>sources</i>.</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="../classes/ProAct.Event.html" class="crosslink">ProAct.Event</a></span>
+            <span class="type">ProAct.ValueEvent</span>
         </span>
     
 
@@ -2424,16 +2338,16 @@ is listening for changes from the <i>sources</i>.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#method_makeEvent">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l414"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:414</code></a>
+        <a href="../files/src_js_properties_property.js.html#l471"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:471</code></a>
         
         </p>
 
@@ -2444,13 +2358,17 @@ is listening for changes from the <i>sources</i>.</p>
     </div>
 
     <div class="description">
-        <p>Creates the <i>event</i> to be send to the listeners on update.</p>
+        <p>Creates the <i>event</i> to be send to the listeners of this <code>ProAct.Property</code> on update.</p>
 <p>
  The <i>event</i> should be an instance of <a href="../classes/ProAct.Event.html" class="crosslink">ProAct.Event</a>.
 </p>
-
 <p>
- By default this method returns ProAct.Event.Types/value:property event.
+ By default this method returns ProAct.Event.Types/value:property event with target the property name and arguments:
+ <ul>
+   <li>The object this <code>ProAct.Property</code> manages a field for.</li>
+   <li>The old value of this property.</li>
+   <li>The new value of this property.</li>
+ </ul>
 </p>
     </div>
 
@@ -2487,9 +2405,9 @@ is listening for changes from the <i>sources</i>.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="../classes/ProAct.Event.html" class="crosslink">ProAct.Event</a></span>:
+                        <span class="type">ProAct.ValueEvent</span>:
                     
-                    <p>The event.</p>
+                    <p>The event, created.</p>
 
                 
             </div>
@@ -2500,7 +2418,7 @@ is listening for changes from the <i>sources</i>.</p>
 </div>
 
                 
-                    <div id="method_makeListener" class="method item protected">
+                    <div id="method_makeListener" class="method item protected inherited">
     <h3 class="name"><code>makeListener</code></h3>
 
     
@@ -2529,16 +2447,16 @@ is listening for changes from the <i>sources</i>.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#method_makeListener">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l348"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:348</code></a>
+        <a href="../files/src_js_properties_property.js.html#l499"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:499</code></a>
         
         </p>
 
@@ -2549,13 +2467,18 @@ is listening for changes from the <i>sources</i>.</p>
     </div>
 
     <div class="description">
-        <p>Creates the <i>listener</i> of this actor.</p>
-<p>Every actor should have one listener that should pass to other actors.</p>
+        <p>Creates the <i>listener</i> of this <code>ProAct.Property</code>.</p>
 <p>
- This listener turns the actor in a observer.
+ This listener turns the observable in a observer.
 </p>
 <p>
- Should be overriden with specific listener, by default it returns <a href="../classes/ProAct.html#method_N" class="crosslink">N</a>.
+ The listener for ProAct.Property is an object defining the <i>call</i> method.
+</p>
+<p>
+ It has a <i>property</i> field set to <i>this</i>.
+</p>
+<p>
+ On value changes the <i><this</i> value is set to the new value using the <a href="../classes/ProAct.Actor.html#method_transform" class="crosslink">transform</a> to transform it.
 </p>
     </div>
 
@@ -2570,7 +2493,7 @@ is listening for changes from the <i>sources</i>.</p>
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
                     
-                    <p>The <i>listener of this observer</i>.</p>
+                    <p>The <i>listener of this ProAct.Property</i>.</p>
 
                 
             </div>
@@ -2581,7 +2504,7 @@ is listening for changes from the <i>sources</i>.</p>
 </div>
 
                 
-                    <div id="method_map" class="method item">
+                    <div id="method_map" class="method item inherited">
     <h3 class="name"><code>map</code></h3>
 
     
@@ -2600,7 +2523,7 @@ is listening for changes from the <i>sources</i>.</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a></span>
+            <span class="type"><a href="../classes/ProAct.Property.html" class="crosslink">ProAct.Property</a></span>
         </span>
     
 
@@ -2618,16 +2541,16 @@ is listening for changes from the <i>sources</i>.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#method_map">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l913"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:913</code></a>
+        <a href="../files/src_js_properties_property.js.html#l602"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:602</code></a>
         
         </p>
 
@@ -2638,17 +2561,24 @@ is listening for changes from the <i>sources</i>.</p>
     </div>
 
     <div class="description">
-        <p>Creates a new ProAct.Actor instance with source <i>this</i> and mapping
+        <p>Creates a new <code>ProAct.Property</code> instance with source <i>this</i> and mapping
 the passed <i>mapping function</i>.</p>
-<p>
- Should be overridden with creating the right actor.
-</p>
+<p>When the source is changed, the product of this operator is updated too.</p>
+<pre class="code prettyprint"><code> var val = ProAct.Property.value(5);
+ var plusOne = val.map(function (v) {
+   return v + 1;
+ });
 
-<pre class="code prettyprint"><code> var actor = sourceActor.map(function (el) {
-   return el * el;
- });</code></pre>
+ plusOne.get(); // 6
+
+ val.set(4);
+ plusOne.get(); // 5</code></pre>
 <p>or</p>
-<pre class="code prettyprint"><code> var actor = sourceActor.map(&#39;+&#39;);</code></pre>
+<pre class="code prettyprint"><code> var positive = val.map(&#39;+&#39;);
+
+ val.set(-4);
+
+ positive.get(); // 4</code></pre>
 
     </div>
 
@@ -2686,9 +2616,9 @@ the passed <i>mapping function</i>.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a></span>:
+                        <span class="type"><a href="../classes/ProAct.Property.html" class="crosslink">ProAct.Property</a></span>:
                     
-                    <p>A new ProAct.Actor instance with the <i>mapping</i> applied.</p>
+                    <p>A new <code>ProAct.Property</code> instance with the <i>mapping</i> applied.</p>
 
                 
             </div>
@@ -2699,7 +2629,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_mapping" class="method item protected">
+                    <div id="method_mapping" class="method item protected inherited">
     <h3 class="name"><code>mapping</code></h3>
 
     
@@ -2739,11 +2669,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_mapping">ProAct.Actor</a>:
             
         
         
@@ -2812,7 +2739,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_off" class="method item">
+                    <div id="method_off" class="method item inherited">
     <h3 class="name"><code>off</code></h3>
 
     
@@ -2856,11 +2783,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_off">ProAct.Actor</a>:
             
         
         
@@ -2881,8 +2805,8 @@ the passed <i>mapping function</i>.</p>
  The listeners are reset using <a href="../classes/ProAct.Actor.html#method_defaultActions" class="crosslink">defaultActions</a>.
 </p>
 
-<p>Examples are:</p>
-<p>Removing a listener:</p>
+<p><p>Examples are:</p></p>
+<p><p>Removing a listener:</p></p>
 <pre class="code prettyprint"><code> var listener = function (v) {
    console.log(v);
  };
@@ -2969,7 +2893,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_offAll" class="method item">
+                    <div id="method_offAll" class="method item inherited">
     <h3 class="name"><code>offAll</code></h3>
 
     
@@ -3007,11 +2931,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_offAll">ProAct.Actor</a>:
             
         
         
@@ -3076,7 +2997,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_offClose" class="method item">
+                    <div id="method_offClose" class="method item inherited">
     <h3 class="name"><code>offClose</code></h3>
 
     
@@ -3114,11 +3035,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_offClose">ProAct.Actor</a>:
             
         
         
@@ -3184,7 +3102,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_offErr" class="method item">
+                    <div id="method_offErr" class="method item inherited">
     <h3 class="name"><code>offErr</code></h3>
 
     
@@ -3222,11 +3140,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_offErr">ProAct.Actor</a>:
             
         
         
@@ -3292,7 +3207,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_on" class="method item">
+                    <div id="method_on" class="method item inherited">
     <h3 class="name"><code>on</code></h3>
 
     
@@ -3336,11 +3251,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_on">ProAct.Actor</a>:
             
         
         
@@ -3355,8 +3267,8 @@ the passed <i>mapping function</i>.</p>
     </div>
 
     <div class="description">
-        <p>Attaches a new listener to this <code>ProAct.Actor</code>.</p>
-<p>The listener may be function or object that defines a <i>call</i> method.</p>
+        <p><p>Attaches a new listener to this <code>ProAct.Actor</code>.</p></p>
+<p><p>The listener may be function or object that defines a <i>call</i> method.</p></p>
 <pre class="code prettyprint"><code>  actor.on(function (v) {
    console.log(v);
   });
@@ -3439,7 +3351,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_onAll" class="method item">
+                    <div id="method_onAll" class="method item inherited">
     <h3 class="name"><code>onAll</code></h3>
 
     
@@ -3477,11 +3389,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_onAll">ProAct.Actor</a>:
             
         
         
@@ -3547,7 +3456,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_onClose" class="method item">
+                    <div id="method_onClose" class="method item inherited">
     <h3 class="name"><code>onClose</code></h3>
 
     
@@ -3585,11 +3494,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_onClose">ProAct.Actor</a>:
             
         
         
@@ -3656,7 +3562,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_onErr" class="method item">
+                    <div id="method_onErr" class="method item inherited">
     <h3 class="name"><code>onErr</code></h3>
 
     
@@ -3694,11 +3600,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_onErr">ProAct.Actor</a>:
             
         
         
@@ -3765,7 +3668,7 @@ the passed <i>mapping function</i>.</p>
 </div>
 
                 
-                    <div id="method_out" class="method item">
+                    <div id="method_out" class="method item inherited">
     <h3 class="name"><code>out</code></h3>
 
     
@@ -3803,11 +3706,8 @@ the passed <i>mapping function</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_out">ProAct.Actor</a>:
             
         
         
@@ -3822,8 +3722,8 @@ the passed <i>mapping function</i>.</p>
     </div>
 
     <div class="description">
-        <p>The reverse of <a href="../classes/ProAct.Actor.html#method_into" class="crosslink">into</a> - sets <i>this actor</i> as a source
-to the passed <i>destination</i> actor.</p>
+        <p><p>The reverse of <a href="../classes/ProAct.Actor.html#method_into" class="crosslink">into</a> - sets <i>this actor</i> as a source
+to the passed <i>destination</i> actor.</p></p>
 <pre class="code prettyprint"><code> var sourceActor = &lt;Actor implementation&gt;;
  var actor = &lt;Actor implementation&gt;;
 
@@ -3882,7 +3782,7 @@ to the passed <i>destination</i> actor.</p>
 </div>
 
                 
-                    <div id="method_reduce" class="method item">
+                    <div id="method_reduce" class="method item inherited">
     <h3 class="name"><code>reduce</code></h3>
 
     
@@ -3926,11 +3826,8 @@ to the passed <i>destination</i> actor.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_reduce">ProAct.Actor</a>:
             
         
         
@@ -4014,7 +3911,7 @@ to the passed <i>destination</i> actor.</p>
 </div>
 
                 
-                    <div id="method_toProperty" class="method item">
+                    <div id="method_toProperty" class="method item inherited">
     <h3 class="name"><code>toProperty</code></h3>
 
     
@@ -4038,13 +3935,8 @@ to the passed <i>destination</i> actor.</p>
     <div class="meta">
         
             
-                
-                    <p>Provided by the <a href="../modules/proact-properties.html">proact-properties</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_toProperty">ProAct.Actor</a>:
             
         
         
@@ -4073,7 +3965,7 @@ Comes from the <code>proact-properties</code> module.</p>
 </div>
 
                 
-                    <div id="method_toStream" class="method item">
+                    <div id="method_toStream" class="method item inherited">
     <h3 class="name"><code>toStream</code></h3>
 
     
@@ -4097,13 +3989,8 @@ Comes from the <code>proact-properties</code> module.</p>
     <div class="meta">
         
             
-                
-                    <p>Provided by the <a href="../modules/proact-streams.html">proact-streams</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_toStream">ProAct.Actor</a>:
             
         
         
@@ -4131,7 +4018,61 @@ Comes from the <code>proact-properties</code> module.</p>
 </div>
 
                 
-                    <div id="method_transform" class="method item protected">
+                    <div id="method_toString" class="method item inherited">
+    <h3 class="name"><code>toString</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/ProAct.Property.html#method_toString">ProAct.Property</a>:
+            
+        
+        
+        <a href="../files/src_js_properties_property.js.html#l736"><code>src&#x2F;js&#x2F;properties&#x2F;property.js:736</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The <b>toString()</b> method returns a string representing this <code>ProAct.Property</code>.</p>
+<p>
+ The string representation is the value of <i>this</i> property.
+</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_transform" class="method item protected inherited">
     <h3 class="name"><code>transform</code></h3>
 
     
@@ -4171,11 +4112,8 @@ Comes from the <code>proact-properties</code> module.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_transform">ProAct.Actor</a>:
             
         
         
@@ -4250,138 +4188,7 @@ of <i>this actor</i>.</p>
 </div>
 
                 
-                    <div id="method_transforms" class="method item">
-    <h3 class="name"><code>transforms</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>actor</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>val</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/src_js_core_actor.js.html#l94"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:94</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Transforms the passed <i>val</i> using the <a href="../classes/ProAct.Actor.html#method_transforms" class="crosslink">transforms</a> method of the passed <i>actor</i>.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">actor</code>
-                        <span class="type"><a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The <code>ProAct.Actor</code> which transformations should be used.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">val</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The value to transform.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    <p>The transformed value.</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_transformStored" class="method item protected">
+                    <div id="method_transformStored" class="method item protected inherited">
     <h3 class="name"><code>transformStored</code></h3>
 
     
@@ -4427,11 +4234,8 @@ of <i>this actor</i>.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/ProAct.Actor.html#method_transformStored">ProAct.Actor</a>:
             
         
         
@@ -4526,6 +4330,82 @@ funtion/object stored in the registry (if the proact-dsl module is present) by i
 </div>
 
                 
+                    <div id="method_type" class="method item">
+    <h3 class="name"><code>type</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            <p>Inherited from
+            <a href="../classes/ProAct.Property.html#method_type">
+                ProAct.Property
+            </a>
+            
+            but overwritten in
+            
+        
+        
+        <a href="../files/src_js_properties_array_property.js.html#l145"><code>src&#x2F;js&#x2F;properties&#x2F;array_property.js:145</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Retrieves the <a href="../classes/ProAct.Property.Types.html" class="crosslink">ProAct.Property.Types</a> value of <i>this</i> property.</p>
+<p>
+ For instances of the <code>ProAct.ArrayProperty</code> class, it is
+ <a href="../classes/ProAct.Property.Types.html#property_array" class="crosslink">array</a>.
+</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                    <p>The right type of the property.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
             </div>
         
 
@@ -4534,111 +4414,9 @@ funtion/object stored in the registry (if the proact-dsl module is present) by i
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property_BadValue" class="property item">
-    <h3 class="name"><code>BadValue</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-        <span class="flag final">final</span>
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/src_js_core_actor.js.html#l65"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:65</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>A constant defining bad values or bad events.</p>
-<p>Part of the filtering mechainsm; If a transformation returns
-a <code>BadValue</code>, based on uncomming event -&gt; the event is skipped.</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Close" class="property item">
-    <h3 class="name"><code>Close</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-        <span class="flag final">final</span>
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/src_js_core_actor.js.html#l79"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:79</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>A constant defining closing or ending events.</p>
-<p>If a transformation returns this value, the actor will be closed.</p>
-<p>You can manually close <code>Actor</code>s updating them with this constant as an event.</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="property_constructor" class="property item">
     <h3 class="name"><code>constructor</code></h3>
-    <span class="type"><a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a></span>
+    <span class="type"><a href="../classes/ProAct.ArrayProperty.html" class="crosslink">ProAct.ArrayProperty</a></span>
 
     
 
@@ -4652,16 +4430,16 @@ a <code>BadValue</code>, based on uncomming event -&gt; the event is skipped.</p
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.Actor.html#property_constructor">
+                ProAct.Actor
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor.js.html#l123"><code>src&#x2F;js&#x2F;core&#x2F;actor.js:123</code></a>
+        <a href="../files/src_js_properties_array_property.js.html#l135"><code>src&#x2F;js&#x2F;properties&#x2F;array_property.js:135</code></a>
         
         </p>
 

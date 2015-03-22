@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/properties/proxy_property.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,151 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/properties/proxy_property.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-properties
+ */
 
-    
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.ProxyProperty&#x60;. This is a property, pointing to another {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The value of &#x60;ProAct.ProxyProperty&#x60; is the value of its target, if the target is updated, the proxy is updated.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  By setting the value of the proxy, the value of the target is updated, the proxy doesn&#x27;t have its own value, it uses
+ *  the value of the target.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.ProxyProperty&#x60; is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.ProxyProperty
+ * @extends ProAct.Property
+ * @constructor
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {@link ProAct.flow} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;proObject&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {Object} proObject
+ *      A plain JavaScript object, holding a field, this property will represent.
+ * @param {String} property
+ *      The name of the field of the object, this property should represent.
+ * @param {ProAct.Property} target
+ *      The target {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}, that will provide the value of the new &#x60;ProAct.ProxyProperty&#x60;.
+ */
+function ProxyProperty (queueName, proObject, property, target) {
+  if (queueName &amp;&amp; !P.U.isString(queueName)) {
+    target = property;
+    property = proObject;
+    proObject = queueName;
+    queueName = null;
+  }
+  var self = this, getter, setter;
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
+  getter = function () {
+    self.addCaller();
+    return target.val;
+  };
 
-    
-</div>
+  setter = function (newVal) {
+    if (target.val === newVal) {
+      return;
+    }
 
+    target.oldVal = target.val;
+    target.val = P.Actor.transform(self, newVal);
 
+    if (target.val === null || target.val === undefined) {
+      P.P.reProb(target).update();
+      return;
+    }
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+    ActorUtil.update.call();
+  };
 
-</div>
+  P.P.call(this, queueName, proObject, property, getter, setter);
 
+  this.target = target;
+  this.target.on(this.makeListener());
+}
+ProAct.ProxyProperty = P.PXP = ProxyProperty;
 
+ProAct.ProxyProperty.prototype = P.U.ex(Object.create(P.P.prototype), {
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.ProxyProperty
+   * @final
+   * @for ProAct.ProxyProperty
+   */
+  constructor: ProAct.ProxyProperty,
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+  /**
+   * Retrieves the {{#crossLink &quot;ProAct.Property.Types&quot;}}{{/crossLink}} value of &lt;i&gt;this&lt;/i&gt; property.
+   * &lt;p&gt;
+   *  For &#x60;ProAct.ProxyProperty&#x60; this is the type if its &lt;i&gt;target&lt;/i&gt;.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.ProxyProperty
+   * @instance
+   * @method type
+   * @return {Number}
+   *      The right type of the property.
+   */
+  type: function () {
+    return this.target.type();
+  },
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+  /**
+   * Creates the &lt;i&gt;listener&lt;/i&gt; of this &#x60;ProAct.ProxyProperty&#x60;.
+   * &lt;p&gt;
+   *  This listener turns the observable in a observer.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  The listener for ProAct.ProxyProperty is an object defining an empty &lt;i&gt;call&lt;/i&gt; method.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  It has a &lt;i&gt;property&lt;/i&gt; field set to &lt;i&gt;this&lt;/i&gt;.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.ProxyProperty
+   * @protected
+   * @instance
+   * @method makeListener
+   * @return {Object}
+   *      The &lt;i&gt;listener of this &#x60;ProAct.ProxyProperty&#x60;&lt;/i&gt;.
+   */
+  makeListener: function () {
+    if (!this.listener) {
+      var self = this;
+
+      this.listener = {
+        property: self,
+        queueName: self.queueName,
+        call: P.N
+      };
+    }
+
+    return this.listener;
+  }
+
+});
+
+    </pre>
 </div>
 
                     </div>

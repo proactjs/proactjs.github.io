@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/core/event.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,230 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/core/event.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-core
+ */
 
-    
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.Event&#x60;. The event contains information of the update.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.Event&#x60; is part of the core module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.Event
+ * @constructor
+ * @param {ProAct.Event} source
+ *      If there is an event that coused this event - it is the source. Can be null - no source.
+ * @param {Object} target
+ *      The thing that triggered this event.
+ * @param {ProAct.Event.Types} type
+ *      The type of the event
+ * @param [...] args
+ *      Arguments of the event, for example for value event, these are the old value and the new value.
+ */
+function Event (source, target, type) {
+  this.source = source;
+  this.target = target;
+  this.type = type;
+  this.args = slice.call(arguments, 3);
+};
+ProAct.Event = P.E = Event;
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
+P.U.ex(ProAct.Event, {
 
-    
-</div>
+  /**
+   * Factory method for creating of new ProAct.Events with ease.
+   * &lt;p&gt;
+   *  NOTE: For now only works with arrays, because creating array events required a lot of code.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Event
+   * @static
+   * @param {ProAct.Event} source
+   *      If there is an event that coused this event - it is the source. Can be null - no source.
+   * @param {Object} target
+   *      The thing that triggered this event.
+   * @param {ProAct.Event.Types|String} type
+   *      The type of the event. Can be string for ease.
+   *      For now this method supports only {{#crossLink &quot;ProAct.Event.Types/array:property&quot;}}{{/crossLink}} events.
+   *      It is possible to pass the string &#x27;array&#x27; for type.
+   * @param {Array} data
+   *      Arguments of the event.
+   * @return {ProAct.Event}
+   *      The new event.
+   */
+  make: function (source, target, type, data) {
+    if (type === &#x27;array&#x27; || type === P.E.Types.array) {
+      return P.E.makeArray(data[0], data.slice(1));
+    }
+  },
 
+  /**
+   * Factory method for creating of new ProAct.Events of type {{#crossLink &quot;ProAct.Event.Types/array:property&quot;}}{{/crossLink}} with ease.
+   * &lt;p&gt;
+   *  NOTE: For now only array modifying events can be created - remove and splice (you can trigger a value for add).
+   * &lt;/p&gt;
+   *
+   * TODO Move to the proact-arrays package!
+   *
+   * @for ProAct.Event
+   * @static
+   * @param {ProAct.Event} source
+   *      If there is an event that coused this event - it is the source. Can be null - no source.
+   * @param {Object} target
+   *      The thing that triggered this event.
+   * @param {ProAct.Array.Operations|String} subType
+   *      The operation type of the event to create. Can be string or instance of
+   *      {@link ProAct.Array.Operations}.
+   *      Prossible string values are - &#x27;remove&#x27; and &#x27;splice&#x27; for now.
+   * @param {Array} data
+   *      Arguments of the event.
+   * @return {ProAct.Event}
+   *      The new event.
+   */
+  makeArray: function (source, target, subType, data) {
+    var eventType = P.E.Types.array, arr;
+    if (subType === &#x27;remove&#x27; || subType === P.A.Operations.remove) {
+      return new P.E(source, target, eventType, P.A.Operations.remove, data[0], data[1], data[2]);
+    }
 
+    if (subType === &#x27;splice&#x27; || subType === P.A.Operations.splice) {
+      if (!P.U.isArray(data[1])) {
+        data[1] = new Array(data[1]);
+      }
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+      return new P.E(source, target, eventType, P.A.Operations.splice, data[0], data[1], data[2]);
+    }
+  },
 
-</div>
+  /**
+   * Factory method for creating of new ProAct.Events without target and source with ease.
+   * &lt;p&gt;
+   *  NOTE: For now only array modifying events can be created - remove and splice (you can trigger a value for add).
+   * &lt;/p&gt;
+   *
+   * Using this method we can create for example an event for removing the i-th element from ProAct.Array like this:
+   * &lt;pre&gt;
+   *  ProAct.Event.simple(&#x27;array&#x27;, &#x27;del&#x27;, el, array);
+   * &lt;/pre&gt;
+   * This event can be passed to the ProAct.ArrayCore#update method of the core of a ProAct.Array and it will delete
+   * the element in it.
+   *
+   * TODO Some of these types and comments should be undepended of the proact-arrays module.
+   *
+   * @for ProAct.Event
+   * @static
+   * @param {ProAct.Event.Types|String} eventType
+   *      The type of the event. Can be string for ease.
+   *      For now this method supports only {@link ProAct.Event.Types.array} events.
+   *      It is possible to pass the string &#x27;array&#x27; or &#x27;a&#x27; for type.
+   * @param {ProAct.Array.Operations|String} subType
+   *      The operation type of the event to create. Can be string or instance of
+   *      {@link ProAct.Array.Operations}.
+   *      Prossible string values are - &#x27;pop&#x27;, &#x27;shift&#x27;, &#x27;deleteElement&#x27; or &#x27;del&#x27; (at index) and &#x27;splice&#x27; for now.
+   * @param {Object} value
+   *      Used a value of the event.
+   *      For array events this is for example the value to be added or to be removed.
+   *      It can be index too.
+   * @param {Array} array
+   *      Optional parameter for array events - the array target of the event.
+   *      It will be set as target.
+   *      Can be used for determining event&#x27;s parameters too.
+   * @return {ProAct.Event}
+   *      The new event.
+   */
+  simple: function (eventType, subType, value, array) {
+    if ((eventType === &#x27;array&#x27; || eventType === &#x27;a&#x27;) &amp;&amp; (subType === &#x27;pop&#x27; || subType === &#x27;shift&#x27;)) {
+      return P.E.makeArray(null, array, &#x27;remove&#x27;, [subType === &#x27;shift&#x27; ? 0 : 1]);
+    }
 
+    if ((eventType === &#x27;array&#x27; || eventType === &#x27;a&#x27;) &amp;&amp; (subType === &#x27;splice&#x27;)) {
+      return P.E.makeArray(null, array, &#x27;splice&#x27;, [value, 1]);
+    }
 
+    if ((eventType === &#x27;array&#x27; || eventType === &#x27;a&#x27;) &amp;&amp; (subType === &#x27;deleteElement&#x27; || subType === &#x27;del&#x27;)) {
+      if (array) {
+        var index = array.indexOf(value);
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+        if (index !== -1) {
+          return P.E.makeArray(null, array, &#x27;splice&#x27;, [index, 1]);
+        }
+      } else {
+        return P.E.makeArray(null, array, &#x27;splice&#x27;, [null, [value]]);
+      }
+    }
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+    return null;
+  }
+});
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+/**
+ * Defines the possible types of the ProAct.Events.
+ *
+ * @namespace ProAct.Event
+ * @class Types
+ * @static
+ */
+ProAct.Event.Types = {
+
+  /**
+   * Value type events. Events for changing a value.
+   * &lt;p&gt;
+   *  For properties the args of the event contain the ProAct Object, the old value
+   *  of the property and the new value.
+   * &lt;/p&gt;
+   *
+   * @type Number
+   * @property value
+   * @final
+   * @for ProAct.Event
+   */
+  value: 0,
+
+  /**
+   * Array type events. Events for changes in {@link ProAct.Array}.
+   * &lt;p&gt;
+   *  The args should consist of operation, index, old values, new values.
+   * &lt;/p&gt;
+   *
+   * TODO Move it to the proact-arrays module.
+   *
+   * @type Number
+   * @property array
+   * @final
+   * @for ProAct.Event
+   */
+  array: 1,
+
+  /**
+   * Close type events. Events for closing streams or destroying properties.
+   *
+   * @type Number
+   * @property close
+   * @final
+   * @for ProAct.Event
+   */
+  close: 2,
+
+  /**
+   * Error type events. Events for errors.
+   *
+   * @type Number
+   * @property error
+   * @final
+   * @for ProAct.Event
+   */
+  error: 3
+};
+
+    </pre>
 </div>
 
                     </div>

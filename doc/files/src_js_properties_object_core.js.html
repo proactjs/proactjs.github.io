@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/properties/object_core.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,249 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/properties/object_core.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-properties
+ */
 
-    
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.ObjectCore&#x60;.
+ *  &#x60;ProAct.ObjectCore&#x60; is a {{#crossLink &quot;ProAct.Core&quot;}}{{/crossLink}} that manages all the
+ *  {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instances for a reactive ProAct.js object.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  It is responsible for all the {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instances as well as
+ *  initializing them and deciding which type of property corresponds to which field.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.ObjectCore&#x60; is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * &#x60;&#x60;&#x60;
+ *  
+ *  var object = {
+ *    a: 4,
+ *    b: 5,
+ *    c: function () {
+ *      return this.a + this.b;
+ *    }
+ *  };
+ *  var core = new ProAct.ObjectCore(object);
+ *
+ *  console.log(object.c); // 9
+ *
+ *  object.a = 1;
+ *  console.log(object.c); // 6
+ *
+ *  console.log(core.value(&#x27;c&#x27;)); // 6
+ *
+ *  core.set(&#x27;b&#x27;, 2));
+ *  console.log(object.b); // 2
+ *  console.log(object.c); // 3
+ * &#x60;&#x60;&#x60;
+ *
+ * @class ProAct.ObjectCore
+ * @extends ProAct.Core
+ * @constructor
+ * @param {Object} object
+ *      The shell objec arround this core. This should be plain JavaScript object.
+ * @param {Object} meta
+ *      Optional meta data to be used to define the observer-observable behavior of the &lt;i&gt;object&lt;/i&gt;.
+ *      For example transformations for its properties.
+ */
+function ObjectCore (object, meta) {
+  this.properties = {};
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
+  P.C.call(this, object, meta); // Super!
+};
+ProAct.ObjectCore = P.OC = ObjectCore;
 
-    
-</div>
+ProAct.ObjectCore.prototype = P.U.ex(Object.create(P.C.prototype), {
 
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.ObjectCore
+   * @final
+   * @for ProAct.ObjectCore
+   */
+  constructor: ProAct.ObjectCore,
 
+  /**
+   * A function to be set to the &lt;i&gt;shell&lt;/i&gt; object&#x27;s &lt;b&gt;p&lt;/b&gt; field (if it is configured in {{#crossLink &quot;ProAct.Configuration&quot;}}{{/crossLink}}).
+   * &lt;p&gt;
+   *  It uses its &lt;i&gt;p&lt;/i&gt; argument if it is string to return the right {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} for passed field name.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  If the &lt;i&gt;p&lt;/i&gt; argument is &lt;b&gt;*&lt;/b&gt; or empty &lt;i&gt;this&lt;/i&gt; &#x60;ProAct.ObjectCore&#x60; instance is returned.
+   * &lt;/p&gt;
+   *
+   * &#x60;&#x60;&#x60;
+   *  core.value(&#x27;a&#x27;); // returns the shell&#x27;s &#x27;a&#x27; value - shell.a.
+   *  core.value(&#x27;*&#x27;); // returns this.
+   *  core.value(); // returns this.
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.ObjectCore
+   * @instance
+   * @method value
+   * @param {String} p
+   *      The name of the managed {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} to retrieve.
+   *      It can be set to &lt;b&gt;*&lt;/b&gt; or skipped for &lt;i&gt;this&lt;/i&gt; itself to be retrieved.
+   * @return {Object}
+   *      Managed {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance with field name equal to the passed &lt;i&gt;p&lt;/i&gt; parameter or &lt;i&gt;this&lt;/i&gt;.
+   */
+  value: function (p) {
+    if (!p || p === &#x27;*&#x27;) {
+      return this;
+    }
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+    return this.properties[p];
+  },
 
-</div>
+  /**
+   * Initializes all the {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instances for the &lt;i&gt;shell&lt;/i&gt;of &lt;i&gt;this&lt;/i&gt; ProAct.ObjectCore.
+   * &lt;p&gt;
+   *  Using the types of the fields of the &lt;i&gt;shell&lt;/i&gt; object the right {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instances are created and stored
+   *  in &lt;i&gt;this&lt;/i&gt; using {{#crossLink &quot;ProAct.Configuration/makeProp:method&quot;}}{{/crossLink}}.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.ObjectCore
+   * @protected
+   * @instance
+   * @method setup
+   */
+  setup: function () {
+    var object = this.shell,
+        property;
 
+    for (property in object) {
+      this.makeProp(property, null, this.meta[property]);
+    }
+  },
 
+  /**
+   * Creates a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance for &lt;i&gt;this&lt;/i&gt;&#x27;s shell.
+   *
+   * &#x60;&#x60;&#x60;
+   *  var shell = {a: 3};
+   *  var core = new ProAct.Core(shell);
+   *
+   *  shell.b = function () { return this.a + 5; };
+   *  core.makeProp(&#x27;b&#x27;);
+   *
+   *  console.log(shell.b); // 8
+   *
+   *  shell.a = 5;
+   *  console.log(shell.b); // 10
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.ObjectCore
+   * @instance
+   * @method makeProp
+   * @param {String} property
+   *      The name of the property, the name of the field in the &lt;i&gt;shell&lt;/i&gt;.
+   * @param {Array} listeners
+   *      Initial listeners for &#x27;change&#x27; of the property, can be skipped.
+   * @param {String|Array} meta
+   *      Meta information for the property to create, for example if the meta contains &#x27;noprop&#x27;, no property is created,
+   *      and the initial value of the field is preserved. The meta is in format of the {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}}.
+   * @return {ProAct.Property}
+   *      The newly crated and stored in &lt;i&gt;this&lt;/i&gt; property, or null if no property was created.
+   * @throws {Error}
+   *      If there is no field defined in the &lt;i&gt;shell&lt;/i&gt; named as the passed &lt;i&gt;property&lt;/i&gt;.
+   */
+  makeProp: function (property, listeners, meta) {
+    var object = this.shell,
+        conf = ProAct.Configuration,
+        keyprops = conf.keyprops,
+        keypropList = conf.keypropList,
+        isF = P.U.isFunction,
+        isA = P.U.isArrayObject,
+        isO = P.U.isObject,
+        result;
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+    if (meta &amp;&amp; (meta === &#x27;noprop&#x27; || (meta.indexOf &amp;&amp; meta.indexOf(&#x27;noprop&#x27;) &gt;= 0))) {
+      return null;
+    }
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+    if (keyprops &amp;&amp; keypropList.indexOf(property) !== -1) {
+      throw Error(&#x27;The property name &#x27; + property + &#x27; is a key word for pro objects! Objects passed to ProAct.prob can not contain properties named as keyword properties.&#x27;);
+      return null;
+    }
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+    if (object.hasOwnProperty(property)) {
+      result = P.PP.provide(this.queueName, object, property, meta);
+    }
+
+    if (!result) {
+      return null;
+    }
+
+    if (listeners) {
+      this.properties[property].listeners.change = this.properties[property].listeners.change.concat(listeners);
+    }
+
+    if (meta &amp;&amp; P.registry) {
+      if (!P.U.isArray(meta)) {
+        meta = [meta];
+      }
+
+      if (!(meta[0] instanceof ProAct.Property)) {
+        P.registry.setup.apply(P.registry, [result].concat(meta));
+      }
+    }
+
+    return result;
+  },
+
+  /**
+   * Sets the value of a managed property. The interesting thing here is that
+   * if the property does not exist this method creates it and stores a new field in the &lt;i&gt;shell&lt;/i&gt; object
+   * with the passed &lt;i&gt;value&lt;/i&gt;.
+   * &lt;p&gt;
+   *  The new field is reactive.
+   * &lt;/p&gt;
+   *
+   * &#x60;&#x60;&#x60;
+   *  var shell = {a: 3};
+   *  var core = new ProAct.Core(shell);
+   *
+   *  core.set(&#x27;b&#x27;, function () { return this.a + 5; });
+   *
+   *  console.log(shell.b); // 8
+   *
+   *  shell.a = 5;
+   *  console.log(shell.b); // 10
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.ObjectCore
+   * @instance
+   * @method set
+   * @param {String} property
+   *      The name of the property to update/create.
+   * @param {Object} value
+   *      The value of the property to be set.
+   */
+  set: function (property, value) {
+    var object = this.shell;
+
+    object[property] = value;
+    if (this.properties[property]) {
+      return;
+    }
+
+    this.makeProp(property);
+  }
+});
+
+    </pre>
 </div>
 
                     </div>

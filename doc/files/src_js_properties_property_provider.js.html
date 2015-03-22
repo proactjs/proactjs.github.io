@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/js/properties/property_provider.js - proact.js</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="proact.js" src="../../proact_logo_icon.png" style="max-height: 65%;" title="proact.js">
+        
+            proact.js
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.2.2</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "modules/proact-core", "modules/proact-properties", "modules/proact-streams"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/ProAct.html">ProAct</a></li>
+                    
+                        <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoPropertyProvider.html">ProAct.AutoPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.BufferedStream.html">ProAct.BufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
+                    
+                        <li><a href="../classes/ProAct.Core.html">ProAct.Core</a></li>
+                    
+                        <li><a href="../classes/ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.Types.html">ProAct.Property.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.PropertyProvider.html">ProAct.PropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
+                    
+                        <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-properties.html">proact-properties</a></li>
+                    
+                        <li><a href="../modules/proact-streams.html">proact-streams</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/js/properties/property_provider.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-properties
+ */
+
+/**
+ * &lt;p&gt;
+ *  The &#x60;ProAct.PropertyProvider&#x60; is an abstract class.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Many providers can be registered for many kinds of properties.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  When a ProAct.js object is initialized its fields are turned into properties.
+ *  Depending on the type and the name of the field, as well as meta information the valid
+ *  type of {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} is created and used.
+ *  The &#x60;PropertyProviders&#x60; have &#x27;filter&#x27; method and depending on it the valid kind is decided.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  ProAct.PropertyProvider is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.PropertyProvider
+ * @constructor
+ */
+function PropertyProvider () {}
+ProAct.PropertyProvider = P.PP = PropertyProvider;
+
+
+(function (P) {
+  var providers = [];
+
+  P.U.ex(P.PP, {
+
+
+    /**
+     * Registers a &#x60;ProAct.PropertyProvider&#x60;.
+     * &lt;p&gt;
+     *  The provider is appended in the end of the list of &#x60;ProAct.PropertyProviders&#x60;.
+     * &lt;/p&gt;
+     * &lt;p&gt;
+     *  When a property must be provided if there is a &#x60;ProAct.PropertyProvider&#x60; registered before
+     *  the passed &lt;i&gt;propertyProvider&lt;/i&gt;, with valid filtering for the passed field, it will
+     *  be used instead.
+     * &lt;/p&gt;
+     *
+     * @for ProAct.PropertyProvider
+     * @method registerProvider
+     * @static
+     * @param {ProAct.PropertyProvider} propertyProvider
+     *      The &#x60;ProAct.PropertyProvider&#x60; to register.
+     */
+    registerProvider: function (propertyProvider) {
+      providers.push(propertyProvider);
+    },
+
+    /**
+     * Registers a &#x60;ProAct.PropertyProvider&#x60;.
+     * &lt;p&gt;
+     *  The provider is prepended in the beginning of the list of &#x60;ProAct.PropertyProviders&#x60;.
+     * &lt;/p&gt;
+     * &lt;p&gt;
+     *  It&#x27;s filtering will be called before any other registered provider.
+     * &lt;/p&gt;
+     *
+     * @for ProAct.PropertyProvider
+     * @method prependProvider
+     * @static
+     * @param {ProAct.PropertyProvider} propertyProvider
+     *      The &#x60;ProAct.PropertyProvider&#x60; to register.
+     */
+    prependProvider: function (propertyProvider) {
+      providers.unshift(propertyProvider);
+    },
+
+    /**
+     * Removes a &#x60;ProAct.PropertyProvider&#x60; from the list of the registered &#x60;ProAct.PropertyProviders&#x60;.
+     *
+     * @for ProAct.PropertyProvider
+     * @method unregisterProvider
+     * @static
+     * @param {ProAct.PropertyProvider} propertyProvider
+     *      The ProAct.PropertyProvider to unregister.
+     */
+    unregisterProvider: function (propertyProvider) {
+      P.U.remove(providers, propertyProvider);
+    },
+
+    /**
+     * Removes all &#x60;ProAct.PropertyProviders&#x60; from the list of the registered &#x60;ProAct.PropertyProviders&#x60;.
+     *
+     * @for ProAct.PropertyProvider
+     * @static
+     * @method clearProviders
+     */
+    clearProviders: function () {
+      providers = [];
+    },
+
+    /**
+     * Provides a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance using the list of the registered
+     * &#x60;ProAct.PropertyProviders&#x60;.
+     * &lt;p&gt;
+     *  The providers are tried in the order of their registration
+     *  (the order can be changed using {{#crossLink &quot;ProAct.PropertyProvider/prependProvider:method&quot;}}{{/crossLink}}).
+     * &lt;/p&gt;
+     * &lt;p&gt;
+     *  The {{#crossLink &quot;ProAct.PropertyProvider/filter:method&quot;}}{{/crossLink}} method is used to check
+     *  if a provider is compliant with the passed arguments.
+     * &lt;/p&gt;
+     * &lt;p&gt;
+     *  If a compliant provider is found, its {{#crossLink &quot;ProAct.PropertyProvider/provide:method&quot;}}{{/crossLink}} method
+     *  is used to provide the {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance.
+     * &lt;/p&gt;
+     *
+     * @for ProAct.PropertyProvider
+     * @static
+     * @param {String} queueName
+     *      The name of the queue all the updates should be pushed to.
+     *      &lt;p&gt;
+     *        If this parameter is null/undefined the default queue of
+     *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+     *      &lt;/p&gt;
+     *      &lt;p&gt;
+     *        If this parameter is not a string it is used as the
+     *        &lt;i&gt;object&lt;/i&gt;.
+     *      &lt;/p&gt;
+     * @param {Object} object
+     *      The object to provide a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance for.
+     * @param {String} property
+     *      The field name of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}.
+     * @param {String|Array} meta
+     *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance to be provided.
+     * @return {ProAct.Property}
+     *      A property provided by registered provider, or null if there is no compliant provider.
+     */
+    provide: function (queueName, object, property, meta) {
+      if (queueName &amp;&amp; !P.U.isString(queueName)) {
+        meta = property;
+        property = object;
+        object = queueName;
+        queueName = null;
+      }
+      var ln = providers.length,
+          prop = null,
+          provider = null,
+          i;
+
+      for (i = 0; i &lt; ln; i++) {
+        provider = providers[i];
+        if (provider.filter(object, property, meta)) {
+          break;
+        } else {
+          provider = null;
+        }
+      }
+
+      if (provider) {
+        prop = provider.provide(queueName, object, property, meta);
+      }
+
+      return prop;
+    }
+  });
+}(P));
+
+ProAct.PropertyProvider.prototype = {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.PropertyProvider
+   * @final
+   * @for ProAct.PropertyProvider
+   */
+  constructor: ProAct.PropertyProvider,
+
+  /**
+   * Used to check if this &#x60;ProAct.PropertyProvider&#x60; is compliant with the field and meta data
+   * to be used for creating a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance with
+   * {{#crossLink &quot;ProAct.PropertyProvider/provide:method&quot;}}{{/crossLink}}.
+   * &lt;p&gt;
+   *  Abstract - must be implemented by an extender.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.PropertyProvider
+   * @abstract
+   * @instance
+   * @method filter
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field name of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}.
+   *      Can be used in the filtering process.
+   *      &lt;p&gt;
+   *        For example field name beginning with foo. Can be turned into a FooProperty.
+   *      &lt;/p&gt;
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance to be provided.
+   * @return {Boolean}
+   *      If &lt;i&gt;this&lt;/i&gt; provider is compliant with the passed arguments.
+   */
+  filter: function (object, property, meta) {
+    throw new Error(&#x27;Abstract! Implement!&#x27;);
+  },
+
+  /**
+   * Provides an instance of {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}.
+   * &lt;p&gt;
+   *  It should be called only after &lt;i&gt;this&lt;/i&gt; {{#crossLink &quot;ProAct.PropertyProvider/filter:method&quot;}}{{/crossLink}} method,
+   *  called with the same arguments returns true.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  Abstract - must be implemented in an extender.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.PropertyProvider
+   * @abstract
+   * @instance
+   * @method provide
+   * @param {String} queueName
+   *      The name of the queue all the updates should be pushed to.
+   *      &lt;p&gt;
+   *        If this parameter is null/undefined the default queue of
+   *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+   *      &lt;/p&gt;
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}. Can be used in the filtering process.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance to be provided.
+   * @return {ProAct.Property}
+   *      A property provided by &lt;i&gt;this&lt;/i&gt; provider.
+   */
+  provide: function (queueName, object, property, meta) {
+    throw new Error(&#x27;Abstract! Implement!&#x27;);
+  }
+};
+
+/**
+ * &lt;p&gt;
+ *  Constructor for &#x60;ProAct.SimplePropertyProvider&#x60;.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Provides {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instances for fields of simple types - strings, numbers, booleans.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.SimplePropertyProvider&#x60; is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.SimplePropertyProvider
+ * @extends ProAct.PropertyProvider
+ * @constructor
+ */
+ProAct.SimplePropertyProvider = P.SPP = function () {
+  P.PP.call(this);
+};
+
+ProAct.SimplePropertyProvider.prototype = P.U.ex(Object.create(P.PP.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.SimplePropertyProvider
+   * @final
+   * @for ProAct.SimplePropertyProvider
+   */
+  constructor: ProAct.AutoPropertyProvider,
+  constructor: ProAct.SimplePropertyProvider,
+
+  /**
+   * Used to check if this &#x60;ProAct.SimplePropertyProvider&#x60; is compliant with the field and meta data.
+   *
+   * @for ProAct.SimplePropertyProvider
+   * @instance
+   * @method filter
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field name of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}. Can be used in the filtering process.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance to be provided.
+   * @return {Boolean}
+   *      True if the value of &lt;b&gt;object[property]&lt;/b&gt; not undefined or null as well as object, array ot function.
+   */
+  filter: function (object, property, meta) {
+    var v = object[property];
+    return (v === null || v === undefined) || (!P.U.isFunction(v) &amp;&amp; !P.U.isArrayObject(v) &amp;&amp; !P.U.isObject(v));
+  },
+
+  /**
+   * Provides an instance of {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}.
+   *
+   * @for ProAct.SimplePropertyProvider
+   * @instance
+   * @method provide
+   * @param {String} queueName
+   *      The name of the queue all the updates should be pushed to.
+   *      &lt;p&gt;
+   *        If this parameter is null/undefined the default queue of
+   *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+   *      &lt;/p&gt;
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance to be provided.
+   * @return {ProAct.Property}
+   *      A {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance provided by &lt;i&gt;this&lt;/i&gt; provider.
+   */
+  provide: function (queueName, object, property, meta) {
+    return new P.P(queueName, object, property);
+  }
+});
+
+/**
+ * &lt;p&gt;
+ *  Constructor for &#x60;ProAct.AutoPropertyProvider&#x60;.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Provides {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}} instances for fields pointing to functions.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.AutoPropertyProvider&#x60; is part of the &#x60;proact-properties&#x60; module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.AutoPropertyProvider
+ * @extends ProAct.PropertyProvider
+ * @constructor
+ */
+ProAct.AutoPropertyProvider = P.FPP = function () {
+  P.PP.call(this);
+};
+
+ProAct.AutoPropertyProvider.prototype = P.U.ex(Object.create(P.PP.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.AutoPropertyProvider
+   * @final
+   * @for ProAct.AutoPropertyProvider
+   */
+  constructor: ProAct.AutoPropertyProvider,
+
+  /**
+   * Used to check if this &#x60;ProAct.AutoPropertyProvider&#x60; is compliant with the field and meta data.
+   *
+   * @for ProAct.AutoPropertyProvider
+   * @instance
+   * @method filter
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field name of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}}.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}} instance to be provided.
+   * @return {Boolean}
+   *      True if the value of &lt;b&gt;object[property]&lt;/b&gt; a function.
+   */
+  filter: function (object, property, meta) {
+    return P.U.isFunction(object[property]);
+  },
+
+  /**
+   * Provides an instance of {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}}.
+   *
+   * @for ProAct.AutoPropertyProvider
+   * @instance
+   * @method provide
+   * @param {String} queueName
+   *      The name of the queue all the updates should be pushed to.
+   *      &lt;p&gt;
+   *        If this parameter is null/undefined the default queue of
+   *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+   *      &lt;/p&gt;
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}}.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}} instance to be provided.
+   * @return {ProAct.AutoProperty}
+   *      A {{#crossLink &quot;ProAct.AutoProperty&quot;}}{{/crossLink}} instance provided by &lt;i&gt;this&lt;/i&gt; provider.
+   */
+  provide: function (queueName, object, property, meta) {
+    return new P.FP(queueName, object, property);
+  }
+});
+
+/**
+ * &lt;p&gt;
+ *  Constructor for &#x60;ProAct.ArrayPropertyProvider&#x60;.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Provides {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}} instances for fields pointing to arrays.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.ArrayPropertyProvider&#x60; is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @for ProAct.ArrayPropertyProvider
+ * @extends ProAct.PropertyProvider
+ * @constructor
+ */
+ProAct.ArrayPropertyProvider = P.APP = function () {
+  P.PP.call(this);
+};
+
+ProAct.ArrayPropertyProvider.prototype = P.U.ex(Object.create(P.PP.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.ArrayPropertyProvider
+   * @final
+   * @for ProAct.ArrayPropertyProvider
+   */
+  constructor: ProAct.ArrayPropertyProvider,
+
+  /**
+   * Used to check if this &#x60;ProAct.ArrayPropertyProvider&#x60; is compliant with the field and meta data.
+   *
+   * @for ProAct.ArrayPropertyProvider
+   * @instance
+   * @method filter
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field name of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}}.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}} instance to be provided.
+   * @return {Boolean}
+   *      True if the value of &lt;b&gt;object[property]&lt;/b&gt; an array.
+   */
+  filter: function (object, property, meta) {
+    return P.U.isArrayObject(object[property]);
+  },
+
+  /**
+   * Provides an instance of {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}}.
+   *
+   * @for ProAct.ArrayPropertyProvider
+   * @instance
+   * @method provide
+   * @param {String} queueName
+   *      The name of the queue all the updates should be pushed to.
+   *      &lt;p&gt;
+   *        If this parameter is null/undefined the default queue of
+   *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+   *      &lt;/p&gt;
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}}.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}} instance to be provided.
+   * @return {ProAct.ArrayProperty}
+   *      A {{#crossLink &quot;ProAct.ArrayProperty&quot;}}{{/crossLink}} instance provided by &lt;i&gt;this&lt;/i&gt; provider.
+   */
+  provide: function (queueName, object, property, meta) {
+    return new P.AP(queueName, object, property);
+  }
+});
+
+/**
+ * &lt;p&gt;
+ *  Constructor for ProAct.ObjectPropertyProvider.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Provides {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}} instances for fields pointing to objects, different from arrays or functions.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.ObjectPropertyProvider&#x60; is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.ObjectPropertyProvider
+ * @extends ProAct.PropertyProvider
+ * @constructor
+ */
+ProAct.ObjectPropertyProvider = P.OPP = function () {
+  P.PP.call(this);
+};
+
+ProAct.ObjectPropertyProvider.prototype = P.U.ex(Object.create(P.PP.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.ObjectPropertyProvider
+   * @final
+   * @for ProAct.ObjectPropertyProvider
+   */
+  constructor: ProAct.ObjectPropertyProvider,
+
+  /**
+   * Used to check if this &#x60;ProAct.ObjectPropertyProvider&#x60; is compliant with the field and meta data.
+   *
+   * @for ProAct.ObjectPropertyProvider
+   * @instance
+   * @method filter
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field name of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}}.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}} instance to be provided.
+   * @return {Boolean}
+   *      True if the value of &lt;b&gt;object[property]&lt;/b&gt; an object, different from array or function.
+   */
+  filter: function (object, property, meta) {
+    return P.U.isObject(object[property]);
+  },
+
+  /**
+   * Provides an instance of {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}}.
+   *
+   * @for ProAct.ObjectPropertyProvider
+   * @instance
+   * @method provide
+   * @param {String} queueName
+   *      The name of the queue all the updates should be pushed to.
+   *      &lt;p&gt;
+   *        If this parameter is null/undefined the default queue of
+   *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+   *      &lt;/p&gt;
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}}.
+   * @param {String|Array} meta
+   *      Meta information to be used for filtering and configuration of the {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}} instance to be provided.
+   * @return {ProAct.ObjectProperty}
+   *      A {{#crossLink &quot;ProAct.ObjectProperty&quot;}}{{/crossLink}} instance provided by &lt;i&gt;this&lt;/i&gt; provider.
+   */
+  provide: function (queueName, object, property, meta) {
+    return new P.OP(queueName, object, property);
+  }
+});
+
+/**
+ * &lt;p&gt;
+ *  Constructor for &#x60;ProAct.ProxyPropertyProvider&#x60;.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Provides {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}} instances for fields that should point to properties.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.ProxyPropertyProvider&#x60; is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.ProxyPropertyProvider
+ * @extends ProAct.PropertyProvider
+ * @constructor
+ */
+ProAct.ProxyPropertyProvider = P.PXPP = function () {
+  P.PP.call(this);
+};
+
+ProAct.ProxyPropertyProvider.prototype = P.U.ex(Object.create(P.PP.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.ProxyPropertyProvider
+   * @final
+   * @for ProAct.ProxyPropertyProvider
+   */
+  constructor: ProAct.ProxyPropertyProvider,
+
+  /**
+   * Used to check if this &#x60;ProAct.ProxyPropertyProvider&#x60; is compliant with the meta data.
+   *
+   * @for ProAct.ProxyPropertyProvider
+   * @instance
+   * @method filter
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field name of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}}.
+   * @param {ProAct.Property} meta
+   *      If the meta is present and of type {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}, it becomes the target property of the
+   *      {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}} that will be provided.
+   * @return {Boolean}
+   *      True if &lt;i&gt;meta&lt;/i&gt; argument is present and is instance of {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}.
+   */
+  filter: function (object, property, meta) {
+    if (!meta || !(meta instanceof ProAct.Property)) {
+      return false;
+    }
+
+    return meta instanceof ProAct.Property;
+  },
+
+  /**
+   * Provides an instance of {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}}.
+   *
+   * @for ProAct.ProxyPropertyProvider
+   * @instance
+   * @method provide
+   * @param {String} queueName
+   *      The name of the queue all the updates should be pushed to.
+   *      &lt;p&gt;
+   *        If this parameter is null/undefined the default queue of
+   *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+   *      &lt;/p&gt;
+   * @param {Object} object
+   *      The object to which a new {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}} instance should be provided.
+   * @param {String} property
+   *      The field of the &lt;i&gt;object&lt;/i&gt; to turn into a {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}}.
+   * @param {ProAct.Property} meta
+   *      The target {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} of the {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}} to be created.
+   * @return {ProAct.ProxyProperty}
+   *      A {{#crossLink &quot;ProAct.ProxyProperty&quot;}}{{/crossLink}} instance provided by &lt;i&gt;this&lt;/i&gt; provider.
+   */
+  provide: function (queueName, object, property, meta) {
+    return new P.PXP(queueName, object, property, meta);
+  }
+});
+
+P.PP.registerProvider(new P.ProxyPropertyProvider());
+P.PP.registerProvider(new P.SimplePropertyProvider());
+P.PP.registerProvider(new P.AutoPropertyProvider());
+P.PP.registerProvider(new P.ArrayPropertyProvider());
+P.PP.registerProvider(new P.ObjectPropertyProvider());
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/core/actor_util.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,190 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/core/actor_util.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
-
-    
-</div>
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-core
+ */
 
 
+/**
+ * ActorUtil provides methods that can be used to make the Actor to &#x27;act&#x27;.
+ * The Actor is ProAct.js version of the base &#x60;Observable&#x60; object. Various types
+ * of listeners can be attached to it and used to observe its &#x60;actions&#x60;.
+ *
+ * On the other hand the &#x60;Actor&#x60; should do something or &#x60;act&#x60;, because something
+ * has to be observed after all.
+ *
+ * The &#x60;ActorUtil&#x60; contains a set of methods that help implementing these &#x60;acts&#x60;.
+ *
+ * For example the we can trigger events/values in the &#x60;Streams&#x60;. This is thier &#x60;act&#x60;.
+ * This triggering can be implemented with ease using the methods defined in &#x60;ActorUtil&#x60;.
+ *
+ * Another example is &#x60;Properties&#x60; - they can be set or updated by the reactive flow -&gt; they should react.
+ *
+ * So &#x60;ActorUtil&#x60; provides the &#x60;Actors&#x60; with helpful methods for &#x60;acting&#x60; and &#x60;reacting&#x60;.
+ *
+ * All these methods use the {{#crossLink &quot;ProAct.Flow&quot;}}{{/crossLink}} to defer the changes the right way.
+ * And the using the &#x60;flow&#x60; these methods handle the dependencies between the &#x60;Actors&#x60;.
+ *
+ * Use the methods in the &#x60;ActorUtil&#x60; to implement your &#x60;Actor&#x27;s&#x60; &#x60;actions&#x60; and &#x60;reactions&#x60;.
+ *
+ * @namespace ProAct
+ * @private
+ * @class ActorUtil
+ * @extensionfor ProAct.Actor
+ * @static
+ */
+ActorUtil = {
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+  /**
+   * Updating/notifying method that can be applied to an {{#crossLink &quot;ProAct.Actor&quot;}}{{/crossLink}}
+   *
+   * This method defers the update and the notifications into {{#crossLink &quot;ProAct.flow&quot;}}{{/crossLink}}.
+   *
+   * If the state of the caller is {{#crossLink &quot;ProAct.States.destroyed)&quot;}}{{/crossLink}}, an exception will be thrown.
+   * If the state of the caller is {{#crossLink &quot;ProAct.States.closed)&quot;}}{{/crossLink}}, nothing will happen.
+   *
+   * Examples:
+   *
+   * You can implement a stream and in it&#x27;s &#x60;trigger&#x60; method use this:
+   * &#x60;&#x60;&#x60;
+   *   ActorUtil.update.call(this, event);
+   * &#x60;&#x60;&#x60;
+   * This way the event will be triggered into the stream and all the listeners to the stream will be notified.
+   * For this to work you&#x27;ll have to override the &#x60;makeEvent&#x60; method of the stream to return the unmodified source - no state/no event generation,
+   * the event will just go through.
+   *
+   *
+   * If you want to implement a statefull &#x60;Actor&#x60; like a &#x60;property&#x60;, you can set a state in it and just notify all the
+   * observing &#x60;Actors&#x60; with this method.
+   *
+   *
+   * @method update
+   * @protected
+   * @param {Object} [source] The event/value, causing the update -&gt; can be null : no source.
+   * @param {Object} [actions] For which actions should notify -&gt; can be null : default actions.
+   * @param {Object} [eventData] Data for creating the updating event -&gt; can be null : no data.
+   * @return {Object} The calling object.
+   */
+  update: function (source, actions, eventData) {
+    if (this.state === ProAct.States.destroyed) {
+      throw new Error(&#x27;You can not trigger actions on destroyed actors!&#x27;);
+    }
 
-</div>
+    if (this.state === ProAct.States.closed) {
+      return;
+    }
 
+    var actor = this;
+    if (!P.flow.isRunning()) {
+      P.flow.run(function () {
+        ActorUtil.doUpdate.call(actor, source, actions, eventData);
+      });
+    } else {
+      ActorUtil.doUpdate.call(actor, source, actions, eventData);
+    }
+    return this;
+  },
 
+  /**
+   * Contains the real notify/update logic defered by {{#crossLink &quot;ProAct.ActorUtil/update:method&quot;}}{{/crossLink}} into the flow.
+   * It is private method, should not be used - use &#x60;update&#x60;.
+   *
+   * @method doUpdate
+   * @private
+   * @param {Object} [source] The event/value, causing the update -&gt; can be null : no source.
+   * @param {Object} [actions] For which actions should notify -&gt; can be null : default actions.
+   * @param {Object} [eventData] Data for creating the updating event -&gt; can be null : no data.
+   * @return {Object} The calling object.
+   */
+  doUpdate: function (source, actions, eventData) {
+    if (!actions) {
+      actions = this.defaultActions();
+    }
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+    var ln, i, j,
+        listener,
+        listeners,
+        length,
+        event;
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+    if (P.U.isString(actions)) {
+      listeners = this.listeners[actions];
+    } else {
+      while (actions.indexOf(&#x27;close&#x27;) !== -1) {
+        P.U.remove(actions, &#x27;close&#x27;);
+      }
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+      listeners = [];
+      ln = actions.length;
+
+      if (this.parent === null &amp;&amp; actions.length === 0) {
+        return this;
+      }
+
+      for (i = 0; i &lt; ln; i++) {
+        listenersForAction = this.listeners[actions[i]];
+
+        if (listenersForAction) {
+          for (j = 0; j &lt; listenersForAction.length; j++) {
+            if (listenersForAction[j].destroyed || listenersForAction[j].closed) {
+              this.off(actions[i], listenersForAction[j]);
+              continue;
+            }
+          }
+          listeners = listeners.concat(listenersForAction);
+        }
+      }
+    }
+
+    if (listeners.length === 0 &amp;&amp; this.parent === null &amp;&amp; actions !== &#x27;close&#x27;) {
+      return this;
+    }
+
+    if (actions === &#x27;close&#x27; &amp;&amp; !this.canClose()) {
+      return this;
+    }
+
+    length = listeners.length;
+    event = this.makeEvent(source, eventData);
+
+    for (i = 0; i &lt; length; i++) {
+      listener = listeners[i];
+      if (!listener) {
+        throw new Error(&#x27;Invalid null listener for actions : &#x27; + actions);
+      }
+
+      if (P.U.isString(actions) &amp;&amp; listener.destroyed) {
+        this.off(actions, listener);
+        continue;
+      }
+
+      this.defer(event, listener);
+
+      if (listener.property) {
+        ActorUtil.doUpdate.call(listener.property, event);
+      }
+    }
+
+    if (this.parent &amp;&amp; this.parent.call) {
+      this.defer(event, this.parent);
+    }
+
+    if (actions === &#x27;close&#x27;) {
+      P.flow.pushClose(this, this.doClose);
+    }
+
+    return this;
+  }
+};
+P.U.defValProp(ProAct, &#x27;ActorUtil&#x27;, false, false, false, ActorUtil);
+
+    </pre>
 </div>
 
                     </div>

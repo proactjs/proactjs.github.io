@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/js/streams/stream.js - proact.js</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="proact.js" src="../../proact_logo_icon.png" style="max-height: 65%;" title="proact.js">
+        
+            proact.js
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.2.2</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "modules/proact-core", "modules/proact-properties", "modules/proact-streams"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/ProAct.html">ProAct</a></li>
+                    
+                        <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoPropertyProvider.html">ProAct.AutoPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.BufferedStream.html">ProAct.BufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
+                    
+                        <li><a href="../classes/ProAct.Core.html">ProAct.Core</a></li>
+                    
+                        <li><a href="../classes/ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.Types.html">ProAct.Property.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.PropertyProvider.html">ProAct.PropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
+                    
+                        <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-properties.html">proact-properties</a></li>
+                    
+                        <li><a href="../modules/proact-streams.html">proact-streams</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/js/streams/stream.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * The &#x60;proact-streams&#x60; module provides stateless streams to the ProAct.js API.
+ * FRP reactive streams.
+ *
+ * @module proact-streams
+ * @main proact-streams
+ */
+
+// PRIVATE
+StreamUtil = {
+  go: function (event, useTransformations) {
+    if (this.listeners.change.length === 0) {
+      return this;
+    }
+    if (useTransformations) {
+      try {
+        event = P.Actor.transform(this, event);
+      } catch (e) {
+        StreamUtil.triggerErr.call(this, e);
+        return this;
+      }
+    }
+
+    if (event === P.Actor.BadValue) {
+      return this;
+    }
+
+    return ActorUtil.update.call(this, event);
+  },
+
+  triggerMany: function () {
+    var i, args = slice.call(arguments), ln = args.length;
+
+    for (i = 0; i &lt; ln; i++) {
+      this.trigger(args[i], true);
+    }
+
+    return this;
+  },
+
+  trigger: function (event, useTransformations) {
+    if (useTransformations === undefined) {
+      useTransformations = true;
+    }
+
+    return StreamUtil.go.call(this, event, useTransformations);
+  },
+
+  triggerErr: function (err) {
+    return ActorUtil.update.call(this, err, &#x27;error&#x27;);
+  },
+
+  triggerClose: function (data) {
+    return ActorUtil.update.call(this, data, &#x27;close&#x27;);
+  }
+
+};
+
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.Stream&#x60;.
+ *  The stream is a simple {{#crossLink &quot;ProAct.Actor&quot;}}{{/crossLink}}, without state.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The streams are ment to emit values, events, changes and can be plugged into other &#x60;Actors&#x60;.
+ *  For example it is possible to connect multiple streams, to merge them and to separate them,
+ *  to plug them into properties.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The reactive environment consists of the properties and the objects containing them, but
+ *  the outside world is not reactive. It is possible to use the &#x60;ProAct.Streams&#x60; as connections from the
+ *  outside world to the reactive environment.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *    The transformations can be used to change the events or values emitetted.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.Stream&#x60; is part of the proact-streams module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.Stream
+ * @extends ProAct.Actor
+ * @constructor
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;source&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {ProAct.Actor} source
+ *      A default source of the stream, can be null.
+ * @param {Array} transforms
+ *      A list of transformation to be used on all incoming chages.
+ */
+function Stream (queueName, source, transforms) {
+  if (queueName &amp;&amp; !P.U.isString(queueName)) {
+    transforms = source;
+    source = queueName;
+    queueName = null;
+  }
+  P.Actor.call(this, queueName, transforms);
+
+  this.sourceNumber = 0;
+
+  if (source) {
+    this.into(source);
+  }
+}
+ProAct.Stream = ProAct.S = Stream;
+
+ProAct.Stream.prototype = P.U.ex(Object.create(P.Actor.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.Stream
+   * @final
+   * @for ProAct.Stream
+   */
+  constructor: ProAct.Stream,
+
+  /**
+   * Creates the &lt;i&gt;event&lt;/i&gt; to be send to the listeners on update.
+   * &lt;p&gt;
+   *  Streams don&#x27;t create new events by default, the event is the source.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Stream
+   * @protected
+   * @instance
+   * @method makeEvent
+   * @param {ProAct.Event} source
+   *      The source event of the event. It can be null
+   * @return {ProAct.Event}
+   *      The event.
+   */
+  makeEvent: function (source) {
+    return source;
+  },
+
+  /**
+   * Creates the &lt;i&gt;listener&lt;/i&gt; of this stream.
+   *
+   * @for ProAct.Stream
+   * @protected
+   * @instance
+   * @method makeListener
+   * @return {Object}
+   *      The &lt;i&gt;listener of this stream&lt;/i&gt;.
+   */
+  makeListener: function () {
+    if (!this.listener) {
+      var stream = this;
+      this.listener = function (event) {
+        if (stream.trigger) {
+          stream.trigger(event, true);
+        } else {
+          StreamUtil.trigger.call(stream, event, true);
+        }
+      };
+    }
+
+    return this.listener;
+  },
+
+  /**
+   * Creates the &lt;i&gt;error listener&lt;/i&gt; of this stream.
+   * &lt;p&gt;
+   *  The listener pushes the incoming event into &#x60;this Stream&#x60; by default.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Stream
+   * @protected
+   * @instance
+   * @method makeErrListener
+   * @return {Object}
+   *      The &lt;i&gt;error listener of this stream&lt;/i&gt;.
+   */
+  makeErrListener: function () {
+    if (!this.errListener) {
+      var stream = this;
+      this.errListener = function (error) {
+        if (stream.triggerErr) {
+          stream.triggerErr(event);
+        } else {
+          StreamUtil.triggerErr.call(stream, error);
+        }
+      };
+    }
+
+    return this.errListener;
+  },
+
+  /**
+   * Creates the &lt;i&gt;closing listener&lt;/i&gt; of this stream.
+   *
+   * Pushes a closing notification into the stream by default.
+   *
+   * @for ProAct.Stream
+   * @instance
+   * @protected
+   * @method makeCloseListener
+   * @return {Object}
+   *      The &lt;i&gt;closing listener of this stream&lt;/i&gt;.
+   */
+  makeCloseListener: function () {
+    if (!this.closeListener) {
+      var stream = this;
+      this.closeListener = function (data) {
+        if (stream.triggerClose) {
+          stream.triggerClose(data);
+        } else {
+          StreamUtil.triggerClose.call(stream, data);
+        }
+      };
+    }
+
+    return this.closeListener;
+  },
+
+  /**
+   * Defers a &#x60;ProAct.Actor&#x60; listener.
+   * &lt;p&gt;
+   *  For streams this means pushing it to active flow using {{#crossLink &quot;ProAct.Flow/push:method&quot;}}{{/crossLink}}.
+   *  If the listener is object with &#x27;property&#x27; field, it is done using {{#crossLink &quot;ProAct.Actor/defer:method&quot;}}{{/crossLink}}.
+   *  That way the reactive environment is updated only once, but the streams are not part of it.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Stream
+   * @protected
+   * @instance
+   * @method defer
+   * @param {Object} event
+   *      The event/value to pass to the listener.
+   * @param {Object} listener
+   *      The listener to defer. It should be a function or object defining the &lt;i&gt;call&lt;/i&gt; method.
+   * @return {ProAct.Actor}
+   *      &lt;i&gt;this&lt;/i&gt;
+   */
+  defer: function (event, listener) {
+    if (!listener) {
+      return;
+    }
+
+    if (listener.property) {
+      P.Actor.prototype.defer.call(this, event, listener);
+      return;
+    }
+    var queueName = (listener.queueName) ? listener.queueName : this.queueName;
+
+    if (P.U.isFunction(listener)) {
+      P.flow.push(queueName, listener, [event]);
+    } else {
+      P.flow.push(queueName, listener, listener.call, [event]);
+    }
+  },
+
+  /**
+   * Creates a new &#x60;ProAct.Stream&#x60; instance with source &lt;i&gt;this&lt;/i&gt; and mapping
+   * the passed &lt;i&gt;mapping function&lt;/i&gt;.
+   *
+   * &#x60;&#x60;&#x60;
+   *   var mapped = stream.map(function (v) {
+   *     return v * v;
+   *   });
+   *
+   *   mapped.on(function (v) {
+   *     console.log(v); // squares
+   *   });
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Stream
+   * @instance
+   * @method map
+   * @param {Object} mappingFunction
+   *      Function or object with a &lt;i&gt;call method&lt;/i&gt; to use as map function.
+   * @return {ProAct.Stream}
+   *      A new &#x60;ProAct.Stream&#x60; instance with the &lt;i&gt;mapping&lt;/i&gt; applied.
+   */
+  map: function (mappingFunction) {
+    return new P.S(this).mapping(mappingFunction);
+  },
+
+  /**
+   * Creates a new &#x60;ProAct.Stream&#x60; instance with source &lt;i&gt;this&lt;/i&gt; and filtering
+   * the passed &lt;i&gt;filtering function&lt;/i&gt;.
+   *
+   * &#x60;&#x60;&#x60;
+   *   var filtered = stream.filter(function (v) {
+   *     return v % 2 === 1;
+   *   });
+   *
+   *   filtered.on(function (v) {
+   *     console.log(v); // odds
+   *   });
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Stream
+   * @instance
+   * @method filter
+   * @param {Object} filteringFunction
+   *      The filtering function or object with a call method, should return boolean.
+   * @return {ProAct.Stream}
+   *      A new &#x60;ProAct.Stream&#x60; instance with the &lt;i&gt;filtering&lt;/i&gt; applied.
+   */
+  filter: function (filteringFunction) {
+    return new P.S(this).filtering(filteringFunction);
+  },
+
+  /**
+   * Creates a new &#x60;ProAct.Stream&#x60; instance with source &lt;i&gt;this&lt;/i&gt; and accumulation
+   * the passed &lt;i&gt;accumulation function&lt;/i&gt;.
+   *
+   * &#x60;&#x60;&#x60;
+   *  var acc = stream.accumulate(0, function (p, v) {
+   *    return p + v;
+   *  });
+   *
+   *  acc.on(console.log); // sums
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Stream
+   * @instance
+   * @method accumulate
+   * @param {Object} initVal
+   *      Initial value for the accumulation. For example &#x27;0&#x27; for sum.
+   * @param {Object} accumulationFunction
+   *      The function to accumulate.
+   * @return {ProAct.Stream}
+   *      A new &#x60;ProAct.Stream&#x60; instance with the &lt;i&gt;accumulation&lt;/i&gt; applied.
+   */
+  accumulate: function (initVal, accumulationFunction) {
+    return new P.S(this).accumulation(initVal, accumulationFunction);
+  },
+
+  /**
+   * Creates a new &#x60;ProAct.Stream&#x60; instance that merges this with other streams.
+   * The new instance will have new value on value from any of the source streams.
+   *
+   * &#x60;&#x60;&#x60;
+   *  var merged = stream1.merge(stream2);
+   * &#x60;&#x60;&#x60;
+   *
+   * Here if &#x60;stream1&#x60; emits:
+   * 1--2---3----5-----X
+   *
+   * and &#x60;steam2&#x60; emits:
+   * ----A-----B-----C-----D--X
+   *
+   * &#x60;merged&#x60; will emit:
+   * 1--2A--3--B-5---C-----D--X
+   *
+   * @for ProAct.Stream
+   * @instance
+   * @method merge
+   * @param [...]
+   *      A list of streams to be set as sources.
+   * @return {ProAct.Stream}
+   *      A new &#x60;ProAct.Stream&#x60; instance with the sources this and all the passed streams.
+   */
+  merge: function () {
+    var sources = [this].concat(slice.call(arguments)),
+        result = new P.S();
+
+    return P.S.prototype.into.apply(result, sources);
+  },
+
+  /**
+   * Links source actors into this &#x60;ProAct.Stream&#x60;. This means that &lt;i&gt;this stream&lt;/i&gt;
+   * is listening for changes from the &lt;i&gt;sources&lt;/i&gt;.
+   *
+   * The streams count their sources and when the sources are zero, they become inactive.
+   *
+   * &#x60;&#x60;&#x60;
+   *  var stream1 = ProAct.stream();
+   *  var stream2 = ProAct.stream();
+   *  var stream = ProAct.stream();
+   *
+   *  stream.into(stream1, stream2);
+   *  stream.on(function (v) {
+   *    console.log(v);
+   *  });
+   *
+   * &#x60;&#x60;&#x60;
+   *
+   * Now if the any of the source streams is emits,
+   * the notification will be printed on the output.
+   *
+   * @for ProAct.Stream
+   * @instance
+   * @method into
+   * @param [...]
+   *      Zero or more source {{#crossLink &quot;ProAct.Actor&quot;}}{{/crossLink}}s to set as sources.
+   * @return {ProAct.Stream}
+   *      &lt;b&gt;this&lt;/b&gt;
+   */
+  into: function () {
+    ProAct.Actor.prototype.into.apply(this, arguments);
+
+    this.sourceNumber += arguments.length;
+
+    return this;
+  },
+
+  /**
+   * Checks if &lt;i&gt;this&lt;/i&gt; can be closed.
+   *
+   * Uses the number of the active sources to decide if &#x60;this stream&#x60; is ready to be closed.
+   * If the active sources are zero - it can.
+   *
+   * @for ProAct.Stream
+   * @protected
+   * @instance
+   * @method canClose
+   */
+  canClose: function () {
+    this.sourceNumber -= 1;
+
+    return this.sourceNumber &lt;= 0;
+  }
+});
+
+// Methods added to the ProAct.Actor from the proact-streams module.
+P.U.ex(P.Actor.prototype, {
+
+  /**
+   * Turns this &#x60;ProAct.Actor&#x60; to a {{#crossLink &quot;ProAct.Stream&quot;}}{{/crossLink}}.
+   *
+   * In reality this method creates a new &#x60;Stream&#x60; with source this.
+   *
+   * @for ProAct.Actor
+   * @instance
+   * @method toStream
+   */
+  toStream: function () {
+    return new P.S(this.queueName, this);
+  },
+
+  skip: function (n) {
+    var i = n, self = this;
+    return this.fromLambda(function (stream, event) {
+      if (event === ProAct.Actor.Close) {
+        stream.close();
+        return;
+      }
+
+      i--;
+      if (i &lt; 0) {
+        self.offAll(stream.lambda);
+        stream.into(self);
+        stream.trigger(event);
+      }
+    });
+  },
+
+  skipWhile: function (condition) {
+    var self = this,
+        cond = condition ? condition : function (e) {
+          return e;
+        };
+    return this.fromLambda(function (stream, event) {
+      if (event === ProAct.Actor.close) {
+        stream.close();
+        return;
+      }
+
+      if (!cond(event)) {
+        self.offAll(stream.lambda);
+        stream.into(self);
+        stream.trigger(event);
+      }
+    });
+  },
+
+  skipDuplicates: function (comparator) {
+    var last = undefined,
+        cmp = comparator ? comparator : function (a, b) {
+          return a === b;
+        };
+    return this.fromLambda(function (stream, event) {
+      if (!cmp(last, event)) {
+        stream.trigger(event);
+        last = event;
+      }
+    });
+  },
+
+  diff: function(seed, differ) {
+    var last = seed,
+        fn = differ ? differ : function (last, next) {
+          return [last, next];
+        };
+    return this.fromLambda(function (stream, event) {
+      if (event === ProAct.Actor.close) {
+        stream.close();
+        return;
+      }
+
+      if (last === undefined) {
+        last = event;
+        return;
+      }
+
+      stream.trigger(differ(last, event));
+      last = event;
+    });
+  },
+
+  take: function (limit) {
+    var left = limit;
+    return this.fromLambda(function (stream, event) {
+      left--;
+      if (left &gt;= 0) {
+        stream.trigger(event, true);
+      }
+      if (left &lt;= 0 &amp;&amp; stream.state === ProAct.States.ready) {
+        stream.close();
+      }
+    });
+  },
+
+  takeWhile: function (condition) {
+    return this.fromLambda(function (stream, event) {
+      if (condition.call(null, event)) {
+        stream.trigger(event);
+      } else {
+        stream.close();
+      }
+    });
+  },
+
+  fromLambda: function (lambda) {
+    var stream = new ProAct.Stream(this.queueName),
+        listener = function (e) {
+          stream.trigger = StreamUtil.trigger;
+          lambda.call(null, stream, e);
+          stream.trigger = undefined;
+        };
+    this.onAll(listener);
+    stream.lambda = listener;
+
+    return stream;
+  },
+
+  flatMap: function (mapper) {
+    return this.fromLambda(function (stream, e) {
+      if (e !== P.Actor.Close) {
+        var actor = mapper ? mapper.call(null, e) : e;
+        stream.into(actor);
+      }
+    });
+  },
+
+  flatMapLimited: function (mapper, limit) {
+    var queue = [], current = 0, addActor = function (stream, actor) {
+      if (!actor) {
+        return;
+      }
+      if (current &lt; limit) {
+        current++;
+        stream.into(actor);
+
+        actor.onClose(function () {
+          current--;
+          actor.offAll(stream.makeListener());
+
+          addActor(stream, queue.shift());
+        });
+      } else {
+        queue.push(actor);
+      }
+    };
+
+    return this.fromLambda(function (stream, e) {
+      var actor = mapper ? mapper.call(null, e) : e;
+
+      addActor(stream, actor);
+    });
+  },
+
+  flatMapLast: function (mapper) {
+    var oldActor;
+    return this.fromLambda(function (stream, e) {
+      var actor = mapper ? mapper.call(null, e) : e;
+      if (oldActor) {
+        oldActor.offAll(stream.makeListener());
+      }
+      oldActor = actor;
+      stream.into(actor);
+    });
+  },
+
+  flatMapFirst: function (mapper) {
+    var oldActor;
+    return this.fromLambda(function (stream, e) {
+      if (oldActor &amp;&amp; oldActor.state !== ProAct.States.closed) {
+        return;
+      }
+
+      var actor = mapper ? mapper.call(null, e) : e;
+      if (oldActor) {
+        oldActor.offAll(stream.makeListener());
+      }
+      oldActor = actor;
+      stream.into(actor);
+    });
+  }
+});
+
+P.S.prototype.t = P.S.prototype.trigger;
+P.S.prototype.tt = P.S.prototype.triggerMany;
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

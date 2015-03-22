@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ProAct.ActorUtil - proact.js</title>
+    <title>ProAct.Event - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,7 +153,7 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>ProAct.ActorUtil <small>Class</small></h1>
+    <h1>ProAct.Event <small>Class</small></h1>
 </div>
 
 <div class="well well-small">
@@ -163,7 +163,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_js_core_actor_util.js.html#l6"><code>src&#x2F;js&#x2F;core&#x2F;actor_util.js:6</code></a>
+            Defined in: <a href="../files/src_js_core_event.js.html#l5"><code>src&#x2F;js&#x2F;core&#x2F;event.js:5</code></a>
         </div>
     
 
@@ -179,22 +179,173 @@
 
 
 <div class="well well-small">
-    <p>ActorUtil provides methods that can be used to make the Actor to &#39;act&#39;.
-The Actor is ProAct.js version of the base <code>Observable</code> object. Various types
-of listeners can be attached to it and used to observe its <code>actions</code>.</p>
-<p>On the other hand the <code>Actor</code> should do something or <code>act</code>, because something
-has to be observed after all.</p>
-<p>The <code>ActorUtil</code> contains a set of methods that help implementing these <code>acts</code>.</p>
-<p>For example the we can trigger events/values in the <code>Streams</code>. This is thier <code>act</code>.
-This triggering can be implemented with ease using the methods defined in <code>ActorUtil</code>.</p>
-<p>Another example is <code>Properties</code> - they can be set or updated by the reactive flow -&gt; they should react.</p>
-<p>So <code>ActorUtil</code> provides the <code>Actors</code> with helpful methods for <code>acting</code> and <code>reacting</code>.</p>
-<p>All these methods use the ProAct.Flow to defer the changes the right way.
-And the using the <code>flow</code> these methods handle the dependencies between the <code>Actors</code>.</p>
-<p>Use the methods in the <code>ActorUtil</code> to implement your <code>Actor&#39;s</code> <code>actions</code> and <code>reactions</code>.</p>
-
+    <p>
+ Constructs a <code>ProAct.Event</code>. The event contains information of the update.
+</p>
+<p>
+ <code>ProAct.Event</code> is part of the core module of ProAct.js.
+</p>
 </div>
 
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_ProAct.Event" class="method item">
+    <h3 class="name"><code>ProAct.Event</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>source</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>target</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>type</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[...]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_js_core_event.js.html#l5"><code>src&#x2F;js&#x2F;core&#x2F;event.js:5</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">source</code>
+                        <span class="type"><a href="../classes/ProAct.Event.html" class="crosslink">ProAct.Event</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>If there is an event that coused this event - it is the source. Can be null - no source.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">target</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The thing that triggered this event.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">type</code>
+                        <span class="type"><a href="../classes/ProAct.Event.Types.html" class="crosslink">ProAct.Event.Types</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The type of the event</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[...]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>args
+     Arguments of the event, for example for value event, these are the old value and the new value.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+    </div>
 
 
 <div>
@@ -202,8 +353,8 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
         <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
 
         
-            <li><a data-toggle="tab" href="#methods">Methods</a></li>
         
+            <li><a data-toggle="tab" href="#properties">Properties</a></li>
         
         
         
@@ -214,20 +365,36 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
             <h2 class="off-left">Item Index</h2>
 
             
-                <div class="index-section methods">
-                    <h3>Methods</h3>
 
-                    <ul class="index-list methods">
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
                         
-                            <li class="index-item method private">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_doUpdate" data-tablink="doUpdate">doUpdate</a>
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_array" data-tablink="array">array</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_update" data-tablink="update">update</a>
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_close" data-tablink="close">close</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_error" data-tablink="error">error</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_value" data-tablink="value">value</a>
 
                                 
                                 
@@ -240,60 +407,25 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
             
 
             
-
-            
         </div>
 
         
-            <div id="methods" class="tab-pane">
-                <h2 class="off-left">Methods</h2>
+
+        
+            <div id="properties" class="tab-pane">
+                <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="method_doUpdate" class="method item private">
-    <h3 class="name"><code>doUpdate</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[source]</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[actions]</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[eventData]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
+                    <div id="property_array" class="property item">
+    <h3 class="name"><code>array</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
     
 
     
 
+    
+        <span class="flag final">final</span>
     
 
     
@@ -309,10 +441,9 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
             
         
         
-        <a href="../files/src_js_core_actor_util.js.html#l86"><code>src&#x2F;js&#x2F;core&#x2F;actor_util.js:86</code></a>
+        <a href="../files/src_js_core_event.js.html#l183"><code>src&#x2F;js&#x2F;core&#x2F;event.js:183</code></a>
         
         </p>
-
 
         
 
@@ -320,137 +451,33 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
     </div>
 
     <div class="description">
-        <p>Contains the real notify/update logic defered by <a href="../classes/ProAct.ActorUtil.html#method_update" class="crosslink">update</a> into the flow.
-It is private method, should not be used - use <code>update</code>.</p>
+        <p>Array type events. Events for changes in {@link ProAct.Array}.</p>
+<p>
+ The args should consist of operation, index, old values, new values.
+</p>
+
+<p>TODO Move it to the proact-arrays module.</p>
 
     </div>
 
     
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[source]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The event/value, causing the update -&gt; can be null : no source.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[actions]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>For which actions should notify -&gt; can be null : default actions.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[eventData]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Data for creating the updating event -&gt; can be null : no data.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    <p>The calling object.</p>
-
-                
-            </div>
-        </div>
     
 
     
 </div>
 
                 
-                    <div id="method_update" class="method item protected">
-    <h3 class="name"><code>update</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[source]</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[actions]</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[eventData]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
+                    <div id="property_close" class="property item">
+    <h3 class="name"><code>close</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
     
 
     
 
+    
+        <span class="flag final">final</span>
     
 
     
@@ -466,10 +493,9 @@ It is private method, should not be used - use <code>update</code>.</p>
             
         
         
-        <a href="../files/src_js_core_actor_util.js.html#l36"><code>src&#x2F;js&#x2F;core&#x2F;actor_util.js:36</code></a>
+        <a href="../files/src_js_core_event.js.html#l198"><code>src&#x2F;js&#x2F;core&#x2F;event.js:198</code></a>
         
         </p>
-
 
         
 
@@ -477,96 +503,109 @@ It is private method, should not be used - use <code>update</code>.</p>
     </div>
 
     <div class="description">
-        <p>Updating/notifying method that can be applied to an <a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a></p>
-<p>This method defers the update and the notifications into ProAct.flow.</p>
-<p>If the state of the caller is ProAct.States.destroyed), an exception will be thrown.
-If the state of the caller is ProAct.States.closed), nothing will happen.</p>
-<p>Examples:</p>
-<p>You can implement a stream and in it&#39;s <code>trigger</code> method use this:</p>
-<pre class="code prettyprint"><code>  ActorUtil.update.call(this, event);</code></pre>
-<p>This way the event will be triggered into the stream and all the listeners to the stream will be notified.
-For this to work you&#39;ll have to override the <code>makeEvent</code> method of the stream to return the unmodified source - no state/no event generation,
-the event will just go through.</p>
-<p>If you want to implement a statefull <code>Actor</code> like a <code>property</code>, you can set a state in it and just notify all the
-observing <code>Actors</code> with this method.</p>
+        <p>Close type events. Events for closing streams or destroying properties.</p>
 
     </div>
 
     
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[source]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The event/value, causing the update -&gt; can be null : no source.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[actions]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>For which actions should notify -&gt; can be null : default actions.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[eventData]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Data for creating the updating event -&gt; can be null : no data.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    <p>The calling object.</p>
+</div>
 
                 
-            </div>
-        </div>
+                    <div id="property_error" class="property item">
+    <h3 class="name"><code>error</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_js_core_event.js.html#l208"><code>src&#x2F;js&#x2F;core&#x2F;event.js:208</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Error type events. Events for errors.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_value" class="property item">
+    <h3 class="name"><code>value</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_js_core_event.js.html#l169"><code>src&#x2F;js&#x2F;core&#x2F;event.js:169</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Value type events. Events for changing a value.</p>
+<p>
+ For properties the args of the event contain the ProAct Object, the old value
+ of the property and the new value.
+</p>
+    </div>
+
+    
+
     
 
     
@@ -574,8 +613,6 @@ observing <code>Actors</code> with this method.</p>
 
                 
             </div>
-        
-
         
 
         

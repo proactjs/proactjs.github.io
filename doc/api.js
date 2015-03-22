@@ -4,24 +4,52 @@ YUI.add("yuidoc-meta", function(Y) {
         "ProAct",
         "ProAct.Actor",
         "ProAct.ActorUtil",
+        "ProAct.ArrayProperty",
+        "ProAct.ArrayPropertyProvider",
+        "ProAct.AutoProperty",
+        "ProAct.AutoPropertyProvider",
+        "ProAct.BufferedStream",
         "ProAct.Configuration",
-        "ProAct.Observable",
+        "ProAct.Core",
+        "ProAct.DebouncingStream",
+        "ProAct.DelayedStream",
+        "ProAct.Event",
+        "ProAct.Event.Types",
+        "ProAct.ObjectCore",
+        "ProAct.ObjectProperty",
+        "ProAct.ObjectPropertyProvider",
+        "ProAct.Property",
+        "ProAct.Property.Types",
+        "ProAct.PropertyProvider",
+        "ProAct.ProxyProperty",
+        "ProAct.ProxyPropertyProvider",
+        "ProAct.SimplePropertyProvider",
+        "ProAct.SizeBufferedStream",
         "ProAct.States",
+        "ProAct.Stream",
+        "ProAct.ThrottlingStream",
         "ProAct.Utils"
     ],
     "modules": [
-        "proact",
-        "proact-core"
+        "proact-core",
+        "proact-properties",
+        "proact-streams"
     ],
     "allModules": [
         {
-            "displayName": "proact",
-            "name": "proact"
-        },
-        {
             "displayName": "proact-core",
             "name": "proact-core",
-            "description": "TODO Move it to its own file."
+            "description": "The `proact-core` module provides base utilties and common functionality for all the other\nmodules of the lib."
+        },
+        {
+            "displayName": "proact-properties",
+            "name": "proact-properties",
+            "description": "The `proact-properties` module provides stateful reactive values attached to normal JavaScript\nobject's fields."
+        },
+        {
+            "displayName": "proact-streams",
+            "name": "proact-streams",
+            "description": "The `proact-streams` module provides stateless streams to the ProAct.js API.\nFRP reactive streams."
         }
     ]
 } };

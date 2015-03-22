@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/properties/object_property.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,193 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/properties/object_property.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-properties
+ */
 
-    
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.ObjectProperty&#x60;.
+ *  The properties are simple {{#crossLink &quot;ProAct.Actor&quot;}}{{/crossLink}}s with state. The object property
+ *  has a state of a JavaScript object value.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The value of &#x60;ProAct.ObjectProperty&#x60; is object, turned to reactive ProAct.js object recursively.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  On changing the object value to another object the listeners for fields with the same name in the objects,
+ *  are moved from the old value&#x27;s fields to the new value&#x27;s fields.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  If set to null or undefined, the property is re-defined, using {{#crossLink &quot;ProAct.Property/reProb:method&quot;}}{{/crossLink}}
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.ObjectProperty&#x60; is lazy - its object is made reactive on the first read of the property.
+ *  Its state is set to {{#crossLink &quot;ProAct.States/ready:property&quot;}}{{/crossLink}} on the first read too.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.ObjectProperty&#x60; is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.ObjectProperty
+ * @extends ProAct.Property
+ * @constructor
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;proObject&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {Object} proObject
+ *      A plain JavaScript object, holding a field, this property will represent.
+ * @param {String} property
+ *      The name of the field of the object, this property should represent.
+ */
+function ObjectProperty (queueName, proObject, property) {
+  if (queueName &amp;&amp; !P.U.isString(queueName)) {
+    property = proObject;
+    proObject = queueName;
+    queueName = null;
+  }
+  var self = this, getter;
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
+  getter = function () {
+    self.addCaller();
+    if (!self.val.__pro__) {
+      P.prob(self.val);
+    }
 
-    
-</div>
+    var get = P.P.defaultGetter(self),
+        set = function (newVal) {
+          if (self.val == newVal) {
+            return;
+          }
 
+          self.oldVal = self.val;
+          self.val = newVal;
 
+          if (self.val === null || self.val === undefined) {
+            P.P.reProb(self).update();
+            return self;
+          }
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+          if (self.oldVal) {
+            if (!self.val.__pro__) {
+              P.prob(self.val);
+            }
 
-</div>
+            if (P.U.isArray(this)) {
+              self.update();
+              return;
+            }
 
+            var oldProps = self.oldVal.__pro__.properties,
+                newProps = self.val.__pro__.properties,
+                oldPropName, oldProp, newProp, oldListeners, newListeners,
+                i, j, oldListenersLength, newListenersLength,
+                toAdd, toRemove = [], toRemoveLength;
 
+            for (oldPropName in oldProps) {
+              if (oldProps.hasOwnProperty(oldPropName)) {
+                newProp = newProps[oldPropName];
+                if (!newProp) {
+                  continue;
+                }
+                newListeners = newProp.listeners.change;
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+                oldProp = oldProps[oldPropName];
+                oldListeners = oldProp.listeners.change;
+                oldListenersLength = oldListeners.length;
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+                for (i = 0; i &lt; oldListenersLength; i++) {
+                  toAdd = true;
+                  for (j = 0; j &lt; newListenersLength; j++) {
+                    if (oldListeners[i] == newListeners[j]) {
+                      toAdd = false;
+                    }
+                  }
+                  if (toAdd) {
+                    newProp.on(oldListeners[i]);
+                    toRemove.push(i);
+                  }
+                }
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+                toRemoveLength = toRemove.length;
+                for (i = 0; i &lt; toRemoveLength; i++) {
+                  oldListeners.splice[toRemove[i], 1];
+                }
+                toRemove = [];
+              }
+            }
+          }
+
+          ActorUtil.update.call(self);
+        };
+
+    P.P.defineProp(self.proObject, self.property, get, set);
+
+    self.state = P.States.ready;
+    return self.val;
+  };
+
+  P.P.call(this, queueName, proObject, property, getter, function () {});
+}
+ProAct.ObjectProperty = P.OP = ObjectProperty;
+
+ProAct.ObjectProperty.prototype = P.U.ex(Object.create(P.P.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.ObjectProperty
+   * @final
+   * @for ProAct.ObjectProperty
+   */
+  constructor: ProAct.ObjectProperty,
+
+  /**
+   * Retrieves the {{#crossLink &quot;ProAct.Property.Types&quot;}}{{/crossLink}} value of &lt;i&gt;this&lt;/i&gt; property.
+   * &lt;p&gt;
+   *  For instances of the &#x60;ProAct.ObjectProperty&#x60; class, it is
+   *  {{#crossLink &quot;ProAct.Property.Types/object:property&quot;}}{{/crossLink}}.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.ObjectProperty
+   * @instance
+   * @method type
+   * @return {Number}
+   *      The right type of the property.
+   */
+  type: function () {
+    return P.P.Types.object;
+  },
+
+  /**
+   * Called automatically after initialization of this property.
+   * &lt;p&gt;
+   *  For &#x60;ProAct.ObjectProperty&#x60; it does nothing -
+   *  the real initialization is lazy and is performed on the first read of &lt;i&gt;this&lt;/i&gt;.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.ObjectProperty
+   * @protected
+   * @instance
+   * @method afterInit
+   */
+  afterInit: function () {}
+});
+
+    </pre>
 </div>
 
                     </div>

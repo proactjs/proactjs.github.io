@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/streams/debouncing_stream.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,113 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/streams/debouncing_stream.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * &lt;p&gt;
+ *  Constructs a ProAct.DelayedStream. A {@link ProAct.DelayedStream} that resets its flushing interval on every new value/event.
+ *  Only the last event/value triggered in given interval will be emitted.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  ProAct.DebouncingStream is part of the streams module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.DebouncingStream
+ * @extends ProAct.DelayedStream
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {@link ProAct.flow} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;source&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {ProAct.Actor} source
+ *      A default source of the stream, can be null.
+ *      &lt;p&gt;
+ *        If this is the only one passed argument and it is a number - it becomes the delay of the stream.
+ *      &lt;/p&gt;
+ * @param {Array} transforms
+ *      A list of transformation to be used on all incoming chages.
+ *      &lt;p&gt;
+ *        If the arguments passed are two and this is a number - it becomes the delay of the stream.
+ *      &lt;/p&gt;
+ * @param {Number} delay
+ *      The time delay to be used to flush the stream.
+ */
+function DebouncingStream (queueName, source, transforms, delay) {
+  P.DBS.call(this, queueName, source, transforms, delay);
+}
+ProAct.DebouncingStream = P.DDS = DebouncingStream;
 
-    
+ProAct.DebouncingStream.prototype = P.U.ex(Object.create(P.DBS.prototype), {
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @memberof ProAct.DebouncingStream
+   * @instance
+   * @constant
+   * @type {Object}
+   * @default ProAct.DebouncingStream
+   */
+  constructor: ProAct.DebouncingStream,
 
-    
-</div>
+  /**
+   * &lt;p&gt;
+   *  Triggers a new event/value to the stream. It is stored in the buffer of the stream and not emitted.
+   *  But the buffer of ProAct.DebouncingStream can store only one value/event, so when the delay passes only
+   *  the last value/event triggered into the stream by this method is emitted. On every call of this method the delay is reset.
+   *  So for example if you have mouse move as source, it will emit only the last mouse move event, that was send &lt;i&gt;delay&lt;/i&gt; milliseconds ago.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  ProAct.DebouncingStream.t is alias of this method.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.ThrottlingStream
+   * @instance
+   * @method trigger
+   * @param {Object} event
+   *      The event/value to pass to trigger.
+   * @param {Boolean} useTransformations
+   *      If the stream should transform the triggered value. By default it is true (if not passed)
+   * @return {ProAct.ThrottlingStream}
+   *      &lt;i&gt;this&lt;/i&gt;
+   */
+  trigger: function (event, useTransformations) {
+    this.buffer = [];
+    this.cancelDelay();
+    this.setDelay(this.delay);
+    this.buffer.push(event, useTransformations);
+  }
+});
 
+P.U.ex(P.Stream.prototype, {
 
+  /**
+   * Creates a new {@link ProAct.DebouncingStream} instance having as source &lt;i&gt;this&lt;/i&gt;.
+   *
+   * @memberof ProAct.Stream
+   * @instance
+   * @method debounce
+   * @param {Number} delay
+   *      The time delay to be used for flushing the buffer of the new stream.
+   * @return {ProAct.DebouncingStream}
+   *      A {@link ProAct.DebouncingStream} instance.
+   */
+  debounce: function (delay) {
+    return new P.DDS(this, this.queueName, delay);
+  }
+});
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+P.DDS.prototype.t = P.DDS.prototype.trigger;
 
-</div>
-
-
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
-
-    <div class="yui3-u-1-2">
-        
-    </div>
+    </pre>
 </div>
 
                     </div>

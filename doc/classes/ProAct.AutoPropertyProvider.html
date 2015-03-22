@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ProAct.ActorUtil - proact.js</title>
+    <title>ProAct.AutoPropertyProvider - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,23 +153,27 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>ProAct.ActorUtil <small>Class</small></h1>
+    <h1>ProAct.AutoPropertyProvider <small>Class</small></h1>
 </div>
 
 <div class="well well-small">
     
 
     
+        <div class="extends">
+            Extends <a href="../classes/ProAct.PropertyProvider.html" class="crosslink">ProAct.PropertyProvider</a>
+        </div>
+    
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_js_core_actor_util.js.html#l6"><code>src&#x2F;js&#x2F;core&#x2F;actor_util.js:6</code></a>
+            Defined in: <a href="../files/src_js_properties_property_provider.js.html#l319"><code>src&#x2F;js&#x2F;properties&#x2F;property_provider.js:319</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/proact-core.html">proact-core</a>
+            Module: <a href="../modules/proact-properties.html">proact-properties</a>
         
     
 
@@ -179,22 +183,74 @@
 
 
 <div class="well well-small">
-    <p>ActorUtil provides methods that can be used to make the Actor to &#39;act&#39;.
-The Actor is ProAct.js version of the base <code>Observable</code> object. Various types
-of listeners can be attached to it and used to observe its <code>actions</code>.</p>
-<p>On the other hand the <code>Actor</code> should do something or <code>act</code>, because something
-has to be observed after all.</p>
-<p>The <code>ActorUtil</code> contains a set of methods that help implementing these <code>acts</code>.</p>
-<p>For example the we can trigger events/values in the <code>Streams</code>. This is thier <code>act</code>.
-This triggering can be implemented with ease using the methods defined in <code>ActorUtil</code>.</p>
-<p>Another example is <code>Properties</code> - they can be set or updated by the reactive flow -&gt; they should react.</p>
-<p>So <code>ActorUtil</code> provides the <code>Actors</code> with helpful methods for <code>acting</code> and <code>reacting</code>.</p>
-<p>All these methods use the ProAct.Flow to defer the changes the right way.
-And the using the <code>flow</code> these methods handle the dependencies between the <code>Actors</code>.</p>
-<p>Use the methods in the <code>ActorUtil</code> to implement your <code>Actor&#39;s</code> <code>actions</code> and <code>reactions</code>.</p>
-
+    <p>
+ Constructor for <code>ProAct.AutoPropertyProvider</code>.
+</p>
+<p>
+ Provides <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a> instances for fields pointing to functions.
+</p>
+<p>
+ <code>ProAct.AutoPropertyProvider</code> is part of the <code>proact-properties</code> module of ProAct.js.
+</p>
 </div>
 
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_ProAct.AutoPropertyProvider" class="method item">
+    <h3 class="name"><code>ProAct.AutoPropertyProvider</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_js_properties_property_provider.js.html#l319"><code>src&#x2F;js&#x2F;properties&#x2F;property_provider.js:319</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+    </div>
 
 
 <div>
@@ -204,6 +260,8 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
         
             <li><a data-toggle="tab" href="#methods">Methods</a></li>
         
+        
+            <li><a data-toggle="tab" href="#properties">Properties</a></li>
         
         
         
@@ -217,17 +275,34 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
                 <div class="index-section methods">
                     <h3>Methods</h3>
 
-                    <ul class="index-list methods">
+                    <ul class="index-list methods extends">
                         
-                            <li class="index-item method private">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_doUpdate" data-tablink="doUpdate">doUpdate</a>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_filter" data-tablink="filter">filter</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_update" data-tablink="update">update</a>
+                            <li class="index-item method inherited">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_provide" data-tablink="provide">provide</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                        
+                            <li class="index-item property inherited">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_constructor" data-tablink="constructor">constructor</a>
 
                                 
                                 
@@ -240,8 +315,6 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
             
 
             
-
-            
         </div>
 
         
@@ -249,8 +322,8 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_doUpdate" class="method item private">
-    <h3 class="name"><code>doUpdate</code></h3>
+                    <div id="method_filter" class="method item">
+    <h3 class="name"><code>filter</code></h3>
 
     
         <div class="args">
@@ -258,19 +331,19 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
             
                 <li class="arg">
                     
-                        <code class="optional">[source]</code>
+                        <code>object</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code class="optional">[actions]</code>
+                        <code>property</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code class="optional">[eventData]</code>
+                        <code>meta</code>
                     
                 </li>
             
@@ -280,14 +353,12 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
         </span>
     
 
     
 
-    
-        <span class="flag private">private</span>
     
 
     
@@ -300,16 +371,16 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.PropertyProvider.html#method_filter">
+                ProAct.PropertyProvider
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor_util.js.html#l86"><code>src&#x2F;js&#x2F;core&#x2F;actor_util.js:86</code></a>
+        <a href="../files/src_js_properties_property_provider.js.html#l350"><code>src&#x2F;js&#x2F;properties&#x2F;property_provider.js:350</code></a>
         
         </p>
 
@@ -320,8 +391,7 @@ And the using the <code>flow</code> these methods handle the dependencies betwee
     </div>
 
     <div class="description">
-        <p>Contains the real notify/update logic defered by <a href="../classes/ProAct.ActorUtil.html#method_update" class="crosslink">update</a> into the flow.
-It is private method, should not be used - use <code>update</code>.</p>
+        <p>Used to check if this <code>ProAct.AutoPropertyProvider</code> is compliant with the field and meta data.</p>
 
     </div>
 
@@ -333,15 +403,14 @@ It is private method, should not be used - use <code>update</code>.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[source]</code>
+                        <code class="param-name">object</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The event/value, causing the update -&gt; can be null : no source.</p>
+                        <p>The object to which a new <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a> instance should be provided.</p>
 
                     </div>
 
@@ -350,15 +419,14 @@ It is private method, should not be used - use <code>update</code>.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[actions]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                        <code class="param-name">property</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>For which actions should notify -&gt; can be null : default actions.</p>
+                        <p>The field name of the <i>object</i> to turn into a <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a>.</p>
 
                     </div>
 
@@ -367,15 +435,14 @@ It is private method, should not be used - use <code>update</code>.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[eventData]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                        <code class="param-name">meta</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Data for creating the updating event -&gt; can be null : no data.</p>
+                        <p>Meta information to be used for filtering and configuration of the <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a> instance to be provided.</p>
 
                     </div>
 
@@ -393,9 +460,9 @@ It is private method, should not be used - use <code>update</code>.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
                     
-                    <p>The calling object.</p>
+                    <p>True if the value of <b>object[property]</b> a function.</p>
 
                 
             </div>
@@ -406,8 +473,8 @@ It is private method, should not be used - use <code>update</code>.</p>
 </div>
 
                 
-                    <div id="method_update" class="method item protected">
-    <h3 class="name"><code>update</code></h3>
+                    <div id="method_provide" class="method item">
+    <h3 class="name"><code>provide</code></h3>
 
     
         <div class="args">
@@ -415,19 +482,25 @@ It is private method, should not be used - use <code>update</code>.</p>
             
                 <li class="arg">
                     
-                        <code class="optional">[source]</code>
+                        <code>queueName</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code class="optional">[actions]</code>
+                        <code>object</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code class="optional">[eventData]</code>
+                        <code>property</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>meta</code>
                     
                 </li>
             
@@ -437,14 +510,12 @@ It is private method, should not be used - use <code>update</code>.</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+            <span class="type"><a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a></span>
         </span>
     
 
     
 
-    
-        <span class="flag protected">protected</span>
     
 
     
@@ -457,16 +528,16 @@ It is private method, should not be used - use <code>update</code>.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="../classes/ProAct.PropertyProvider.html#method_provide">
+                ProAct.PropertyProvider
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
-        <a href="../files/src_js_core_actor_util.js.html#l36"><code>src&#x2F;js&#x2F;core&#x2F;actor_util.js:36</code></a>
+        <a href="../files/src_js_properties_property_provider.js.html#l369"><code>src&#x2F;js&#x2F;properties&#x2F;property_provider.js:369</code></a>
         
         </p>
 
@@ -477,18 +548,7 @@ It is private method, should not be used - use <code>update</code>.</p>
     </div>
 
     <div class="description">
-        <p>Updating/notifying method that can be applied to an <a href="../classes/ProAct.Actor.html" class="crosslink">ProAct.Actor</a></p>
-<p>This method defers the update and the notifications into ProAct.flow.</p>
-<p>If the state of the caller is ProAct.States.destroyed), an exception will be thrown.
-If the state of the caller is ProAct.States.closed), nothing will happen.</p>
-<p>Examples:</p>
-<p>You can implement a stream and in it&#39;s <code>trigger</code> method use this:</p>
-<pre class="code prettyprint"><code>  ActorUtil.update.call(this, event);</code></pre>
-<p>This way the event will be triggered into the stream and all the listeners to the stream will be notified.
-For this to work you&#39;ll have to override the <code>makeEvent</code> method of the stream to return the unmodified source - no state/no event generation,
-the event will just go through.</p>
-<p>If you want to implement a statefull <code>Actor</code> like a <code>property</code>, you can set a state in it and just notify all the
-observing <code>Actors</code> with this method.</p>
+        <p>Provides an instance of <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a>.</p>
 
     </div>
 
@@ -500,15 +560,18 @@ observing <code>Actors</code> with this method.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[source]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                        <code class="param-name">queueName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The event/value, causing the update -&gt; can be null : no source.</p>
+                        <p>The name of the queue all the updates should be pushed to.
+     <p>
+       If this parameter is null/undefined the default queue of
+       ProAct/flow:property is used.
+     </p></p>
 
                     </div>
 
@@ -517,15 +580,14 @@ observing <code>Actors</code> with this method.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[actions]</code>
+                        <code class="param-name">object</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>For which actions should notify -&gt; can be null : default actions.</p>
+                        <p>The object to which a new <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a> instance should be provided.</p>
 
                     </div>
 
@@ -534,15 +596,30 @@ observing <code>Actors</code> with this method.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[eventData]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                        <code class="param-name">property</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Data for creating the updating event -&gt; can be null : no data.</p>
+                        <p>The field of the <i>object</i> to turn into a <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a>.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">meta</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Meta information to be used for filtering and configuration of the <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a> instance to be provided.</p>
 
                     </div>
 
@@ -560,9 +637,9 @@ observing <code>Actors</code> with this method.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                        <span class="type"><a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a></span>:
                     
-                    <p>The calling object.</p>
+                    <p>A <a href="../classes/ProAct.AutoProperty.html" class="crosslink">ProAct.AutoProperty</a> instance provided by <i>this</i> provider.</p>
 
                 
             </div>
@@ -576,6 +653,59 @@ observing <code>Actors</code> with this method.</p>
             </div>
         
 
+        
+            <div id="properties" class="tab-pane">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_constructor" class="property item">
+    <h3 class="name"><code>constructor</code></h3>
+    <span class="type"><a href="../classes/ProAct.AutoPropertyProvider.html" class="crosslink">ProAct.AutoPropertyProvider</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
+            <p>Inherited from
+            <a href="../classes/ProAct.PropertyProvider.html#property_constructor">
+                ProAct.PropertyProvider
+            </a>
+            
+            but overwritten in
+            
+        
+        
+        <a href="../files/src_js_properties_property_provider.js.html#l340"><code>src&#x2F;js&#x2F;properties&#x2F;property_provider.js:340</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Reference to the constructor of this object.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
         
 
         

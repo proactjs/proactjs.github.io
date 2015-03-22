@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact - proact.js</title>
+    <title>proact-streams - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -28,7 +28,7 @@
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.Configuration", "classes/ProAct.Observable", "classes/ProAct.States", "classes/ProAct.Utils", "modules/proact", "modules/proact-core"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "modules/proact-core", "modules/proact-properties", "modules/proact-streams"]'>
         </form>
     </div>
 </div>
@@ -55,13 +55,53 @@
                     
                         <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
                     
-                        <li><a href="../classes/ProAct.ActorUtil.html">ProAct.ActorUtil</a></li>
+                        <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoPropertyProvider.html">ProAct.AutoPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.BufferedStream.html">ProAct.BufferedStream</a></li>
                     
                         <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
                     
-                        <li><a href="../classes/ProAct.Observable.html">ProAct.Observable</a></li>
+                        <li><a href="../classes/ProAct.Core.html">ProAct.Core</a></li>
+                    
+                        <li><a href="../classes/ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.Types.html">ProAct.Property.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.PropertyProvider.html">ProAct.PropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
                     
                         <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
+                    
+                        <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
                     
                         <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
                     
@@ -71,9 +111,11 @@
             <div class="tab-pane" id="modules">
                 <ul id="api-modules" class="nav nav-list">
                     
-                        <li><a href="../modules/proact.html">proact</a></li>
-                    
                         <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-properties.html">proact-properties</a></li>
+                    
+                        <li><a href="../modules/proact-streams.html">proact-streams</a></li>
                     
                 </ul>
             </div>
@@ -111,7 +153,7 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact <small>Module</small></h1>
+    <h1>proact-streams <small>Module</small></h1>
 </div>
 
 <div class="clearfix well well-small">
@@ -121,7 +163,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_js_pro.js.html#l533"><code>src&#x2F;js&#x2F;pro.js:533</code></a>
+            Defined in: <a href="../files/src_js_streams_throttling_stream.js.html#l1"><code>src&#x2F;js&#x2F;streams&#x2F;throttling_stream.js:1</code></a>
         </div>
     
 
@@ -131,7 +173,9 @@
 
 
 <div class="moduledesc well well-small">
-    
+    <p>The <code>proact-streams</code> module provides stateless streams to the ProAct.js API.
+FRP reactive streams.</p>
+
 </div>
 
 
@@ -144,44 +188,14 @@
             <ul class="module-classes">
             
                 <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
+                    <a href="../classes/ProAct.Stream.html">
+                        ProAct.Stream
                     </a>
                 </li>
             
                 <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Observable.html">
-                        ProAct.Observable
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
+                    <a href="../classes/ProAct.ThrottlingStream.html">
+                        ProAct.ThrottlingStream
                     </a>
                 </li>
             
@@ -190,22 +204,6 @@
     </div>
 
     <div class="yui3-u-1-2">
-        
-            <p>This module is a rollup of the following modules:</p>
-
-            <ul class="module-submodules">
-            
-                <li class="module-submodule">
-                    <a href="../modules/proact-core.html">
-                        proact-core
-                    </a>
-
-                    <div class="module-submodule-description">
-                        TODO Move it to its own file.
-                    </div>
-                </li>
-            
-            </ul>
         
     </div>
 </div>

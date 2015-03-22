@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/js/properties/property.js - proact.js</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="proact.js" src="../../proact_logo_icon.png" style="max-height: 65%;" title="proact.js">
+        
+            proact.js
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.2.2</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "modules/proact-core", "modules/proact-properties", "modules/proact-streams"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/ProAct.html">ProAct</a></li>
+                    
+                        <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoPropertyProvider.html">ProAct.AutoPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.BufferedStream.html">ProAct.BufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
+                    
+                        <li><a href="../classes/ProAct.Core.html">ProAct.Core</a></li>
+                    
+                        <li><a href="../classes/ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.Types.html">ProAct.Property.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.PropertyProvider.html">ProAct.PropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
+                    
+                        <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-properties.html">proact-properties</a></li>
+                    
+                        <li><a href="../modules/proact-streams.html">proact-streams</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/js/properties/property.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * The &#x60;proact-properties&#x60; module provides stateful reactive values attached to normal JavaScript
+ * object&#x27;s fields.
+ *
+ * @module proact-properties
+ * @main proact-properties
+ */
+
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.Property&#x60;.
+ *  The properties are simple {{#crossLink &quot;ProAct.Actor&quot;}}{{/crossLink}}s with state.
+ *  The basic property has a state of a simple value - number/string/boolean.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Every property could represent a field in a plain JavaScript object.
+ *  It makes it reactive, on reading the property value,
+ *  if {{#crossLink &quot;ProAct/currentCaller:property&quot;}}{{/crossLink}} is set,
+ *  it is added as a listener to the property changes.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Every property has a type the default property has a type of a simple value.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  All the properties of an object are managed by its {{#crossLink &quot;ProAct.ObjectCore&quot;}}{{/crossLink}},
+ *  which is set to a hidden field of the object - &#x27;__pro__&#x27;.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  When created every property is in {{#crossLink &quot;ProAct.States/init:property&quot;}}{{/crossLink}}, state,
+ *  when it is functional, the state is changed to {{#crossLink &quot;ProAct.States/ready:property&quot;}}{{/crossLink}}.
+ *  If the property is not in {{#crossLink &quot;ProAct.States/ready:property&quot;}}{{/crossLink}} state, it is not useable.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  {{#crossLink &quot;ProAct.Property/init:method&quot;}}{{/crossLink}} is called by this constructor for the property initialization.
+ *  It should initialize the property and set its state to {{#crossLink &quot;ProAct.States/ready:property&quot;}}{{/crossLink}}.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  ProAct.Property is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * &#x60;&#x60;&#x60;
+ *  var property = new Property({v: 5}, &#x27;v&#x27;);
+ *  property.get(); // This is 5
+ *  property.set(4);
+ *  property.get(); // This is 4
+ * &#x60;&#x60;&#x60;
+ *
+ * @class ProAct.Property
+ * @extends ProAct.Actor
+ * @constructor
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;proObject&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {Object} proObject
+ *      A plain JavaScript object, holding a field, this property will represent.
+ * @param {String} property
+ *      The name of the field of the object, this property should represent.
+ * @param {Function} getter
+ *      An optional getter to be used when the property is read.
+ *      If this parameter is empty, a new {{#crossLink &quot;ProAct.Property/defaultGetter:method&quot;}}{{/crossLink}} is build for &lt;i&gt;this&lt;/i&gt;.
+ * @param {Function} setter
+ *      An optional setter to be used when the property is written.
+ *      If this parameter is empty, a new {{#crossLink &quot;ProAct.Property/defaultSetter:method&quot;}}{{/crossLink}} is build for &lt;i&gt;this&lt;/i&gt;.
+ */
+function Property (queueName, proObject, property, getter, setter) {
+  if (queueName &amp;&amp; !P.U.isString(queueName)) {
+    setter = getter;
+    getter = property;
+    property = proObject;
+    proObject = queueName;
+    queueName = null;
+  }
+
+  if (!(proObject || property)) {
+    property = &#x27;v&#x27;;
+    proObject = {v: null};
+  }
+
+  P.U.defValProp(this, &#x27;proObject&#x27;, false, false, true, proObject);
+  this.property = property;
+
+  if (!this.proObject.__pro__) {
+    P.U.defValProp(proObject, &#x27;__pro__&#x27;, false, false, true, new ProAct.ObjectCore(proObject));
+  }
+
+  this.proObject.__pro__.properties[property] = this;
+
+  this.get = getter || P.P.defaultGetter(this);
+  this.set = setter || P.P.defaultSetter(this);
+
+  this.oldVal = null;
+  this.val = proObject[property];
+
+  this.g = this.get;
+  this.s = this.set;
+
+  P.Actor.call(this, queueName); // Super!
+  this.parent = this.proObject.__pro__;
+
+  var meta = this.parent.meta.p;
+  this.isStaticTyped = meta &amp;&amp; meta.statics &amp;&amp; meta.statics.indexOf(this.property) !== -1;
+}
+ProAct.Property = P.P = Property;
+
+P.U.ex(ProAct.Property, {
+
+  /**
+   * Defines the possible types of the &#x60;ProAct.Property&#x60;.
+   *
+   * @class Types
+   * @namespace ProAct.Property
+   * @static
+   */
+  Types: {
+
+    /**
+     * ProAct.Property for simple types - Numbers, Strings or Booleans.
+     *
+     * @property simple
+     * @type Number
+     * @final
+     * @for ProAct.Property.Types
+     */
+    simple: 0, // strings, booleans and numbers
+
+    /**
+     * ProAct.Property for auto computed types - Functions.
+     *
+     * @property auto
+     * @type Number
+     * @final
+     * @for ProAct.Property.Types
+     */
+    auto: 1, // functions - dependent
+
+    /**
+     * ProAct.Property for object types - fields containing objects.
+     *
+     * @property object
+     * @type Number
+     * @final
+     * @for ProAct.Property.Types
+     */
+    object: 2, // references Pro objects
+
+    /**
+     * ProAct.Property for array types - fields containing arrays.
+     *
+     * @property array
+     * @type Number
+     * @final
+     * @for ProAct.Property.Types
+     */
+    array: 3, // arrays
+
+    /**
+     * ProAct.Property for nil types - fields containing null or undefined.
+     *
+     * @property nil
+     * @type Number
+     * @final
+     * @for ProAct.Property.Types
+     */
+    nil: 4, // nulls
+
+    /**
+     * Retrieves the right&#x60; ProAct.Property.Types&#x60; value from a value.
+     *
+     * @for ProAct.Property.Types
+     * @method type
+     * @param {Object} value
+     *      The value to use to compute the &#x60;ProAct.Property.Types&#x60; member for.
+     * @return {Number}
+     *      The type of the passed value.
+     */
+    type: function (value) {
+      if (value === null) {
+        return P.P.Types.nil;
+      } else if (P.U.isFunction(value)) {
+        return P.P.Types.auto;
+      } else if (P.U.isArray(value)) {
+        return P.P.Types.array;
+      } else if (P.U.isObject(value)) {
+        return P.P.Types.object;
+      } else {
+        return P.P.Types.simple;
+      }
+    }
+  },
+
+  /**
+   * Generates a default getter function for a &#x60;ProAct.Property&#x60; instance.
+   * &lt;p&gt;
+   *  Every &#x60;ProAct.Property&#x60; instance has a getter and a setter,
+   *  they can be passed in the constructor, but if left blank,
+   *  this method is used for creating the getter function.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  The default getter function uses {{#crossLink &quot;ProAct.Property/addCaller:method&quot;}}{{/crossLink}}
+   *  method to track the {{#crossLink &quot;ProAct/currentCaller:property&quot;}}{{/crossLink}} listener if set.
+   *  If it is set it is added as a listener to the passed &lt;i&gt;property&lt;/i&gt;.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @static
+   * @private
+   * @method defaultGetter
+   * @param {ProAct.Property} property
+   *      The &#x60;ProAct.Property&#x60; instance to generate a getter function for.
+   * @return {Function}
+   *      The generated getter function.
+   */
+  defaultGetter: function (property) {
+    return function () {
+      property.addCaller();
+
+      return property.val;
+    };
+  },
+
+  /**
+   * Generates a default setter function for a ProAct.Property instance.
+   * &lt;p&gt;
+   *  Every &#x60;ProAct.Property&#x60; instance has a setter and a getter,
+   *  they can be passed in the constructor, but if left blank,
+   *  this method is used for creating the setter function.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  The default setter function uses the {{#crossLink &quot;ProAct.ActorUtil/update:method&quot;}}{{/crossLink}}
+   *  method to update all the listeners for &lt;i&gt;change&lt;/i&gt;s for the passed &lt;i&gt;property&lt;/i&gt;.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  It updates the listeners only if the new value of the property
+   *  is different from the old one (using &lt;i&gt;===&lt;/i&gt; for the comparison).
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @private
+   * @method defaultSetter
+   * @static
+   * @param {ProAct.Property} property
+   *      The &#x60;ProAct.Property&#x60; instance to generate a setter function for.
+   * @param {Function} setter
+   *      A setter function for the way of setting the value.
+   *      It can be skipped if the value should be set using &lt;i&gt;=&lt;/i&gt;.
+   * @return {Function}
+   *      The generated setter function.
+   */
+  defaultSetter: function (property, setter) {
+    return function (newVal) {
+      if (property.state != P.States.ready) {
+        return;
+      }
+      newVal = P.Actor.transform(property, newVal);
+      if (newVal === P.Actor.BadValue || property.val === newVal) {
+        return;
+      }
+
+      property.oldVal = property.val;
+      if (setter) {
+        property.val = setter.call(property.proObject, newVal);
+      } else {
+        property.val = newVal;
+      }
+
+      if (property.type() !== P.P.Types.auto &amp;&amp; P.P.Types.type(property.val) !== property.type()) {
+        P.P.reProb(property).update();
+        return;
+      }
+
+      ActorUtil.update.call(property);
+    };
+  },
+
+  /**
+   * Used to define the managed by a &#x60;ProAct.Property&#x60; instance field of the passed &lt;i&gt;obj&lt;/i&gt;.
+   * &lt;p&gt;
+   *  The field is writable, enumerable and configurable.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @method defineProp
+   * @private
+   * @static
+   * @param {Object} obj
+   *      The object which field should be defined as a property.
+   * @param {String} prop
+   *      The name of the property field to define.
+   * @param {Function} get
+   *      The getter that should be used to read the new property to be defined.
+   * @param {Function} set
+   *      The setter that should be used to update the new property to be defined.
+   */
+  defineProp: function (obj, prop, get, set) {
+    Object.defineProperty(obj, prop, {
+      get: get,
+      set: set,
+      enumerable: true,
+      configurable: true
+    });
+  },
+
+  /**
+   * Recreates a property, using its current value.
+   * &lt;p&gt;
+   *  The re-definition works by using {{#crossLink &quot;ProAct.Property/destroy:method&quot;}}{{/crossLink}}
+   *  to destroy the passed &lt;i&gt;property&lt;/i&gt; first, and then the
+   *  {{#crossLink &quot;ProAct.ObjectCore/makeProp:method&quot;}}{{/crossLink}} method is called of the
+   *  {{#crossLink &quot;ProAct.ObjectCore&quot;}}{{/crossLink}} of the object the &lt;i&gt;property&lt;/i&gt; belongs to.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  This way a new &#x60;ProAct.Property&#x60; instance is created to replace the passed one.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @private
+   * @method reProb
+   * @static
+   * @param {ProAct.Property} property
+   *      The ProAct.Property instance to re-define.
+   * @return {ProAct.Property}
+   *      The new re-defined property.
+   */
+  reProb: function (property) {
+	    if (property.isStaticTyped || property.state !== P.States.ready) {
+      return;
+    }
+
+    var po = property.proObject,
+        p = property.property,
+        l = property.listeners.change;
+
+    property.destroy();
+    return po.__pro__.makeProp(p, l);
+  },
+
+  /**
+   * Creates a constant property. It&#x27;s value can not be changed.
+   *
+   * &#x60;&#x60;&#x60;
+   *  var property = ProAct.Property.constant(5);
+   *
+   *  console.log(property.get()); // 5
+   *
+   *  property.set(4);
+   *  console.log(property.get()); // 5
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Property
+   * @static
+   * @method constant
+   * @param {Object} val The value of the property. Can not be changed.
+   * @param {Object} meta Optional meta data for the property.
+   * @param {String} queueName The name of the queue all the updates should be pushed to. By default the default queue is used.
+   * @return {ProAct.Property} The new constant property.
+   */
+  constant: function (val, meta, queueName) {
+    return P.P.value(val, meta, queueName).close();
+  },
+
+  /**
+   * Creates a value property. It&#x27;s value can be updated any time and other properties may depend on it.
+   *
+   * This propety is eager - this means that it is initialized automatically even if it&#x27;s not used.
+   *
+   * &#x60;&#x60;&#x60;
+   *  var property = ProAct.Property.value(5);
+   *
+   *  console.log(property.get()); // 5
+   *
+   *  property.set(4);
+   *  console.log(property.get()); // 4
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Property
+   * @static
+   * @method value
+   * @param {Object} val The value of the property.
+   * @param {Object} meta Optional meta data for the property.
+   * @param {String} queueName The name of the queue all the updates should be pushed to. By default the default queue is used.
+   * @return {ProAct.Property} The new value property.
+   */
+  value: function (val, meta, queueName) {
+    var property = P.P.lazyValue(val, meta, queueName);
+    property.get();
+
+    return property;
+  },
+
+  /**
+   * Creates a lazy initialized value property. It&#x27;s value can be updated any time and other properties may depend on it.
+   *
+   * Being lazy means, that the property won&#x27;t be initialized until it is read (it&#x27;s get() method is called).
+   *
+   * &#x60;&#x60;&#x60;
+   *  var property = ProAct.Property.lazyValue(5);
+   *
+   *  console.log(property.get()); // 5
+   *
+   *  property.set(4);
+   *  console.log(property.get()); // 4
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Property
+   * @static
+   * @method lazyValue
+   * @param {Object} val The value of the property.
+   * @param {Object} meta Optional meta data for the property.
+   * @param {String} queueName The name of the queue all the updates should be pushed to. By default the default queue is used.
+   * @return {ProAct.Property} The new lazily initialized value property.
+   */
+  lazyValue: function (val, meta, queueName) {
+    if (meta &amp;&amp; (P.U.isString(meta) || P.U.isArray(meta))) {
+      meta = {
+        v: meta
+      };
+    }
+
+    meta = meta || {};
+    meta.p = meta.p || {};
+    meta.p.statics = meta.p.statics || [&#x27;v&#x27;];
+    if (queueName) {
+      meta.p.queueName = queueName;
+    }
+
+    var object = {v: val},
+        core = new ObjectCore(object, meta);
+    P.U.defValProp(object, &#x27;__pro__&#x27;, false, false, false, core);
+    core.prob();
+
+    return core.properties.v;
+  }
+});
+
+ProAct.Property.prototype = P.U.ex(Object.create(P.Actor.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.Property
+   * @final
+   * @for ProAct.Property
+   */
+  constructor: ProAct.Property,
+
+  /**
+   * Retrieves the {{#crossLink &quot;ProAct.Property.Types&quot;}}{{/crossLink}} value of &lt;i&gt;this&lt;/i&gt; property.
+   * &lt;p&gt;
+   *  For instances of the base class - &#x60;ProAct.Property&#x60; it is
+   *  {{#crossLink &quot;ProAct.Property.Types/simple:property&quot;}}{{/crossLink}}.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @instance
+   * @method type
+   * @return {Number}
+   *      The right type of the property.
+   */
+  type: function () {
+    return P.P.Types.simple;
+  },
+
+  /**
+   * Creates the &lt;i&gt;event&lt;/i&gt; to be send to the listeners of this &#x60;ProAct.Property&#x60; on update.
+   * &lt;p&gt;
+   *  The &lt;i&gt;event&lt;/i&gt; should be an instance of {{#crossLink &quot;ProAct.Event&quot;}}{{/crossLink}}.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  By default this method returns {{#crossLink &quot;ProAct.Event.Types/value:property&quot;}}{{/crossLink}} event with target the property name and arguments:
+   *  &lt;ul&gt;
+   *    &lt;li&gt;The object this &#x60;ProAct.Property&#x60; manages a field for.&lt;/li&gt;
+   *    &lt;li&gt;The old value of this property.&lt;/li&gt;
+   *    &lt;li&gt;The new value of this property.&lt;/li&gt;
+   *  &lt;/ul&gt;
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @instance
+   * @protected
+   * @method makeEvent
+   * @default {ProAct.Event} with type {{#crossLink &quot;ProAct.Event.Types/value:property&quot;}}{{/crossLink}}.
+   * @param {ProAct.Event} source
+   *      The source event of the event. It can be null
+   * @return {ProAct.ValueEvent}
+   *      The event, created.
+   */
+  makeEvent: function (source) {
+    return new P.VE(source, this.property, this.proObject, this.oldVal, this.val);
+  },
+
+  /**
+   * Creates the &lt;i&gt;listener&lt;/i&gt; of this &#x60;ProAct.Property&#x60;.
+   * &lt;p&gt;
+   *  This listener turns the observable in a observer.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  The listener for ProAct.Property is an object defining the &lt;i&gt;call&lt;/i&gt; method.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  It has a &lt;i&gt;property&lt;/i&gt; field set to &lt;i&gt;this&lt;/i&gt;.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  On value changes the &lt;i&gt;&lt;this&lt;/i&gt; value is set to the new value using the {{#crossLink &quot;ProAct.Actor/transform:method&quot;}}{{/crossLink}} to transform it.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @instance
+   * @protected
+   * @method makeListener
+   * @return {Object}
+   *      The &lt;i&gt;listener of this ProAct.Property&lt;/i&gt;.
+   */
+  makeListener: function () {
+    if (!this.listener) {
+      var self = this;
+
+      this.listener = {
+        property: self,
+        queueName: self.queueName,
+        call: function (newVal) {
+          if (newVal &amp;&amp; newVal.type !== undefined &amp;&amp; newVal.type === P.E.Types.value &amp;&amp; newVal.args.length === 3 &amp;&amp; newVal.target) {
+            newVal = newVal.args[0][newVal.target];
+          }
+
+          self.set(newVal);
+        }
+      };
+    }
+
+    return this.listener;
+  },
+
+  /**
+   * Initializes this property.
+   * &lt;p&gt;
+   *  First the property is defined as a field in its object,
+   *  using {{#crossLink &quot;ProAct.Property/defineProp:method&quot;}}{{/crossLink}}.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @instance
+   * @protected
+   * @method doInit
+   */
+  doInit: function () {
+    P.P.defineProp(this.proObject, this.property, this.get, this.set);
+    P.P.defineProp(this, &#x27;v&#x27;, this.get, this.set);
+  },
+
+  /**
+   * Uses {{#crossLink &quot;ProAct/currentCaller:property&quot;}}{{/crossLink}} to
+   * automatically add a new listener to this property if the caller is set.
+   * &lt;p&gt;
+   *  This method is used by the default getter to make every reader of the property a listener to it.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @protected
+   * @instance
+   * @method addCaller
+   */
+  addCaller: function () {
+    var caller = P.currentCaller;
+
+    if (caller &amp;&amp; caller.property !== this) {
+      this.on(caller);
+    }
+  },
+
+  /**
+   * A hook that is called right before destruction, the extenders use it to clean up resources.
+   *
+   * The &#x60;ProAct.Property&#x60; deletes its state and is removed from its core container.
+   *
+   * Don&#x27;t override it.
+   *
+   * @for ProAct.Property
+   * @protected
+   * @instance
+   * @method beforeDestroy
+   */
+  beforeDestroy: function () {
+    delete this.proObject.__pro__.properties[this.property];
+    this.oldVal = undefined;
+
+    P.U.defValProp(this.proObject, this.property, true, true, true, this.val);
+    this.get = this.set = this.property = this.proObject = undefined;
+    this.g = this.s = undefined;
+    this.val = undefined;
+    this.isStaticTyped = undefined;
+    delete this.v;
+  },
+
+  /**
+   * Creates a new &#x60;ProAct.Property&#x60; instance with source &lt;i&gt;this&lt;/i&gt; and mapping
+   * the passed &lt;i&gt;mapping function&lt;/i&gt;.
+   *
+   * When the source is changed, the product of this operator is updated too.
+   *
+   * &#x60;&#x60;&#x60;
+   *  var val = ProAct.Property.value(5);
+   *  var plusOne = val.map(function (v) {
+   *    return v + 1;
+   *  });
+   *
+   *  plusOne.get(); // 6
+   *
+   *  val.set(4);
+   *  plusOne.get(); // 5
+   * &#x60;&#x60;&#x60;
+   *
+   * or
+   *
+   * &#x60;&#x60;&#x60;
+   *  var positive = val.map(&#x27;+&#x27;);
+   *
+   *  val.set(-4);
+   *
+   *  positive.get(); // 4
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Property
+   * @instance
+   * @method map
+   * @param {Object|Function|Strin} mappingFunction
+   *      Function or object with a &lt;i&gt;call method&lt;/i&gt; to use as map function.
+   *      Can be string for predefined mapping functions.
+   * @return {ProAct.Property}
+   *      A new &#x60;ProAct.Property&#x60; instance with the &lt;i&gt;mapping&lt;/i&gt; applied.
+   */
+  map: function (mappingFunction) {
+    var prop = P.P.value(this.val, {}, this.queueName).mapping(mappingFunction).into(this);
+    ActorUtil.update.call(this);
+    return prop;
+  },
+
+  /**
+   * Creates a new &#x60;ProAct.Property&#x60; instance with source &lt;i&gt;this&lt;/i&gt; and filtering
+   * the passed &lt;i&gt;filtering function&lt;/i&gt;.
+   *
+   * When the source changes, the product, may be updated.
+   *
+   * TODO On creation if the filter fails, the property keeps the original value.
+   * What to do? Also these kinds of properties shouldn&#x27;t be set manually.
+   *
+   * &#x60;&#x60;&#x60;
+   *  var prop = ProAct.Property.value(4);
+   *  var even = sourceActor.filter(function (el) {
+   *    return el % 2 == 0;
+   *  });
+   *
+   *  even.get(); // 4
+   *
+   *  prop.set(5);
+   *  even.get(); // 4
+   *
+   *  prop.set(6);
+   *  even.get(); // 6
+   * &#x60;&#x60;&#x60;
+   *
+   * or
+   *
+   * &#x60;&#x60;&#x60;
+   *  var actor = sourceActor.filter(&#x27;odd&#x27;);
+   *
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Actor
+   * @instance
+   * @method filter
+   * @param {Object} filteringFunction
+   *      The filtering function or object with a call method, should return boolean.
+   * @return {ProAct.Property}
+   *      A new ProAct.Actor instance with the &lt;i&gt;filtering&lt;/i&gt; applied.
+   */
+  filter: function (filteringFunction) {
+    var prop = P.P.value(this.val, {}, this.queueName).filtering(filteringFunction).into(this);
+
+    ActorUtil.update.call(this);
+    return prop;
+  },
+
+  /**
+   * Creates a new &#x60;ProAct.Property&#x60; instance with source &lt;i&gt;this&lt;/i&gt; and accumulation
+   * the passed &lt;i&gt;accumulation function&lt;/i&gt;.
+   *
+   * Some examples:
+   *
+   * &#x60;&#x60;&#x60;
+   *  var prop = ProAct.Property.value(3);
+   *  var acc = prop.accumulate(0, function (current, el) {
+   *    return current + el;
+   *  });
+   *
+   *  acc.get(); // 3
+   *
+   *  prop.set(5);
+   *
+   *  acc.get(); // 8
+   *
+   *  prop.set(2);
+   *
+   *  acc.get(); // 10
+   * &#x60;&#x60;&#x60;
+   *
+   * or
+   *
+   * &#x60;&#x60;&#x60;
+   *  var acc = prop.accumulate(&#x27;+&#x27;); // The same as the above if the DSL module is present.
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.Property
+   * @instance
+   * @method accumulate
+   * @param {Object} initVal
+   *      Initial value for the accumulation. For example &#x27;0&#x27; for sum.
+   * @param {Object} accumulationFunction
+   *      The function to accumulate.
+   * @return {ProAct.Property}
+   *      A new &#x60;ProAct.Property&#x60; instance with the &lt;i&gt;accumulation&lt;/i&gt; applied.
+   */
+  accumulate: function (initVal, accumulationFunction) {
+    var prop = P.P.value(this.val, {}, this.queueName).accumulation(initVal, accumulationFunction).into(this);
+    ActorUtil.update.call(this);
+    return prop;
+  },
+
+  /**
+   * The &lt;b&gt;toString()&lt;/b&gt; method returns a string representing this &#x60;ProAct.Property&#x60;.
+   * &lt;p&gt;
+   *  The string representation is the value of &lt;i&gt;this&lt;/i&gt; property.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Property
+   * @instance
+   * @method toString
+   */
+  toString: function () {
+    return this.val + &#x27;&#x27;;
+  },
+
+  valueOf: function () {
+    return this.val;
+  }
+});
+
+P.U.ex(P.Actor.prototype, {
+
+  /**
+   * Creates a {{{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}} instance,
+   * dependent on this.
+   * Comes from the &#x60;proact-properties&#x60; module.
+   *
+   * @for ProAct.Actor
+   * @instance
+   * @method toProperty
+   */
+  toProperty: function () {
+    return P.P.value(this.val, {}, this.queueName).into(this);
+  }
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

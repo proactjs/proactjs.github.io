@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/streams/delayed_stream.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,174 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/streams/delayed_stream.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * &lt;p&gt;
+ *  Constructs a ProAct.DelayedStream. When a given time interval passes the buffer of the stream is flushed authomatically.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  ProAct.DelayedStream is part of the streams module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.DelayedStream
+ * @extends ProAct.BufferedStream
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {@link ProAct.flow} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;source&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {ProAct.Actor} source
+ *      A default source of the stream, can be null.
+ *      &lt;p&gt;
+ *        If this is the only one passed argument and it is a number - it becomes the delay of the stream.
+ *      &lt;/p&gt;
+ * @param {Array} transforms
+ *      A list of transformation to be used on all incoming chages.
+ *      &lt;p&gt;
+ *        If the arguments passed are two and this is a number - it becomes the delay of the stream.
+ *      &lt;/p&gt;
+ * @param {Number} delay
+ *      The time delay to be used to flush the stream.
+ */
+function DelayedStream (queueName, source, transforms, delay) {
+  if (queueName &amp;&amp; !P.U.isString(queueName)) {
+    delay = transforms;
+    transforms = source;
+    source = queueName;
+    queueName = null;
+  }
+  if (typeof source === &#x27;number&#x27;) {
+    delay = source;
+    source = null;
+  } else if (P.U.isObject(source) &amp;&amp; typeof transforms === &#x27;number&#x27;) {
+    delay = transforms;
+    transforms = null;
+  }
+  P.BS.call(this, queueName, source, transforms);
 
-    
+  this.delayId = null;
+  this.setDelay(delay);
+}
+ProAct.DelayedStream = P.DBS = DelayedStream;
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
+ProAct.DelayedStream.prototype = P.U.ex(Object.create(P.BS.prototype), {
 
-    
-</div>
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @memberof ProAct.DelayedStream
+   * @instance
+   * @constant
+   * @type {Object}
+   * @default ProAct.DelayedStream
+   */
+  constructor: ProAct.DelayedStream,
 
+  /**
+   * &lt;p&gt;
+   *  Triggers a new event/value to the stream. It is stored in the buffer of the stream and not emitted.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  ProAct.DelayedStream.t is alias of this method.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.DelayedStream
+   * @instance
+   * @method trigger
+   * @param {Object} event
+   *      The event/value to pass to trigger.
+   * @param {Boolean} useTransformations
+   *      If the stream should transform the triggered value. By default it is true (if not passed)
+   * @return {ProAct.DelayedStream}
+   *      &lt;i&gt;this&lt;/i&gt;
+   */
+  trigger: function (event, useTransformations) {
+    this.buffer.push(event, useTransformations);
+    return this;
+  },
 
+  /**
+   * &lt;p&gt;
+   *  Cancels the delay interval flushes. If this method is called the stream will stop emitting incoming values/event,
+   *  until the {@link ProAct.DelayedStream#setDelay} method is called.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.DelayedStream
+   * @instance
+   * @method cancelDelay
+   * @return {ProAct.DelayedStream}
+   *      &lt;i&gt;this&lt;/i&gt;
+   * @see {@link ProAct.DelayedStream#setDelay}
+   */
+  cancelDelay: function () {
+    if (this.delayId !== null){
+      clearInterval(this.delayId);
+      this.delayId = null;
+    }
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+    return this;
+  },
 
-</div>
+  /**
+   * &lt;p&gt;
+   *  Modifies the delay of the stream. The current delay is canceled using the {@link ProAct.DelayedStream#cancelDelay} method.
+   * &lt;/p&gt;
+   *
+   * @memberof ProAct.DelayedStream
+   * @instance
+   * @method setDelay
+   * @param {Number} delay
+   *      The new delay of the stream.
+   * @return {ProAct.DelayedStream}
+   *      &lt;i&gt;this&lt;/i&gt;
+   */
+  setDelay: function (delay) {
+    this.delay = delay;
+    this.cancelDelay();
 
+    if (!this.delay) {
+      return;
+    }
 
+    var self = this;
+    this.delayId = setInterval(function () {
+      self.flush();
+    }, this.delay);
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+    return this;
+  }
+});
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+P.U.ex(P.S.prototype, {
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+  /**
+   * Creates a new {@link ProAct.DelayedStream} instance having as source &lt;i&gt;this&lt;/i&gt;.
+   *
+   * @memberof ProAct.Stream
+   * @instance
+   * @method delay
+   * @param {Number} delay
+   *      The time delay to be used for flushing the buffer of the new stream.
+   * @return {ProAct.DelayedStream}
+   *      A {@link ProAct.DelayedStream} instance.
+   */
+  delay: function (delay) {
+    return new P.DBS(this, this.queueName, delay);
+  }
+});
+
+P.DBS.prototype.t = P.DBS.prototype.trigger;
+
+    </pre>
 </div>
 
                     </div>

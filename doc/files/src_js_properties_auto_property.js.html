@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>proact-core - proact.js</title>
+    <title>src/js/properties/auto_property.js - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -153,101 +153,227 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>proact-core <small>Module</small></h1>
+    <h1>src/js/properties/auto_property.js <small>File</small></h1>
 </div>
 
-<div class="clearfix well well-small">
-    
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-properties
+ */
 
-    
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.AutoProperty&#x60;.
+ *  The properties are simple {{#crossLink &quot;ProAct.Actor&quot;}}{{/crossLink}}s with state.
+ *  The auto-computed or functional property has a state of a function return value.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Auto-computed properties are functions which are turned
+ *  to {{#crossLink &quot;ProAct.Property&quot;}}{{/crossLink}}s by a {{#crossLink &quot;ProAct.ObjectCore&quot;}}{{/crossLink}}.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  If these functions are reading another fields of ProAct.js objects,
+ *  they authomatically become dependent on them.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  For example:
+ *  &lt;pre&gt;
+ *    var obj = {
+ *      a: 1,
+ *      b: 2,
+ *      c: function () {
+ *        return this.a - this.b;
+ *      }
+ *    };
+ *  &lt;/pre&gt;
+ *  If this object - &lt;i&gt;obj&lt;/i&gt; is turned to a reactive ProAct.js object,
+ *  it becomes a simple object with three fields:
+ *  &lt;pre&gt;
+ *    {
+ *      a: 1,
+ *      b: 2,
+ *      c: -1
+ *    }
+ *  &lt;/pre&gt;
+ *  But now &lt;i&gt;c&lt;/i&gt; is dependent on &lt;i&gt;a&lt;/i&gt; and &lt;i&gt;b&lt;/i&gt;,
+ *  so if &lt;i&gt;a&lt;/i&gt; is set to &lt;b&gt;4&lt;/b&gt;, &lt;i&gt;obj&lt;/i&gt; becomes:
+ *  &lt;pre&gt;
+ *    {
+ *      a: 1,
+ *      b: 2,
+ *      c: 2
+ *    }
+ *  &lt;/pre&gt;
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The logic is the following:
+ *  &lt;ul&gt;
+ *    &lt;li&gt;The property is initialized to be lazy, so its state is {{#crossLink &quot;ProAct.States/init:property&quot;}}{{/crossLink}}&lt;/li&gt;
+ *    &lt;li&gt;
+ *      On its first read, the {{#crossLink &quot;ProAct/currentCaller:property&quot;}}{{/crossLink}} is set to the listener of the property,
+ *      so all the properties read in the function body become observed by it.
+ *      The value of the property is computed using the original function of the field.
+ *    &lt;/li&gt;
+ *    &lt;li&gt;On this first read the state of the property is updated to {{#crossLink &quot;ProAct.States/ready:property&quot;}}{{/crossLink}}.&lt;/li&gt;
+ *    &lt;li&gt;On its following reads it is a simple value, computed from the first read. No re-computations on get.&lt;/li&gt;
+ *    &lt;li&gt;If a property, this auto-computed property depends changes, the value of &lt;i&gt;this&lt;/i&gt; ProAct.AutoProperty is recomputed.&lt;/li&gt;
+ *    &lt;li&gt;Setting the property can be implemented easy, because on set, the original function of the property is called with the new value.&lt;/li&gt;
+ *  &lt;/ul&gt;
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.AutoProperty&#x60; can be dependant on another &#x60;ProAct.AutoProperty&#x60;.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.AutoProperty&#x60; is part of the proact-properties module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.AutoProperty
+ * @extends ProAct.Property
+ * @constructor
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;proObject&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {Object} proObject
+ *      A plain JavaScript object, holding a field, this property will represent.
+ * @param {String} property
+ *      The name of the field of the object, this property should represent.
+ */
+function AutoProperty (queueName, proObject, property) {
+  if (queueName &amp;&amp; !P.U.isString(queueName)) {
+    property = proObject;
+    proObject = queueName;
+    queueName = null;
+  }
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_js_core_pro.js.html#l532"><code>src&#x2F;js&#x2F;core&#x2F;pro.js:532</code></a>
-        </div>
-    
+  this.func = proObject[property];
 
-    
-</div>
+  var self = this,
+      getter = function () {
+        self.addCaller();
+        var oldCaller = P.currentCaller,
+            get = P.P.defaultGetter(self),
+            set = P.P.defaultSetter(self, function (newVal) {
+              return self.func.call(self.proObject, newVal);
+            }),
+            args = arguments,
+            autoFunction;
 
+        P.currentCaller = self.makeListener();
 
+        autoFunction = function () {
+          self.val = self.func.apply(self.proObject, args);
+        };
+        P.flow.run(function () {
+          P.flow.pushOnce(autoFunction);
+        });
 
-<div class="moduledesc well well-small">
-    <p>The <code>proact-core</code> module provides base utilties and common functionality for all the other
-modules of the lib.</p>
+        P.currentCaller = oldCaller;
 
-</div>
+        P.P.defineProp(self.proObject, self.property, get, set);
 
+        self.state = P.States.ready;
 
+        self.val = P.Actor.transform(self, self.val);
+        return self.val;
+      };
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+  P.P.call(this, queueName, proObject, property, getter, function () {});
+}
+ProAct.AutoProperty = P.FP = AutoProperty;
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.html">
-                        ProAct
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Actor.html">
-                        ProAct.Actor
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.ActorUtil.html">
-                        ProAct.ActorUtil
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Configuration.html">
-                        ProAct.Configuration
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Core.html">
-                        ProAct.Core
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.html">
-                        ProAct.Event
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Event.Types.html">
-                        ProAct.Event.Types
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.States.html">
-                        ProAct.States
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/ProAct.Utils.html">
-                        ProAct.Utils
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+ProAct.AutoProperty.prototype = P.U.ex(Object.create(P.P.prototype), {
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.AutoProperty
+   * @final
+   * @for ProAct.AutoProperty
+   */
+  constructor: ProAct.AutoProperty,
+
+  /**
+   * Retrieves the {{#crossLink &quot;ProAct.Property.Types&quot;}}{{/crossLink}} value of &lt;i&gt;this&lt;/i&gt; property.
+   * &lt;p&gt;
+   *  For instances of the &#x60;ProAct.AutoProperty&#x60; class, it is
+   *  {{#crossLink &quot;ProAct.Property.Types/auto:property&quot;}}{{/crossLink}}.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.AutoProperty
+   * @instance
+   * @method type
+   * @return {Number}
+   *      The right type of the property.
+   */
+  type: function () {
+    return P.P.Types.auto;
+  },
+
+  /**
+   * Creates the &lt;i&gt;listener&lt;/i&gt; of this &#x60;ProAct.AutoProperty&#x60;.
+   * &lt;p&gt;
+   *  This listener turns the observable in a observer.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  The listener for &#x60;ProAct.AutoProperty&#x60; is an object defining the &lt;i&gt;call&lt;/i&gt; method.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  It has a &lt;i&gt;property&lt;/i&gt; field set to &lt;i&gt;this&lt;/i&gt;.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  On value changes the &lt;i&gt;&lt;this&lt;/i&gt; value is set to the value computed by the original function,
+   *  using the {{#crossLink &quot;ProAct.Actor/transform:method&quot;}}{{/crossLink}} to transform it.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.AutoProperty
+   * @protected
+   * @instance
+   * @method makeListener
+   * @return {Object}
+   *      The &lt;i&gt;listener of this ProAct.AutoProperty&lt;/i&gt;.
+   */
+  makeListener: function () {
+    if (!this.listener) {
+      var self = this;
+
+      this.listener = {
+        property: self,
+        queueName: self.queueName,
+        call: function () {
+          self.oldVal = self.val;
+          self.val = P.Actor.transform(self, self.func.call(self.proObject));
+        }
+      };
+    }
+
+    return this.listener;
+  },
+
+  /**
+   * Called automatically after initialization of this property.
+   * &lt;p&gt;
+   *  For &#x60;ProAct.AutoProperty&#x60; it does nothing -
+   *  the real initialization is lazy and is performed on the first read of &lt;i&gt;this&lt;/i&gt;.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.AutoProperty
+   * @protected
+   * @instance
+   * @method afterInit
+   */
+  afterInit: function () {}
+});
+
+    </pre>
 </div>
 
                     </div>
