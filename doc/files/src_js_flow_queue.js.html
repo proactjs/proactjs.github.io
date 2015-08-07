@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/js/flow/queue.js - proact.js</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="proact.js" src="../../proact_logo_icon.png" style="max-height: 65%;" title="proact.js">
+        
+            proact.js
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.3.0</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.Array", "classes/ProAct.Array.Listeners", "classes/ProAct.Array.Operations", "classes/ProAct.ArrayCore", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.ArrayUtils", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.DSL", "classes/ProAct.DSL.ops", "classes/ProAct.DSL.predefined", "classes/ProAct.DSL.predefined.accumulation", "classes/ProAct.DSL.predefined.filtering", "classes/ProAct.DSL.predefined.mapping", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.Flow", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.OpStore", "classes/ProAct.OpStore.all", "classes/ProAct.ProbProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.Queue", "classes/ProAct.Queues", "classes/ProAct.Registry", "classes/ProAct.Registry.FunctionProvider", "classes/ProAct.Registry.ProObjectProvider", "classes/ProAct.Registry.ProObjectProvider.types", "classes/ProAct.Registry.Provider", "classes/ProAct.Registry.Provider.types", "classes/ProAct.Registry.StreamProvider", "classes/ProAct.Registry.StreamProvider.types", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.SubscribableStream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "classes/ProAct.ValueEvent", "modules/proact-arrays", "modules/proact-core", "modules/proact-dsl", "modules/proact-flow", "modules/proact-properties", "modules/proact-streams"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/ProAct.html">ProAct</a></li>
+                    
+                        <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.html">ProAct.Array</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Listeners.html">ProAct.Array.Listeners</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Operations.html">ProAct.Array.Operations</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayCore.html">ProAct.ArrayCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayUtils.html">ProAct.ArrayUtils</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoPropertyProvider.html">ProAct.AutoPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.BufferedStream.html">ProAct.BufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
+                    
+                        <li><a href="../classes/ProAct.Core.html">ProAct.Core</a></li>
+                    
+                        <li><a href="../classes/ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.html">ProAct.DSL</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.ops.html">ProAct.DSL.ops</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.html">ProAct.DSL.predefined</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.accumulation.html">ProAct.DSL.predefined.accumulation</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.filtering.html">ProAct.DSL.predefined.filtering</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.mapping.html">ProAct.DSL.predefined.mapping</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Flow.html">ProAct.Flow</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.html">ProAct.OpStore</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.all.html">ProAct.OpStore.all</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProbProvider.html">ProAct.ProbProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.Types.html">ProAct.Property.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.PropertyProvider.html">ProAct.PropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queue.html">ProAct.Queue</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queues.html">ProAct.Queues</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.html">ProAct.Registry</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.FunctionProvider.html">ProAct.Registry.FunctionProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.html">ProAct.Registry.ProObjectProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.types.html">ProAct.Registry.ProObjectProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.html">ProAct.Registry.Provider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.types.html">ProAct.Registry.Provider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.html">ProAct.Registry.StreamProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.types.html">ProAct.Registry.StreamProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
+                    
+                        <li><a href="../classes/ProAct.SubscribableStream.html">ProAct.SubscribableStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                        <li><a href="../classes/ProAct.ValueEvent.html">ProAct.ValueEvent</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/proact-arrays.html">proact-arrays</a></li>
+                    
+                        <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-dsl.html">proact-dsl</a></li>
+                    
+                        <li><a href="../modules/proact-flow.html">proact-flow</a></li>
+                    
+                        <li><a href="../modules/proact-properties.html">proact-properties</a></li>
+                    
+                        <li><a href="../modules/proact-streams.html">proact-streams</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/js/flow/queue.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-flow
+ */
+
+/**
+ * &lt;p&gt;
+ *   Creates a queue of actions or action queue.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The idea of the action queues is to decide the order of the actions pushed into them.
+ *  For example if an action should be executed only once, but is pushed for a second time,
+ *  it is moved in the end of the queue and its parameters are updated.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The ProAct.Queue is a priority queue, meaning every action has a numeric priority.
+ *  The actions with the numerically lowest priority are with highes prority when executed.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  The {{#crossLink &quot;ProAct.Queue/go:method&quot;}}{{/crossLink}} method deques all the actions from the queue and executes them in the right
+ *  order, using their priorities.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  A ProAct.Queue can be used to setup the action flow - the order of the actions must be executed.
+ *  ProAct.js uses it to create an action flow if something changes.
+ * &lt;/p&gt;
+ *
+ * TODO Default name should be extracted to a constant. ~meddle@2014-07-10
+ *
+ * @class ProAct.Queue
+ * @constructor
+ * @param {String} name
+ *    The name of the queue, every ProAct.Queue must have a name.
+ *    The default value of the name is &#x27;proq&#x27;. {{#crossLink &quot;ProAct.Queues&quot;}}{{/crossLink}} uses the names to manage its queues.
+ * @param {Object} options
+ *    Various options for the queue.
+ *    &lt;p&gt;Available options:&lt;/p&gt;
+ *    &lt;ul&gt;
+ *      &lt;li&gt;before - A callback called before each call of {{#crossLink &quot;ProAct.Queue/go:method&quot;}}{{/crossLink}}.&lt;/li&gt;
+ *      &lt;li&gt;after - A callback called after each call of {{#crossLink &quot;ProAct.Queue/go:method&quot;}}{{/crossLink}}.&lt;/li&gt;
+ *      &lt;li&gt;err - A callback called every time an error is thrown.&lt;/li&gt;
+ *    &lt;/ul&gt;
+ */
+ProAct.Queue = P.Q = function (name, options) {
+  this.name = name || &#x27;proq&#x27;;
+  this.options = options || {};
+
+  this._queue = [];
+};
+
+/**
+ * Executes the passed &lt;i&gt;action&lt;/i&gt;.
+ *
+ * @for ProAct.Queue
+ * @method runAction
+ * @static
+ * @param {ProAct.Queue} queue
+ *      The queue managing the action to execute.
+ * @param {Object} context
+ *      The context in which the action should be executed.
+ *      &lt;p&gt;
+ *        The action is a normal JavaScript function and the context is the object
+ *        that should be bound to &lt;i&gt;this&lt;/i&gt; when calling it.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        It can be null or undefined.
+ *      &lt;/p&gt;
+ * @param {Function} action
+ *      The action to execute.
+ * @param {Array} args
+ *      The parameters to be passed to the action.
+ * @param {Function} errHandler
+ *      It is called if an error is thrown when executing the action.
+ *      &lt;p&gt;
+ *        It can be null if the error should be catched from the outside.
+ *      &lt;/p&gt;
+ */
+ProAct.Queue.runAction = function (queue, context, action, args, errHandler) {
+  if (args &amp;&amp; args.length &gt; 0) {
+    if (errHandler) {
+      try {
+        action.apply(context, args);
+      } catch (e) {
+        if (!e.fromFlow) {
+          e.fromFlow = true;
+          errHandler(queue, e);
+        } else {
+          throw e;
+        }
+      }
+    } else {
+      action.apply(context, args);
+    }
+  } else {
+    if (errHandler) {
+      try {
+        action.call(context);
+      } catch(e) {
+        if (!e.fromFlow) {
+          e.fromFlow = true;
+          errHandler(queue, e);
+        } else {
+          throw e;
+        }
+      }
+    } else {
+      action.call(context);
+    }
+  }
+};
+
+P.Q.prototype = {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.Queue
+   * @final
+   * @for ProAct.Queue
+   */
+  constructor: ProAct.Queue,
+
+  /**
+   * Retrieves the lenght of this &#x60;ProAct.Queue&#x60;.
+   *
+   * @for ProAct.Queue
+   * @instance
+   * @method length
+   * @return {Number}
+   *      The number of actions queued in this queue.
+   */
+  length: function () {
+    return this._queue.length / 4;
+  },
+
+  /**
+   * Checks if this &#x60;ProAct.Queue&#x60; is empty.
+   *
+   * @for ProAct.Queue
+   * @instance
+   * @method isEmpty
+   * @return {Boolean}
+   *      True if there are no actions in this queue.
+   */
+  isEmpty: function () {
+    return this.length() === 0;
+  },
+
+  /**
+   * Pushes an action to this queue.
+   * This method can enque the same action multiple times and always with priority of &#x27;1&#x27;.
+   * &lt;p&gt;
+   *  &#x60;defer&#x60;, &#x60;enque&#x60; and &#x60;add&#x60; are aliases of this method.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Queue
+   * @instance
+   * @method push
+   * @param {Object} context
+   *      The context of the action.
+   *      It can be null.
+   *      &lt;p&gt;
+   *        If the method is called with a Function context, the context becomes the action.
+   *        This way the method can be called with only one parameter for actions without context.
+   *      &lt;/p&gt;
+   * @param {Function} action
+   *      The action to enque.
+   *      &lt;p&gt;
+   *        If there is no context and the action is passed in place of the context,
+   *        this parameter can hold the arguments of the action.
+   *      &lt;/p&gt;
+   * @param {Array} args
+   *      Arguments to be passed to the action when it is executed.
+   */
+  push: function (context, action, args) {
+    if (context &amp;&amp; (typeof(context) === &#x27;function&#x27;)) {
+      args = action;
+      action = context;
+      context = null;
+    }
+
+    this._queue.push(context, action, args, 1);
+  },
+
+  /**
+   * Pushes an action to this queue only once.
+   * &lt;p&gt;
+   *  If the action is pushed for the second time using this method, instead of
+   *  adding it to the queue, its priority goes up and its arguments are updated.
+   *  This means that this action will be executed after all the other actions, pushed only once.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  &#x60;deferOnce&#x60;, &#x60;enqueOnce&#x60; and &#x60;addOnce&#x60; are aliases of this method.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Queue
+   * @instance
+   * @method pushOnce
+   * @param {Object} context
+   *      The context of the action.
+   *      It can be null.
+   *      &lt;p&gt;
+   *        If the method is called with a Function context, the context becomes the action.
+   *        This way the method can be called with only one parameter for actions without context.
+   *      &lt;/p&gt;
+   * @param {Function} action
+   *      The action to enque.
+   *      &lt;p&gt;
+   *        If there is no context and the action is passed in place of the context,
+   *        this parameter can hold the arguments of the action.
+   *      &lt;/p&gt;
+   * @param {Array} args
+   *      Arguments to be passed to the action when it is executed.
+   */
+  pushOnce: function (context, action, args) {
+    if (context &amp;&amp; (typeof(context) === &#x27;function&#x27;)) {
+      args = action;
+      action = context;
+      context = null;
+    }
+
+    var queue = this._queue, current, currentMethod,
+        i, length = queue.length;
+
+    for (i = 0; i &lt; length; i += 4) {
+      current = queue[i];
+      currentMethod = queue[i + 1];
+
+      if (current === context &amp;&amp; currentMethod === action) {
+        queue[i + 2] = args;
+        queue[i + 3] = queue[i + 3] + 1;
+        return;
+      }
+    }
+
+    this.push(context, action, args);
+  },
+
+  /**
+   * Starts the action flow.
+   * &lt;p&gt;
+   *  Executes the actions in this queue in the order they were enqued, but also uses the priorities
+   *  to execute these with numerically higher priority after these with numerically lower priority.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  If some of the actions enques new actions in this queue and the parameter &lt;i&gt;once&lt;/i&gt; is set to false
+   *  this method is recursively called executing the new actions.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  &#x60;run&#x60; is alias of this method.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Queue
+   * @instance
+   * @method go
+   * @param {Boolean} once
+   *      True if &#x27;go&#x27; should not be called for actions generated by the executed ones.
+   */
+  go: function (once) {
+    var queue = this._queue,
+        options = this.options,
+        runs = this.runs,
+        length = queue.length,
+        before = options &amp;&amp; options.before,
+        after = options &amp;&amp; options.after,
+        err = options &amp;&amp; options.err,
+        i, l = length, going = true, priority = 1,
+        tl = l,
+        obj, method, args, prio;
+
+    if (length &amp;&amp; before) {
+      before(this);
+    }
+
+    while (going) {
+      going = false;
+      l = tl;
+      for (i = 0; i &lt; l; i += 4) {
+        obj = queue[i];
+        method = queue[i + 1];
+        args = queue[i + 2];
+        prio = queue[i + 3];
+
+        if (prio === priority) {
+          P.Q.runAction(this, obj, method, args, err);
+        } else if (prio &gt; priority) {
+          going = true;
+          tl = i + 4;
+        }
+      }
+      priority = priority + 1;
+    }
+
+    if (length &amp;&amp; after) {
+      after(this);
+    }
+
+    if (queue.length &gt; length) {
+      this._queue = queue.slice(length);
+
+      if (!once) {
+        this.go();
+      }
+    } else {
+      this._queue.length = 0;
+    }
+  }
+};
+
+P.Q.prototype.defer = P.Q.prototype.enque = P.Q.prototype.add = P.Q.prototype.push;
+P.Q.prototype.deferOnce = P.Q.prototype.enqueOnce = P.Q.prototype.addOnce = P.Q.prototype.pushOnce;
+P.Q.prototype.run = P.Q.prototype.go;
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

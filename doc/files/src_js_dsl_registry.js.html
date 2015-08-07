@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/js/dsl/registry.js - proact.js</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="proact.js" src="../../proact_logo_icon.png" style="max-height: 65%;" title="proact.js">
+        
+            proact.js
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.3.0</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.Array", "classes/ProAct.Array.Listeners", "classes/ProAct.Array.Operations", "classes/ProAct.ArrayCore", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.ArrayUtils", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.DSL", "classes/ProAct.DSL.ops", "classes/ProAct.DSL.predefined", "classes/ProAct.DSL.predefined.accumulation", "classes/ProAct.DSL.predefined.filtering", "classes/ProAct.DSL.predefined.mapping", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.Flow", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.OpStore", "classes/ProAct.OpStore.all", "classes/ProAct.ProbProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.Queue", "classes/ProAct.Queues", "classes/ProAct.Registry", "classes/ProAct.Registry.FunctionProvider", "classes/ProAct.Registry.ProObjectProvider", "classes/ProAct.Registry.ProObjectProvider.types", "classes/ProAct.Registry.Provider", "classes/ProAct.Registry.Provider.types", "classes/ProAct.Registry.StreamProvider", "classes/ProAct.Registry.StreamProvider.types", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.SubscribableStream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "classes/ProAct.ValueEvent", "modules/proact-arrays", "modules/proact-core", "modules/proact-dsl", "modules/proact-flow", "modules/proact-properties", "modules/proact-streams"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/ProAct.html">ProAct</a></li>
+                    
+                        <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.html">ProAct.Array</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Listeners.html">ProAct.Array.Listeners</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Operations.html">ProAct.Array.Operations</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayCore.html">ProAct.ArrayCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayUtils.html">ProAct.ArrayUtils</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoPropertyProvider.html">ProAct.AutoPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.BufferedStream.html">ProAct.BufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
+                    
+                        <li><a href="../classes/ProAct.Core.html">ProAct.Core</a></li>
+                    
+                        <li><a href="../classes/ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.html">ProAct.DSL</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.ops.html">ProAct.DSL.ops</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.html">ProAct.DSL.predefined</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.accumulation.html">ProAct.DSL.predefined.accumulation</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.filtering.html">ProAct.DSL.predefined.filtering</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.mapping.html">ProAct.DSL.predefined.mapping</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Flow.html">ProAct.Flow</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.html">ProAct.OpStore</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.all.html">ProAct.OpStore.all</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProbProvider.html">ProAct.ProbProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.Types.html">ProAct.Property.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.PropertyProvider.html">ProAct.PropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queue.html">ProAct.Queue</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queues.html">ProAct.Queues</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.html">ProAct.Registry</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.FunctionProvider.html">ProAct.Registry.FunctionProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.html">ProAct.Registry.ProObjectProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.types.html">ProAct.Registry.ProObjectProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.html">ProAct.Registry.Provider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.types.html">ProAct.Registry.Provider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.html">ProAct.Registry.StreamProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.types.html">ProAct.Registry.StreamProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
+                    
+                        <li><a href="../classes/ProAct.SubscribableStream.html">ProAct.SubscribableStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                        <li><a href="../classes/ProAct.ValueEvent.html">ProAct.ValueEvent</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/proact-arrays.html">proact-arrays</a></li>
+                    
+                        <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-dsl.html">proact-dsl</a></li>
+                    
+                        <li><a href="../modules/proact-flow.html">proact-flow</a></li>
+                    
+                        <li><a href="../modules/proact-properties.html">proact-properties</a></li>
+                    
+                        <li><a href="../modules/proact-streams.html">proact-streams</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/js/dsl/registry.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * The &#x60;proact-dsl&#x60; module provides DSL for creating and managing different ProAct objects.
+ *
+ *
+ * @module proact-dsl
+ * @main proact-dsl
+ */
+
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.Registry&#x60;.
+ *  It is used to store/create objects that can be referenced or configured using the {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}}.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.Registry&#x60; is part of the &#x60;proact-dsl&#x60; module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.Registry
+ * @constructor
+ */
+function Registry () {
+  this.providers = {};
+}
+ProAct.Registry = P.R = Registry;
+
+ProAct.Registry.prototype = rProto = {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.Registry
+   * @final
+   * @for ProAct.Registry
+   */
+  constructor: ProAct.Registry,
+
+  /**
+   * Registers a {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} for the passed &lt;i&gt;namespace&lt;/i&gt; in the registry.
+   *
+   * @for ProAct.Registry
+   * @instance
+   * @method register
+   * @param {String} namespace
+   *      The namespace to register the &lt;i&gt;provider&lt;/i&gt; in.
+   * @param {ProAct.Registry.Provider} provider
+   *      The {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} to register.
+   * @return {ProAct.Registers}
+   *      &lt;i&gt;this&lt;/i&gt;
+   * @throws {Error}
+   *      If a {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} is already registered for the passed &lt;i&gt;namespace&lt;/i&gt;.
+   */
+  register: function (namespace, provider) {
+    if (this.providers[namespace]) {
+      throw new Error(namespace + &#x27;is already registered in this registry.&#x27;);
+    }
+    this.providers[namespace] = provider;
+    if (provider.registered) {
+      provider.registered(this);
+    }
+    return this;
+  },
+
+  /**
+   * Retrieves the right {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} using the &lt;i&gt;name&lt;/i&gt; of stored
+   * in &lt;i&gt;this&lt;/i&gt; ProAct.Registry object, or the &lt;i&gt;name&lt;/i&gt; of an object to be stored
+   *
+   * @for ProAct.Registry
+   * @instance
+   * @method getProviderByName
+   * @param {String} name
+   *      The name of storable object.
+   *      &lt;p&gt;
+   *        It must be in the format &#x27;{namespace}:{key}&#x27;.
+   *      &lt;/p&gt;
+   *      &lt;p&gt;
+   *        Here the namespace is the namespace the {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} manages.
+   *      &lt;/p&gt;
+   * @return {Array}
+   *      The first element in the result is the {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} or undefined if not found.
+   *      &lt;p&gt;
+   *        The second one is the &lt;b&gt;key&lt;/b&gt; at which an object is stored or will be stored in the provider.
+   *      &lt;/p&gt;
+   *      &lt;p&gt;
+   *        The third element is an array with options for storing/creating an object passed to the provider using
+   *        the &lt;i&gt;name&lt;/i&gt; string.
+   *      &lt;/p&gt;
+   */
+  getProviderByName: function (name) {
+    var parts = name.split(&#x27;:&#x27;);
+
+    return [this.providers[parts[0]], parts[1], parts.slice(2)];
+  },
+
+  /**
+   * Configures an object to be stored using {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}} passed through &lt;i&gt;options&lt;/i&gt; and DSL arguments.
+   * &lt;p&gt;
+   *  Example usage:
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  A {{#crossLink &quot;ProAct.Stream&quot;}}{{/crossLink}} is passed to the registry for setup with DSL data.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  The data passed through the &lt;i&gt;options&lt;/i&gt; parameter is
+   *  &lt;pre&gt;
+   *    &#x27;&lt;&lt;(s:foo)|map(-)|filter($1)&#x27;
+   *  &lt;/pre&gt;
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  And the arguments for the DSL machine passed through the &lt;i&gt;args&lt;/i&gt; parameter are
+   *  &lt;pre&gt;
+   *    [function (v) {
+   *      return v % 2 === 0;
+   *    }]
+   *  &lt;/pre&gt;
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  This means that a {{#crossLink &quot;ProAct.Stream&quot;}}{{/crossLink}} stored in &lt;i&gt;this&lt;/i&gt; registry by the key &#x27;foo&#x27; should be set
+   *  as a source to the passed as the &lt;i&gt;object&lt;/i&gt; parameter simple {{#crossLink &quot;ProAct.Stream&quot;}}{{/crossLink}}.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  It also means that for every value comming in the &lt;i&gt;object&lt;/i&gt; parameter&#x27;s stream there should be mapping of negativity and
+   *  only even values should be passed to it.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  So if we trigger in the &#x27;foo&#x27; stream the value of &lt;b&gt;4&lt;/b&gt; in our stream we will get &lt;b&gt;-4&lt;/b&gt;, and if we trigger 5, we won&#x27;t get anything.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Registry
+   * @instance
+   * @method setup
+   * @param {Object} object
+   *      The object to setup.
+   * @param {String|Object} options
+   *      A {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}} data object or string used to setup the object.
+   * @param {Array} args
+   *      Arguments to be used by the {{#crossLink &quot;ProAct.DSL/run:method&quot;}}{{/crossLink}} method while configuring the passed &lt;i&gt;object&lt;/i&gt;.
+   * @return {Object}
+   *      Ready to strore object.
+   */
+  setup: function (object, options, args) {
+    return dsl.run.apply(null, [object, options, this].concat(args));
+  },
+
+  /**
+   * Creates a new object and stores it in &lt;i&gt;this&lt;/i&gt; registry, using the right provider for the creation
+   * and configuring it using the DSL passed through the &lt;i&gt;options&lt;/i&gt; parameter.
+   * &lt;p&gt;
+   *  {{#crossLink &quot;ProAct.Registry/getProviderByName:method&quot;}}{{/crossLink}} is used to locate the right provider to create the object with.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  {{#crossLink &quot;ProAct.Registry/setup:method&quot;}}{{/crossLink}} is used to setup the newly created object using the {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}}
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  The idea of this method is to create and configure {{#crossLink &quot;ProAct.Actor&quot;}}{{/crossLink}} objects.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Registry
+   * @instance
+   * @method make
+   * @param {String} name
+   *      Name of the object to create and store.
+   *      &lt;p&gt;
+   *        It must be in the format &#x27;{namespace}:{key}&#x27;
+   *      &lt;/p&gt;
+   * @param {String|Object} options
+   *      A {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}} data object or string used to setup the object to be created.
+   * @param [...]
+   *      &lt;b&gt;Arguments&lt;/b&gt; to be used by the {{#crossLink &quot;ProAct.DSL/run:method&quot;}}{{/crossLink}} method while configuring the newly created &lt;i&gt;object&lt;/i&gt;.
+   * @return {Object}
+   *      The newly created, stored and configured object, or null if there was no {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} register for its type.
+   */
+  make: function (name, options) {
+    var args = slice.call(arguments, 2),
+        p = this.getProviderByName(name),
+        actor;
+
+    if (p[0]) {
+      actor = p[0].make.apply(p[0], [p[1], p[2]].concat(args));
+      return this.setup(actor, options, args);
+    }
+    return null;
+  },
+
+  /**
+   * Stores an object  in &lt;i&gt;this&lt;/i&gt; registry, using the right provider to configure it using the DSL passed through the &lt;i&gt;options&lt;/i&gt; parameter.
+   * &lt;p&gt;
+   *  {{#crossLink &quot;ProAct.Registry/getProviderByName:method&quot;}}{{/crossLink}} is used to locate the right provider to store the object to.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Registry
+   * @instance
+   * @method store
+   * @param {String} name
+   *      Name of the object to store.
+   *      &lt;p&gt;
+   *        It must be in the format &#x27;{namespace}:{key}&#x27;
+   *      &lt;/p&gt;
+   * @param {Object} object
+   *      The object to store.
+   * @param {String|Object} options
+   *      A {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}} data object or string used to setup the object to be stored (optional).
+   * @param [...]
+   *      &lt;b&gt;Arguments&lt;/b&gt; to be used by the {{#crossLink &quot;ProAct.DSL/run:method&quot;}}{{/crossLink}} method while configuring the &lt;i&gt;object&lt;/i&gt;.
+   * @return {Object}
+   *      The stored and configured object, or null if there was no {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} register for its type.
+   */
+  store: function (name, object, options) {
+    var args = slice.call(arguments, 2),
+        p = this.getProviderByName(name);
+
+    if (p[0]) {
+      return p[0].store.apply(p[0], [p[1], object, p[2]].concat(args));
+    }
+    return null;
+  },
+
+  /**
+   * Retrieves an object, stored &lt;i&gt;this&lt;/i&gt; registry.
+   * &lt;p&gt;
+   *  {{#crossLink &quot;ProAct.Registry/getProviderByName:method&quot;}}{{/crossLink}} is used to locate the right provider to retrieve the object from.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Registry
+   * @instance
+   * @method get
+   * @param {String} name
+   *      Name of the object to find.
+   *      &lt;p&gt;
+   *        It must be in the format &#x27;{namespace}:{key}&#x27;
+   *      &lt;/p&gt;
+   * @return {Object}
+   *      The stored object, or null if there was no {{#crossLink &quot;ProAct.Registry.Provider&quot;}}{{/crossLink}} register for its type or no object registered for the passed &lt;i&gt;name&lt;/i&gt;.
+   */
+  get: function (name) {
+    var p = this.getProviderByName(name);
+
+    if (p[0]) {
+      return p[0].get(p[1]);
+    }
+    return null;
+  },
+
+  /**
+   * Helper method for transforming an array of keys of stored items in &lt;i&gt;this&lt;/i&gt; &#x60;ProAct.Registry&#x60; to an array of the actual items.
+   * &lt;p&gt;
+   *  Mainly used by the {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}} logic.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Registry
+   * @protected
+   * @instance
+   * @method toObjectArray
+   * @param {Array} array
+   *      Array of string keys to objects stored in &lt;i&gt;this&lt;/i&gt; registry to be retrieved using {{#crossLink &quot;ProAct.Registry/toObject:method&quot;}}{{/crossLink}}.
+   *      &lt;p&gt;
+   *        If object is not stored on some key, the key itself is returned in the same possition in the result array.
+   *      &lt;/p&gt;
+   * @return {Array}
+   *      Of the retrieved objects, in the same order as the keys.
+   */
+  toObjectArray: function (array) {
+    var self = this;
+    if (!P.U.isArray(array)) {
+      return this.toObject(array);
+    }
+    return map.call(array, function (el) {
+      return self.toObject(el);
+    });
+  },
+
+  /**
+   * Helper method for transforming a key of stored item in &lt;i&gt;this&lt;/i&gt; &#x60;ProAct.Registry&#x60; to the actual item or returning the key, if
+   * the item is not found in the &#x60;ProAct.Registry&#x60;.
+   * &lt;p&gt;
+   *  Mainly used by the {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}} logic.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Registry
+   * @protected
+   * @instance
+   * @method toObject
+   * @param {String|Object} data
+   *      Key of strored object or something else. If the key is valid and there is something stored on it, the stored object is retrieved.
+   *      &lt;p&gt;
+   *        If there is nothing stored for this &lt;i&gt;data&lt;/i&gt;, the &lt;i&gt;data&lt;/i&gt; itself is returned.
+   *      &lt;/p&gt;
+   * @return {Object}
+   *      Stored object, if found using the passed &lt;i&gt;data&lt;/i&gt; or the &lt;i&gt;data&lt;/i&gt; itself.
+   */
+  toObject: function (data) {
+    if (P.U.isString(data)) {
+      var result = this.get(data);
+      return result ? result : data;
+    }
+
+    return data;
+  }
+};
+
+P.U.ex(P.Actor.prototype, {
+
+  /**
+   * Adds a new &lt;i&gt;transformation&lt;/i&gt; to the list of transformations
+   * of &lt;i&gt;this actor&lt;/i&gt;.
+   *
+   * &lt;p&gt;
+   *  A transformation is a function or an object that has a &lt;i&gt;call&lt;/i&gt; method defined.
+   *  This function or call method should have one argument and to return a transformed version of it.
+   *  If the returned value is {{#crossLink &quot;ProAct.Actor/BadValue:property&quot;}}{{/crossLink}}, the next transformations are skipped and the updating
+   *  value/event becomes - bad value.
+   * &lt;/p&gt;
+   *
+   * &lt;p&gt;
+   *  Every value/event that updates &lt;i&gt;this actor&lt;/i&gt; will be transformed using the new transformation.
+   * &lt;/p&gt;
+   *
+   * This method uses {{#crossLink &quot;ProAct.Actor/transform:method&quot;}}{{/crossLink}}, but can read transformation
+   * funtion/object stored in the registry (if the proact-dsl module is present) by it&#x27;s string name.
+   *
+   * @for ProAct.Actor
+   * @instance
+   * @method transformStored
+   * @protected
+   * @param {Object|String} transformation The transformation to add. Can be string - to be retrieved by name.
+   * @param {String} type The type of the transformation, for example &#x60;mapping&#x60;.
+   * @return {ProAct.Actor}
+   *      &lt;b&gt;this&lt;/b&gt;
+   */
+  transformStored: function (transformation, type) {
+    if (P.U.isString(transformation)) {
+      P.DSL.run(this, type + &#x27;(&#x27; + transformation + &#x27;)&#x27;, P.registry);
+      return this;
+    }
+
+    return this.transform(transformation);
+  }
+
+});
+
+P.U.ex(P.S, {
+  fromString: function (str, args) {
+    return P.registry.setup(
+      new ProAct.Stream(), str, args
+    );
+  }
+});
+
+P.U.ex(P.ObjectCore.prototype, {
+
+  /**
+   * Applies meta information and actions on already created property.
+   *
+   * This method is called by the {{#crossLink &quot;ProAct.ObjectCore/makeProp:method&quot;}}{{/crossLink}} one,
+   * other modules can inject logic by overriding it.
+   *
+   * The meta is in format of the {{#crossLink &quot;ProAct.DSL&quot;}}{{/crossLink}}.
+   *
+   * @for ProAct.ObjectCore
+   * @protected
+   * @instance
+   * @method applyMeta
+   * @param {String|Array} meta
+   *      Meta information for the property to modify with.
+   * @param {ProAct.Property} property
+   *      The property to update.
+   */
+  applyMeta: function (meta, property) {
+    if (meta &amp;&amp; P.registry) {
+      if (!P.U.isArray(meta)) {
+        meta = [meta];
+      }
+
+      if (!(meta[0] instanceof ProAct.Property)) {
+        P.registry.setup.apply(P.registry, [property].concat(meta));
+      }
+    }
+  }
+
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/js/streams/subscribable_stream.js - proact.js</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="proact.js" src="../../proact_logo_icon.png" style="max-height: 65%;" title="proact.js">
+        
+            proact.js
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.3.0</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.Array", "classes/ProAct.Array.Listeners", "classes/ProAct.Array.Operations", "classes/ProAct.ArrayCore", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.ArrayUtils", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.DSL", "classes/ProAct.DSL.ops", "classes/ProAct.DSL.predefined", "classes/ProAct.DSL.predefined.accumulation", "classes/ProAct.DSL.predefined.filtering", "classes/ProAct.DSL.predefined.mapping", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.Flow", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.OpStore", "classes/ProAct.OpStore.all", "classes/ProAct.ProbProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.Queue", "classes/ProAct.Queues", "classes/ProAct.Registry", "classes/ProAct.Registry.FunctionProvider", "classes/ProAct.Registry.ProObjectProvider", "classes/ProAct.Registry.ProObjectProvider.types", "classes/ProAct.Registry.Provider", "classes/ProAct.Registry.Provider.types", "classes/ProAct.Registry.StreamProvider", "classes/ProAct.Registry.StreamProvider.types", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.SubscribableStream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "classes/ProAct.ValueEvent", "modules/proact-arrays", "modules/proact-core", "modules/proact-dsl", "modules/proact-flow", "modules/proact-properties", "modules/proact-streams"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/ProAct.html">ProAct</a></li>
+                    
+                        <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.html">ProAct.Array</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Listeners.html">ProAct.Array.Listeners</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Operations.html">ProAct.Array.Operations</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayCore.html">ProAct.ArrayCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayUtils.html">ProAct.ArrayUtils</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoPropertyProvider.html">ProAct.AutoPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.BufferedStream.html">ProAct.BufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
+                    
+                        <li><a href="../classes/ProAct.Core.html">ProAct.Core</a></li>
+                    
+                        <li><a href="../classes/ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.html">ProAct.DSL</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.ops.html">ProAct.DSL.ops</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.html">ProAct.DSL.predefined</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.accumulation.html">ProAct.DSL.predefined.accumulation</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.filtering.html">ProAct.DSL.predefined.filtering</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.mapping.html">ProAct.DSL.predefined.mapping</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Flow.html">ProAct.Flow</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.html">ProAct.OpStore</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.all.html">ProAct.OpStore.all</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProbProvider.html">ProAct.ProbProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.Types.html">ProAct.Property.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.PropertyProvider.html">ProAct.PropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queue.html">ProAct.Queue</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queues.html">ProAct.Queues</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.html">ProAct.Registry</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.FunctionProvider.html">ProAct.Registry.FunctionProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.html">ProAct.Registry.ProObjectProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.types.html">ProAct.Registry.ProObjectProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.html">ProAct.Registry.Provider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.types.html">ProAct.Registry.Provider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.html">ProAct.Registry.StreamProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.types.html">ProAct.Registry.StreamProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
+                    
+                        <li><a href="../classes/ProAct.SubscribableStream.html">ProAct.SubscribableStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                        <li><a href="../classes/ProAct.ValueEvent.html">ProAct.ValueEvent</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/proact-arrays.html">proact-arrays</a></li>
+                    
+                        <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-dsl.html">proact-dsl</a></li>
+                    
+                        <li><a href="../modules/proact-flow.html">proact-flow</a></li>
+                    
+                        <li><a href="../modules/proact-properties.html">proact-properties</a></li>
+                    
+                        <li><a href="../modules/proact-streams.html">proact-streams</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/js/streams/subscribable_stream.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * @module proact-streams
+ */
+
+/**
+ * &lt;p&gt;
+ *  Constructs a &#x60;ProAct.SubscribableStream&#x60;. This is a &#x60;Stream&#x60; that has a custom &#x60;subscribe&#x60; function, used to subscribe to a source.
+ * &lt;/p&gt;
+ *
+ * This can be used to stream sources like browser events. The stream is lazy, when there are no listeners to it,
+ * it is not subscribed to the source, on the first listener it is subscribed, when every listener is unsubscibed, it is unsubscribed.
+ *
+ * &lt;p&gt;
+ *  &#x60;ProAct.SubscribableStream&#x60; is part of the &#x60;proact-streams&#x60; module of ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @class ProAct.SubscribableStream
+ * @constructor
+ * @extends ProAct.Stream
+ * @param {Function} subscribe
+ *      A function used to subscribe to a source, when the first listener to this stream is attached.
+ * @param {String} queueName
+ *      The name of the queue all the updates should be pushed to.
+ *      &lt;p&gt;
+ *        If this parameter is null/undefined the default queue of
+ *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
+ *      &lt;/p&gt;
+ *      &lt;p&gt;
+ *        If this parameter is not a string it is used as the
+ *        &lt;i&gt;source&lt;/i&gt;.
+ *      &lt;/p&gt;
+ * @param {ProAct.Actor} source
+ *      A default source of the stream, can be null.
+ *      &lt;p&gt;
+ *        If this is the only one passed argument and it is a number - it becomes the size of the buffer.
+ *      &lt;/p&gt;
+ * @param {Array} transforms
+ *      A list of transformation to be used on all incoming chages.
+ *      &lt;p&gt;
+ *        If the arguments passed are two and this is a number - it becomes the size of the buffer.
+ *      &lt;/p&gt;
+ */
+function SubscribableStream (subscribe, queueName, source, transforms) {
+  P.S.call(this, queueName, source, transforms);
+
+  this.subscribe = subscribe;
+  this.unsubscribe = null;
+  this.subscriptions = 0;
+}
+ProAct.SubscribableStream = P.SUS = SubscribableStream;
+
+ProAct.SubscribableStream.prototype = P.U.ex(Object.create(P.S.prototype), {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.SubscribableStream
+   * @final
+   * @for ProAct.SubscribableStream
+   */
+  constructor: ProAct.SubscribableStream,
+
+  /**
+   * Attaches a new listener to this &#x60;ProAct.SubscribableStream&#x60;.
+   *
+   * The listener may be function or object that defines a &lt;i&gt;call&lt;/i&gt; method.
+   * On the first attached listener the &#x60;subscribe&#x60; function passed to the constructor will be called.
+   * That way the stream will be subscribed to custom data source.
+   *
+   * &#x60;&#x60;&#x60;
+   *   stream.on(function (v) {
+   *    console.log(v);
+   *   });
+   *
+   *   stream.on(&#x27;error&#x27;, function (v) {
+   *    console.error(v);
+   *   });
+   *
+   *   stream.on({
+   *    call: function (v) {
+   *      console.log(v);
+   *    }
+   *   });
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.SubscribableStream
+   * @instance
+   * @method on
+   * @param {Array|String} actions
+   *      The action/actions to listen for. If this parameter is skipped or null/undefined,
+   *      the actions from {{#crossLink &quot;ProAct.Actor/defaultActions:method&quot;}}{{/crossLink}} are used.
+   *      &lt;p&gt;
+   *        The actions can be skipped and on their place as first parameter to be passed the &lt;i&gt;listener&lt;/i&gt;.
+   *      &lt;/p&gt;
+   * @param {Object} listener
+   *      The listener to attach. It must be instance of Function or object with a &lt;i&gt;call&lt;/i&gt; method.
+   * @return {ProAct.SubscribableStream}
+   *      &lt;b&gt;this&lt;/b&gt;
+   */
+  on: function (actions, listener) {
+    if (this.subscriptions === 0) {
+      this.unsubscribe = this.subscribe(this);
+    }
+    this.subscriptions++;
+
+    return P.S.prototype.on.call(this, actions, listener);
+  },
+
+  /**
+   * Removes a &lt;i&gt;listener&lt;/i&gt; from the passed &lt;i&gt;action&lt;/i&gt;.
+   *
+   * If this method is called without parameters, all the listeners for all the actions are removed.
+   * The listeners are reset using {{#crossLink &quot;ProAct.Actor/defaultActions:method&quot;}}{{/crossLink}}.
+   *
+   * If the last listener is removed using this method, &#x60;this stream&#x60; authomatically unsubscribes
+   * from the source, using the function, returned by the &#x60;subscribe&#x60; function passed to the constructor.
+   *
+   * Examples are:
+   *
+   * Removing a listener:
+   * &#x60;&#x60;&#x60;
+   *  var listener = function (v) {
+   *    console.log(v);
+   *  };
+   *  stream.on(listener);
+   *  stream.off(listener);
+   * &#x60;&#x60;&#x60;
+   *
+   * Or for removing all the listeners attached to an stream:
+   * &#x60;&#x60;&#x60;
+   *  stream.off();
+   * &#x60;&#x60;&#x60;
+   *
+   * Or for removing all the listeners of a given type attached to an stream:
+   * &#x60;&#x60;&#x60;
+   *  stream.off(&#x27;error&#x27;);
+   * &#x60;&#x60;&#x60;
+   *
+   * Or for removing a listener from different type of actions:
+   * &#x60;&#x60;&#x60;
+   *  var listener = function (v) {
+   *    console.log(v);
+   *  };
+   *  stream.on(listener);
+   *  stream.onErr(listener);
+   *
+   *  stream.off([&#x27;error&#x27;, &#x27;change&#x27;], listener);
+   * &#x60;&#x60;&#x60;
+   *
+   * @for ProAct.SubscribableStream
+   * @instance
+   * @method off
+   * @param {Array|String} actions
+   *      The action/actions to stop listening for. If this parameter is skipped or null/undefined,
+   *      the actions from {{#crossLink &quot;ProAct.Actor/defaultActions:method&quot;}}{{/crossLink}} are used.
+   *      &lt;p&gt;
+   *        The actions can be skipped and on their place as first parameter to be passed the &lt;i&gt;listener&lt;/i&gt;.
+   *      &lt;/p&gt;
+   * @param {Object} listener
+   *      The listener to detach. If it is skipped, null or undefined all the listeners are removed from this actor.
+   * @return {ProAct.SubscribableStream}
+   *      &lt;b&gt;this&lt;/b&gt;
+   */
+  off: function (actions, listener) {
+    this.subscriptions--;
+
+    if (!actions &amp;&amp; !listener) {
+      this.subscriptions = 0;
+    }
+    if (this.subscriptions &lt; 0) {
+      this.subscriptions = 0;
+    }
+
+    if (this.subscriptions === 0 &amp;&amp; this.unsubscribe) {
+      this.unsubscribe(this);
+    }
+
+    return P.S.prototype.off.call(this, actions, listener);
+  }
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

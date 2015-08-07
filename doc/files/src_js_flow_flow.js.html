@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/js/flow/flow.js - proact.js</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="proact.js" src="../../proact_logo_icon.png" style="max-height: 65%;" title="proact.js">
+        
+            proact.js
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.3.0</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.Array", "classes/ProAct.Array.Listeners", "classes/ProAct.Array.Operations", "classes/ProAct.ArrayCore", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.ArrayUtils", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.DSL", "classes/ProAct.DSL.ops", "classes/ProAct.DSL.predefined", "classes/ProAct.DSL.predefined.accumulation", "classes/ProAct.DSL.predefined.filtering", "classes/ProAct.DSL.predefined.mapping", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.Flow", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.OpStore", "classes/ProAct.OpStore.all", "classes/ProAct.ProbProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.Queue", "classes/ProAct.Queues", "classes/ProAct.Registry", "classes/ProAct.Registry.FunctionProvider", "classes/ProAct.Registry.ProObjectProvider", "classes/ProAct.Registry.ProObjectProvider.types", "classes/ProAct.Registry.Provider", "classes/ProAct.Registry.Provider.types", "classes/ProAct.Registry.StreamProvider", "classes/ProAct.Registry.StreamProvider.types", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.SubscribableStream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "classes/ProAct.ValueEvent", "modules/proact-arrays", "modules/proact-core", "modules/proact-dsl", "modules/proact-flow", "modules/proact-properties", "modules/proact-streams"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/ProAct.html">ProAct</a></li>
+                    
+                        <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.html">ProAct.Array</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Listeners.html">ProAct.Array.Listeners</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Operations.html">ProAct.Array.Operations</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayCore.html">ProAct.ArrayCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayUtils.html">ProAct.ArrayUtils</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.AutoPropertyProvider.html">ProAct.AutoPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.BufferedStream.html">ProAct.BufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Configuration.html">ProAct.Configuration</a></li>
+                    
+                        <li><a href="../classes/ProAct.Core.html">ProAct.Core</a></li>
+                    
+                        <li><a href="../classes/ProAct.DebouncingStream.html">ProAct.DebouncingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.html">ProAct.DSL</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.ops.html">ProAct.DSL.ops</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.html">ProAct.DSL.predefined</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.accumulation.html">ProAct.DSL.predefined.accumulation</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.filtering.html">ProAct.DSL.predefined.filtering</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.mapping.html">ProAct.DSL.predefined.mapping</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
+                    
+                        <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Flow.html">ProAct.Flow</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.html">ProAct.OpStore</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.all.html">ProAct.OpStore.all</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProbProvider.html">ProAct.ProbProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
+                    
+                        <li><a href="../classes/ProAct.Property.Types.html">ProAct.Property.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.PropertyProvider.html">ProAct.PropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyProperty.html">ProAct.ProxyProperty</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queue.html">ProAct.Queue</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queues.html">ProAct.Queues</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.html">ProAct.Registry</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.FunctionProvider.html">ProAct.Registry.FunctionProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.html">ProAct.Registry.ProObjectProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.types.html">ProAct.Registry.ProObjectProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.html">ProAct.Registry.Provider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.types.html">ProAct.Registry.Provider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.html">ProAct.Registry.StreamProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.types.html">ProAct.Registry.StreamProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.States.html">ProAct.States</a></li>
+                    
+                        <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
+                    
+                        <li><a href="../classes/ProAct.SubscribableStream.html">ProAct.SubscribableStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
+                    
+                        <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                        <li><a href="../classes/ProAct.ValueEvent.html">ProAct.ValueEvent</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/proact-arrays.html">proact-arrays</a></li>
+                    
+                        <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-dsl.html">proact-dsl</a></li>
+                    
+                        <li><a href="../modules/proact-flow.html">proact-flow</a></li>
+                    
+                        <li><a href="../modules/proact-properties.html">proact-properties</a></li>
+                    
+                        <li><a href="../modules/proact-streams.html">proact-streams</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/js/flow/flow.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * The &#x60;proact-flow&#x60; provides executing functions in the right order in time.
+ * Function execution can be deferred, there are priorities and turns.
+ *
+ * @module proact-flow
+ * @main proact-flow
+ */
+
+/**
+ * &lt;p&gt;
+ *  Constructs the action flow of the ProAct.js; An action flow is a set of actions
+ *  executed in the reactive environment, which order is determined by the dependencies
+ *  between the reactive properties. The action flow puts on motion the data flow in the reactive
+ *  ecosystem. Every change on a property triggers an action flow, which triggers the data flow.
+ * &lt;/p&gt;
+ *  ProAct.Flow is inspired by the Ember&#x27;s Backburner.js (https://github.com/ebryn/backburner.js).
+ *  The defferences are the priority queues and some other optimizations like the the &#x27;once&#x27; argument of the {{#crossLink &quot;ProAct.Queue/go:method&quot;}}{{/crossLink}} method.
+ *  It doesn&#x27;t include debouncing and timed defer of actions for now.
+ * &lt;p&gt;
+ *  ProAct.Flow is used to solve many of the problems in the reactive programming, for example the diamond problem.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  It can be used for other purposes too, for example to run rendering in a rendering queue, after all of the property updates.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  &#x60;ProAct.Flow&#x60;, {{#crossLink &quot;ProAct.Queues&quot;}}{{/crossLink}} and {{#crossLink &quot;ProAct.Queue&quot;}}{{/crossLink}} together form the &#x60;proact-flow&#x60; module of ProAct.
+ * &lt;/p&gt;
+ *
+ * TODO ProAct.Flow#start and ProAct.Flow#stop are confusing names - should be renamed to something like &#x27;init&#x27; and &#x27;exec&#x27;.
+ *
+ * @constructor
+ * @class ProAct.Flow
+ * @param {Array} queueNames
+ *      Array with the names of the sub-queues of the {{#crossLink &quot;ProAct.Queues&quot;}}{{/crossLink}}es of the flow. The size of this array determines
+ *      the number of the sub-queues.
+ * @param {Object} options
+ *    Various options for the ProAct.Flow.
+ *    &lt;p&gt;Available options:&lt;/p&gt;
+ *    &lt;ul&gt;
+ *      &lt;li&gt;start - A callback that will be called every time when the action flow starts.&lt;/li&gt;
+ *      &lt;li&gt;stop - A callback that will be called every time when the action flow ends.&lt;/li&gt;
+ *      &lt;li&gt;err - A callback that will be called if an error is thrown in the action flow.&lt;/li&gt;
+ *      &lt;li&gt;flowInstance - Options object for the current flow instance. The flow instances are of the class {{#crossLink &quot;ProAct.Queues&quot;}}{{/crossLink}}.&lt;/li&gt;
+ *    &lt;/ul&gt;
+ */
+ProAct.Flow = P.F = function (queueNames, options) {
+  this.setQueues(queueNames);
+
+  this.options = options || {};
+
+  this.flowInstance = null;
+  this.flowInstances = [];
+
+  this.pauseMode = false;
+
+  try {
+    Object.defineProperty(this, &#x27;closingQueue&#x27;, {
+      enumerable: false,
+      configurable: false,
+      writable: false,
+      value: new ProAct.Queue(&#x27;closing&#x27;)
+    });
+  } catch (e) {
+    this.closingQueue = new ProAct.Queue(&#x27;closing&#x27;);
+  }
+};
+
+P.F.prototype = {
+
+  /**
+   * Reference to the constructor of this object.
+   *
+   * @property constructor
+   * @type ProAct.Flow
+   * @final
+   * @for ProAct.Flow
+   */
+  constructor: ProAct.Flow,
+
+  /**
+   * Puts the &#x60;ProAct.Flow&#x60; in running mode, meaning actions can be defered in it.
+   * &lt;p&gt;
+   *  It creates a new flow instance - instance of {{#crossLink &quot;ProAct.Queues&quot;}}{{/crossLink}} and
+   *  if there was a running instance, it is set to be the previous inctance.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  If a &lt;i&gt;start&lt;/i&gt; callback was passed when this &#x60;ProAct.Flow&#x60; was being created,
+   *  it is called with the new flow instance.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  &#x60;begin&#x60; is alias of this method.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method start
+   */
+  start: function () {
+    var queues = this.flowInstance,
+        options = this.options,
+        start = options &amp;&amp; options.start,
+        queueNames = this.queueNames;
+
+    if (queues) {
+      this.flowInstances.push(queues);
+    }
+
+    this.flowInstance = new P.Queues(queueNames, options.flowInstance);
+
+    if (start) {
+      start(this.flowInstance);
+    }
+  },
+
+  /**
+   * Appends a new queue name to the list of &lt;i&gt;this&lt;/i&gt;&#x27; queues.
+   * &lt;p&gt;
+   *  When a new &lt;i&gt;flowInstance&lt;/i&gt; is created the updated list will be used.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method addQueue
+   * @param {String} queueName
+   *      The queue name to add.
+   */
+  addQueue: function (queueName) {
+    this.queueNames.push(queueName);
+  },
+
+  /**
+   * Sets the queue names of &lt;i&gt;this&lt;/i&gt; flow.
+   * &lt;p&gt;
+   *  When a new &lt;i&gt;flowInstance&lt;/i&gt; is created the new list will be used.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method setQueues
+   * @param {Array} queueNames
+   *      Array with the names of the sub-queues of the {{#crossLink &quot;ProAct.Queues&quot;}}{{/crossLink}}es of the flow.
+   *      The size of this array determines the number of the sub-queues.
+   */
+  setQueues: function (queueNames) {
+    if (!queueNames) {
+      queueNames = [&#x27;proq&#x27;];
+    }
+    this.queueNames = queueNames;
+  },
+
+  /**
+   * Starts an action flow consisting of all the actions defered after the
+   * last call of {{#crossLink &quot;ProAct.Flow/start:method&quot;}}{{/crossLink}} and then stops the &#x60;ProAct.Flow&#x60;.
+   *
+   * &lt;p&gt;
+   *  If there is a current action flow instance, it is flushed, using the
+   *  {{#crossLink &quot;ProAct.Queues/go:method&quot;}}{{/crossLink}} method.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  If there was aprevious flow instance, it is set to be the current one.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  If a callback for &#x27;stop&#x27; was specified in the &lt;i&gt;options&lt;/i&gt; on creation,
+   *  it is called with the flushed instance.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  When the flow is started you put actions in order or with priority,
+   *  and if you want to execute them and stop it, you call this method.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  &#x60;end&#x60; is an alias for this method.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method stop
+   */
+  stop: function () {
+    var queues = this.flowInstance,
+        options = this.options,
+        stop = options &amp;&amp; options.stop,
+        nextQueues;
+
+    if (queues) {
+      try {
+        queues.go();
+      } finally {
+        this.flowInstance = null;
+
+        if (this.flowInstances.length) {
+          nextQueues = this.flowInstances.pop();
+          this.flowInstance = nextQueues;
+        }
+
+        if (stop) {
+          stop(queues);
+        }
+        this.closingQueue.go();
+      }
+    }
+  },
+
+  /**
+   * Puts the flow in &lt;i&gt;pause mode&lt;/i&gt;.
+   * When the flow is paused actions that should be defered to be run in it
+   * are skipped.
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method pause
+   */
+  pause: function () {
+    this.pauseMode = true;
+  },
+
+  /**
+   * Resumes the action flow if it is paused.
+   * The flow becomes active again and actions can be pushed into it.
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method resume
+   */
+  resume: function () {
+    this.pauseMode = false;
+  },
+
+  /**
+   * Starts the action flow, executes the passed callback, in the passed context,
+   * and then stops the action flow, executing all the pushed by the &lt;i&gt;callback&lt;/i&gt; actions.
+   * &lt;p&gt;
+   *  This means that you are guaranteed that you have a running action flow for the actions
+   *  that should be pushed to a flow in the &lt;i&gt;callback&lt;/i&gt;.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  &#x60;go&#x60; and &#x60;flush&#x60; are aliases of this method.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method run
+   * @param {Object} context
+   *      The value of &lt;i&gt;this&lt;/i&gt; bound to the &lt;i&gt;callback&lt;/i&gt; when it is executed.
+   * @param {Function} callback
+   *      The callback that will be invoked in a new running &#x60;ProAct.Flow&#x60;.
+   */
+  run: function (context, callback) {
+    var options = this.options,
+        err = options.err;
+
+    this.start();
+    if (!callback) {
+      callback = context;
+      context = null;
+    }
+
+    try {
+      if (err) {
+        try {
+          callback.call(context);
+        } catch (e) {
+          if (!e.fromFlow) {
+            e.fromFlow = true;
+            err(e);
+          } else {
+            throw e;
+          }
+        }
+      } else {
+        callback.call(context);
+      }
+    } finally {
+      this.stop();
+    }
+  },
+
+  /**
+   * Checks if there is an active {{#crossLink &quot;ProAct.Queues&quot;}}{{/crossLink}} instance in this &#x60;ProAct.Flow&#x60;.
+   *
+   * TODO This should be named &#x27;isActive&#x27;.
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method isRunning
+   */
+  isRunning: function () {
+    return this.flowInstance !== null &amp;&amp; this.flowInstance !== undefined;
+  },
+
+  /**
+   * Checks if this &#x60;ProAct.Flow&#x60; is paused.
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method isPaused
+   */
+  isPaused: function () {
+    return this.isRunning() &amp;&amp; this.pauseMode;
+  },
+
+  /**
+   * Pushes an action to the flow.
+   * This method can defer in the flow the same action multiple times.
+   * &lt;p&gt;
+   *  &#x60;defer&#x60;, &#x60;enque&#x60; and &#x60;add&#x60; are aliases of this method.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  If the flow is paused, the action will not be defered.
+   * &lt;/p&gt;
+   *
+   * TODO Errors should be put in constants!
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method push
+   * @param {String} queueName
+   *      The name of the queue to defer the action in.
+   *      &lt;p&gt;
+   *        On the place of this argument the context can be passed and the queue to push in
+   *        becomes the first queue available.
+   *      &lt;/p&gt;
+   * @param {Object} context
+   *      The context of the action.
+   *      It can be null.
+   *      &lt;p&gt;
+   *        If the method is called with a Function context, the context becomes the action.
+   *        This way the method can be called with only one parameter for actions without context.
+   *      &lt;/p&gt;
+   * @param {Function} action
+   *      The action to defer into the flow.
+   *      &lt;p&gt;
+   *        If there is no context and the action is passed in place of the context,
+   *        this parameter can hold the arguments of the action.
+   *      &lt;/p&gt;
+   * @param {Array} args
+   *      Arguments to be passed to the action when it is executed.
+   * @throws {Error} &lt;i&gt;Not in running flow!&lt;/i&gt;, if there is no action flow instance.
+   */
+  push: function (queueName, context, action, args) {
+    if (!this.flowInstance) {
+      throw new Error(&#x27;Not in running flow!&#x27;);
+    }
+    if (!this.isPaused()) {
+      this.flowInstance.push(queueName, context, action, args);
+    }
+  },
+
+  /**
+   * Defers an action to the flow only once per run.
+   * &lt;p&gt;
+   *  If the action is pushed for the second time using this method, instead of
+   *  adding it, its set to be executed later then all the actions that were defered only once, using this method.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  &#x60;deferOnce&#x60;, &#x60;enqueOnce&#x60; and &#x60;addOnce&#x60; are aliases of this method.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   *  If the flow is paused, the action will not be defered.
+   * &lt;/p&gt;
+   *
+   * @for ProAct.Flow
+   * @instance
+   * @method pushOnce
+   * @param {String} queueName
+   *      The name of the queue to defer the action in.
+   *      &lt;p&gt;
+   *        On the place of this argument the context can be passed and the queue to push in
+   *        becomes the first queue of the sub-queues.
+   *      &lt;/p&gt;
+   * @param {Object} context
+   *      The context of the action.
+   *      It can be null.
+   *      &lt;p&gt;
+   *        If the method is called with a Function context, the context becomes the action.
+   *        This way the method can be called with only one parameter for actions without context.
+   *      &lt;/p&gt;
+   * @param {Function} action
+   *      The action to defer.
+   *      &lt;p&gt;
+   *        If there is no context and the action is passed in place of the context,
+   *        this parameter can hold the arguments of the action.
+   *      &lt;/p&gt;
+   * @param {Array} args
+   *      Arguments to be passed to the action when it is executed.
+   * @throws {Error} &lt;i&gt;Not in running flow!&lt;/i&gt;, if there is no action flow instance.
+   */
+  pushOnce: function (queueName, context, action, args) {
+    if (!this.flowInstance) {
+      throw new Error(&#x27;Not in running flow!&#x27;);
+    }
+    if (!this.isPaused()) {
+      this.flowInstance.pushOnce(queueName, context, action, args);
+    }
+  },
+
+  pushClose: function (context, action, args) {
+    this.closingQueue.pushOnce(context, action, args);
+  }
+};
+
+/**
+ * The {{#crossLink &quot;ProAct.Flow&quot;}}{{/crossLink}} instance used by ProAct&#x27;s property updates by default.
+ * &lt;p&gt;
+ *  It defines only one queue - the default one &lt;i&gt;proq&lt;/i&gt;.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ *  Override this instance if you are creating a framework or toolset over ProAct.js.
+ * &lt;/p&gt;
+ *
+ * @property flow
+ * @type ProAct.Flow
+ * @for ProAct
+ * @final
+ */
+ProAct.flow = new ProAct.Flow([&#x27;proq&#x27;], {
+  err: function (e) {
+    console.log(e);
+  },
+  flowInstance: {
+    queue: {
+      err: function (queue, e) {
+        e.queue = queue;
+        console.log(e);
+      }
+    }
+  }
+});
+
+P.F.prototype.begin = P.F.prototype.start;
+P.F.prototype.end = P.F.prototype.stop;
+P.F.prototype.defer = P.F.prototype.enque = P.F.prototype.add = P.F.prototype.push;
+P.F.prototype.deferOnce = P.F.prototype.enqueOnce = P.F.prototype.addOnce = P.F.prototype.pushOnce;
+P.F.prototype.flush = P.F.prototype.go = P.F.prototype.run;
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

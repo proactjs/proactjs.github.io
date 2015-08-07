@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src/js/properties/array_property.js - proact.js</title>
+    <title>ProAct.DSL.predefined - proact.js</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -23,12 +23,12 @@
             <li class="divider-vertical"></li>
             <li>
                 <p class="navbar-text">
-                    API Docs for Version: <b>1.2.2</b>
+                    API Docs for Version: <b>1.3.0</b>
                 </p>
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "modules/proact-core", "modules/proact-properties", "modules/proact-streams"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/ProAct", "classes/ProAct.Actor", "classes/ProAct.ActorUtil", "classes/ProAct.Array", "classes/ProAct.Array.Listeners", "classes/ProAct.Array.Operations", "classes/ProAct.ArrayCore", "classes/ProAct.ArrayProperty", "classes/ProAct.ArrayPropertyProvider", "classes/ProAct.ArrayUtils", "classes/ProAct.AutoProperty", "classes/ProAct.AutoPropertyProvider", "classes/ProAct.BufferedStream", "classes/ProAct.Configuration", "classes/ProAct.Core", "classes/ProAct.DebouncingStream", "classes/ProAct.DelayedStream", "classes/ProAct.DSL", "classes/ProAct.DSL.ops", "classes/ProAct.DSL.predefined", "classes/ProAct.DSL.predefined.accumulation", "classes/ProAct.DSL.predefined.filtering", "classes/ProAct.DSL.predefined.mapping", "classes/ProAct.Event", "classes/ProAct.Event.Types", "classes/ProAct.Flow", "classes/ProAct.ObjectCore", "classes/ProAct.ObjectProperty", "classes/ProAct.ObjectPropertyProvider", "classes/ProAct.OpStore", "classes/ProAct.OpStore.all", "classes/ProAct.ProbProvider", "classes/ProAct.Property", "classes/ProAct.Property.Types", "classes/ProAct.PropertyProvider", "classes/ProAct.ProxyProperty", "classes/ProAct.ProxyPropertyProvider", "classes/ProAct.Queue", "classes/ProAct.Queues", "classes/ProAct.Registry", "classes/ProAct.Registry.FunctionProvider", "classes/ProAct.Registry.ProObjectProvider", "classes/ProAct.Registry.ProObjectProvider.types", "classes/ProAct.Registry.Provider", "classes/ProAct.Registry.Provider.types", "classes/ProAct.Registry.StreamProvider", "classes/ProAct.Registry.StreamProvider.types", "classes/ProAct.SimplePropertyProvider", "classes/ProAct.SizeBufferedStream", "classes/ProAct.States", "classes/ProAct.Stream", "classes/ProAct.SubscribableStream", "classes/ProAct.ThrottlingStream", "classes/ProAct.Utils", "classes/ProAct.ValueEvent", "modules/proact-arrays", "modules/proact-core", "modules/proact-dsl", "modules/proact-flow", "modules/proact-properties", "modules/proact-streams"]'>
         </form>
     </div>
 </div>
@@ -55,9 +55,19 @@
                     
                         <li><a href="../classes/ProAct.Actor.html">ProAct.Actor</a></li>
                     
+                        <li><a href="../classes/ProAct.Array.html">ProAct.Array</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Listeners.html">ProAct.Array.Listeners</a></li>
+                    
+                        <li><a href="../classes/ProAct.Array.Operations.html">ProAct.Array.Operations</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayCore.html">ProAct.ArrayCore</a></li>
+                    
                         <li><a href="../classes/ProAct.ArrayProperty.html">ProAct.ArrayProperty</a></li>
                     
                         <li><a href="../classes/ProAct.ArrayPropertyProvider.html">ProAct.ArrayPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.ArrayUtils.html">ProAct.ArrayUtils</a></li>
                     
                         <li><a href="../classes/ProAct.AutoProperty.html">ProAct.AutoProperty</a></li>
                     
@@ -73,15 +83,35 @@
                     
                         <li><a href="../classes/ProAct.DelayedStream.html">ProAct.DelayedStream</a></li>
                     
+                        <li><a href="../classes/ProAct.DSL.html">ProAct.DSL</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.ops.html">ProAct.DSL.ops</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.html">ProAct.DSL.predefined</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.accumulation.html">ProAct.DSL.predefined.accumulation</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.filtering.html">ProAct.DSL.predefined.filtering</a></li>
+                    
+                        <li><a href="../classes/ProAct.DSL.predefined.mapping.html">ProAct.DSL.predefined.mapping</a></li>
+                    
                         <li><a href="../classes/ProAct.Event.html">ProAct.Event</a></li>
                     
                         <li><a href="../classes/ProAct.Event.Types.html">ProAct.Event.Types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Flow.html">ProAct.Flow</a></li>
                     
                         <li><a href="../classes/ProAct.ObjectCore.html">ProAct.ObjectCore</a></li>
                     
                         <li><a href="../classes/ProAct.ObjectProperty.html">ProAct.ObjectProperty</a></li>
                     
                         <li><a href="../classes/ProAct.ObjectPropertyProvider.html">ProAct.ObjectPropertyProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.html">ProAct.OpStore</a></li>
+                    
+                        <li><a href="../classes/ProAct.OpStore.all.html">ProAct.OpStore.all</a></li>
+                    
+                        <li><a href="../classes/ProAct.ProbProvider.html">ProAct.ProbProvider</a></li>
                     
                         <li><a href="../classes/ProAct.Property.html">ProAct.Property</a></li>
                     
@@ -93,6 +123,26 @@
                     
                         <li><a href="../classes/ProAct.ProxyPropertyProvider.html">ProAct.ProxyPropertyProvider</a></li>
                     
+                        <li><a href="../classes/ProAct.Queue.html">ProAct.Queue</a></li>
+                    
+                        <li><a href="../classes/ProAct.Queues.html">ProAct.Queues</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.html">ProAct.Registry</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.FunctionProvider.html">ProAct.Registry.FunctionProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.html">ProAct.Registry.ProObjectProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.ProObjectProvider.types.html">ProAct.Registry.ProObjectProvider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.html">ProAct.Registry.Provider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.Provider.types.html">ProAct.Registry.Provider.types</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.html">ProAct.Registry.StreamProvider</a></li>
+                    
+                        <li><a href="../classes/ProAct.Registry.StreamProvider.types.html">ProAct.Registry.StreamProvider.types</a></li>
+                    
                         <li><a href="../classes/ProAct.SimplePropertyProvider.html">ProAct.SimplePropertyProvider</a></li>
                     
                         <li><a href="../classes/ProAct.SizeBufferedStream.html">ProAct.SizeBufferedStream</a></li>
@@ -101,9 +151,13 @@
                     
                         <li><a href="../classes/ProAct.Stream.html">ProAct.Stream</a></li>
                     
+                        <li><a href="../classes/ProAct.SubscribableStream.html">ProAct.SubscribableStream</a></li>
+                    
                         <li><a href="../classes/ProAct.ThrottlingStream.html">ProAct.ThrottlingStream</a></li>
                     
                         <li><a href="../classes/ProAct.Utils.html">ProAct.Utils</a></li>
+                    
+                        <li><a href="../classes/ProAct.ValueEvent.html">ProAct.ValueEvent</a></li>
                     
                 </ul>
             </div>
@@ -111,7 +165,13 @@
             <div class="tab-pane" id="modules">
                 <ul id="api-modules" class="nav nav-list">
                     
+                        <li><a href="../modules/proact-arrays.html">proact-arrays</a></li>
+                    
                         <li><a href="../modules/proact-core.html">proact-core</a></li>
+                    
+                        <li><a href="../modules/proact-dsl.html">proact-dsl</a></li>
+                    
+                        <li><a href="../modules/proact-flow.html">proact-flow</a></li>
                     
                         <li><a href="../modules/proact-properties.html">proact-properties</a></li>
                     
@@ -153,188 +213,69 @@
                 <div id="docs-main">
                     <div class="content">
                         <div class="page-header">
-    <h1>src/js/properties/array_property.js <small>File</small></h1>
+    <h1>ProAct.DSL.predefined <small>Class</small></h1>
 </div>
 
-<div class="file">
-    <pre class="prettyprint linenums">
-/**
- * @module proact-properties
- */
+<div class="well well-small">
+    
 
-/**
- * &lt;p&gt;
- *  Constructs a &#x60;ProAct.ArrayProperty&#x60;.
- *  A property is a simple {{#crossLink &quot;ProAct.Actor&quot;}}{{/crossLink}} with state.
- * &lt;/p&gt;
- * &lt;p&gt;
- *  The value of &#x60;ProAct.ArrayProperty&#x60; is an array, turned to reactive ProAct.js array -
- *  {{#crossLink &quot;ProAct.Array&quot;}}{{/crossLink}}.
- * &lt;/p&gt;
- * &lt;p&gt;
- *  On changing the array value to another array the listeners for indices/length are moved from the old value to the new value.
- * &lt;/p&gt;
- * &lt;p&gt;
- *  If set to null or undefined, the property is re-defined, using
- *  {{#crossLink &quot;ProAct.Property/reProb:method&quot;}}{{/crossLink}}.
- * &lt;/p&gt;
- * &lt;p&gt;
- *  &#x60;ProAct.ArrayProperty&#x60; is lazy - its object is made reactive on the first read of the property.
- *  Its state is set to {{#crossLink &quot;ProAct.States/ready:property&quot;}}{{/crossLink}} on the first read too.
- * &lt;/p&gt;
- * &lt;p&gt;
- *  &#x60;ProAct.ArrayProperty&#x60; is part of the proact-arrays module of ProAct.js.
- * &lt;/p&gt;
- *
- * @class ProAct.ArrayProperty
- * @extends ProAct.Property
- * @constructor
- * @param {String} queueName
- *      The name of the queue all the updates should be pushed to.
- *      &lt;p&gt;
- *        If this parameter is null/undefined the default queue of
- *        {{#crossLink &quot;ProAct/flow:property&quot;}}{{/crossLink}} is used.
- *      &lt;/p&gt;
- *      &lt;p&gt;
- *        If this parameter is not a string it is used as the
- *        &lt;i&gt;proObject&lt;/i&gt;.
- *      &lt;/p&gt;
- * @param {Object} proObject
- *      A plain JavaScript object, holding a field, this property will represent.
- * @param {String} property
- *      The name of the field of the object, this property should represent.
- */
-function ArrayProperty (queueName, proObject, property) {
-  if (queueName &amp;&amp; !P.U.isString(queueName)) {
-    property = proObject;
-    proObject = queueName;
-    queueName = null;
-  }
+    
 
-  var self = this, getter;
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_js_dsl_dsl.js.html#l350"><code>src&#x2F;js&#x2F;dsl&#x2F;dsl.js:350</code></a>
+        </div>
+    
 
-  getter = function () {
-    self.addCaller();
-    if (!P.U.isProArray(self.val)) {
-      self.val = new P.A(self.val);
-    }
+    
+        
+            Module: <a href="../modules/proact-dsl.html">proact-dsl</a>
+        
+    
 
-    var get = P.P.defaultGetter(self),
-        set = function (newVal) {
-          if (self.val == newVal || self.val.valueOf() == newVal) {
-            return;
-          }
+    
+</div>
 
-          self.oldVal = self.val;
-          self.val = newVal;
 
-          if (self.val === null || self.val === undefined) {
-            P.P.reProb(self).update();
-            return self;
-          }
 
-          if (!P.U.isProArray(self.val)) {
-            self.val = new P.A(self.val);
-            if (queueName) {
-              self.val.core.queueName = queueName;
-            }
-          }
+<div class="well well-small">
+    <p>A set of predefined operations to be used by the DSL.</p>
 
-          if (self.oldVal) {
-            var i, listener,
-                toRemove = [], toRemoveLength,
-                oldIndListeners = self.oldVal.__pro__.listeners.index,
-                oldIndListenersLn = oldIndListeners.length,
-                newIndListeners = self.val.__pro__.listeners.index,
-                oldLenListeners = self.oldVal.__pro__.listeners.length,
-                oldLenListenersLn = oldLenListeners.length,
-                newLenListeners = self.val.__pro__.listeners.length;
+</div>
 
-            for (i = 0; i &lt; oldIndListenersLn; i++) {
-              listener = oldIndListeners[i];
-              if (listener.property &amp;&amp; listener.property.proObject === self.proObject) {
-                newIndListeners.push(listener);
-                toRemove.push(i);
-              }
-            }
-            toRemoveLength = toRemove.length;
-            for (i = 0; i &lt; toRemoveLength; i++) {
-              oldIndListeners.splice[toRemove[i], 1];
-            }
-            toRemove = [];
 
-            for (i = 0; i &lt; oldLenListenersLn; i++) {
-              listener = oldLenListeners[i];
-              if (listener.property &amp;&amp; listener.property.proObject === self.proObject) {
-                newLenListeners.push(listener);
-                toRemove.push(i);
-              }
-            }
-            toRemoveLength = toRemove.length;
-            for (i = 0; i &lt; toRemoveLength; i++) {
-              oldLenListeners.splice[toRemove[i], 1];
-            }
-            toRemove = [];
-          }
 
-          ActorUtil.update.call(self);
-        };
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
 
-    P.P.defineProp(self.proObject, self.property, get, set);
+        
+        
+        
+        
+    </ul>
 
-    self.state = P.States.ready;
-    return self.val;
-  };
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
+            <h2 class="off-left">Item Index</h2>
 
-  P.P.call(this, queueName, proObject, property, getter, function () {});
-}
-ProAct.ArrayProperty = P.AP = ArrayProperty;
+            
 
-ProAct.ArrayProperty.prototype = P.U.ex(Object.create(P.P.prototype), {
+            
 
-  /**
-   * Reference to the constructor of this object.
-   *
-   * @property constructor
-   * @type ProAct.ArrayProperty
-   * @final
-   * @for ProAct.ArrayProperty
-   */
-  constructor: ProAct.ArrayProperty,
+            
 
-  /**
-   * Retrieves the {{#crossLink &quot;ProAct.Property.Types&quot;}}{{/crossLink}} value of &lt;i&gt;this&lt;/i&gt; property.
-   * &lt;p&gt;
-   *  For instances of the &#x60;ProAct.ArrayProperty&#x60; class, it is
-   *  {{#crossLink &quot;ProAct.Property.Types/array:property&quot;}}{{/crossLink}}.
-   * &lt;/p&gt;
-   *
-   * @for ProAct.ArrayProperty
-   * @instance
-   * @method type
-   * @return {Number}
-   *      The right type of the property.
-   */
-  type: function () {
-    return P.P.Types.array;
-  },
+            
+        </div>
 
-  /**
-   * Called automatically after initialization of this property.
-   * &lt;p&gt;
-   *  For &#x60;ProAct.ArrayProperty&#x60; it does nothing -
-   *  the real initialization is lazy and is performed on the first read of &lt;i&gt;this&lt;/i&gt;.
-   * &lt;/p&gt;
-   *
-   * @for ProAct.ArrayProperty
-   * @protected
-   * @instance
-   * @method afterInit
-   */
-  afterInit: function () {}
-});
+        
 
-    </pre>
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>
