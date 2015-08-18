@@ -23,7 +23,7 @@
             <li class="divider-vertical"></li>
             <li>
                 <p class="navbar-text">
-                    API Docs for Version: <b>1.3.0</b>
+                    API Docs for Version: <b>1.3.1</b>
                 </p>
             </li>
         </div>
@@ -238,7 +238,7 @@ ProAct.ArrayUtils = Pro.AU = {
    * @return {Boolean} True if the passed &#x60;value&#x60; is a ProAct.Array instance.
    */
   isProArray: function (value) {
-    return value !== null &amp;&amp; P.U.isObject(value) &amp;&amp; P.U.isArray(value._array) &amp;&amp; value.length !== undefined;
+    return value !== null &amp;&amp; P.U.isObject(value) &amp;&amp; P.U.isArray(value._array) &amp;&amp; value.length !== undefined &amp;&amp; value.core != undefined;
   },
 
   /**
